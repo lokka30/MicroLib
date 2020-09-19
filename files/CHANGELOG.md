@@ -23,4 +23,4 @@ This is MicroLib's changelog file, where changes in each version are noted.
 * Changes to file loading on enable.
 
 ### v1.0.5-ALPHA
-* Fix to file loading on enable.
+* Fix to the file loading on enable error.
