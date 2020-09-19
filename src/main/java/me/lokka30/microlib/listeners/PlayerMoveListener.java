@@ -11,9 +11,10 @@ import org.bukkit.event.player.PlayerMoveEvent;
 /**
  * Listens to PlayerMoveEvent to fire PlayerMoveXYZEvent and PlayerMoveFullXYZEvent if the conditions are right
  * Creation Date: 15 September 2020
+ *
  * @author lokka30
- * @since v1.0.0-ALPHA
  * @version 1
+ * @since v1.0.0-ALPHA
  */
 public class PlayerMoveListener implements Listener {
 
@@ -23,10 +24,10 @@ public class PlayerMoveListener implements Listener {
         Location to = event.getTo();
 
         assert to != null;
-        if(from.getX() != to.getX() || from.getY() != to.getY() || from.getZ() != to.getZ()) {
+        if (from.getX() != to.getX() || from.getY() != to.getY() || from.getZ() != to.getZ()) {
             PlayerMoveXYZEvent playerMoveXYZEvent = new PlayerMoveXYZEvent(event.getPlayer(), from, to);
             Bukkit.getPluginManager().callEvent(playerMoveXYZEvent);
-            if(playerMoveXYZEvent.isCancelled()) {
+            if (playerMoveXYZEvent.isCancelled()) {
                 event.setCancelled(true);
             }
         }
@@ -37,11 +38,11 @@ public class PlayerMoveListener implements Listener {
         Location from = event.getFrom();
         Location to = event.getTo();
 
-        if(from.getBlockX() != to.getBlockX() || from.getBlockY() != to.getBlockY() || from.getBlockZ() != to.getBlockZ()) {
+        if (from.getBlockX() != to.getBlockX() || from.getBlockY() != to.getBlockY() || from.getBlockZ() != to.getBlockZ()) {
             PlayerMoveFullXYZEvent playerMoveFullXYZEvent = new PlayerMoveFullXYZEvent(event.getPlayer(), from, to);
             Bukkit.getPluginManager().callEvent(playerMoveFullXYZEvent);
 
-            if(playerMoveFullXYZEvent.isCancelled()) {
+            if (playerMoveFullXYZEvent.isCancelled()) {
                 event.setCancelled(true);
             }
         }

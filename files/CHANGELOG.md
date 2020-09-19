@@ -24,3 +24,6 @@ This is MicroLib's changelog file, where changes in each version are noted.
 
 ### v1.0.5-ALPHA
 * Fix to the file loading on enable error.
+
+### v1.0.6-ALPHA
+* Code Cleanup

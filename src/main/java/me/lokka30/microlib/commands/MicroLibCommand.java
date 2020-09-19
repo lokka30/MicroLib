@@ -11,17 +11,21 @@ import java.util.List;
 /**
  * The /microlib command is handled here
  * Creation Date: 15 September 2020
+ *
  * @author lokka30
- * @since v1.0.0-ALPHA
  * @version 1
+ * @since v1.0.0-ALPHA
  */
 public class MicroLibCommand implements TabExecutor {
 
     private MicroLib instance;
-    public MicroLibCommand(MicroLib instance) { this.instance = instance; }
+
+    public MicroLibCommand(MicroLib instance) {
+        this.instance = instance;
+    }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(args.length == 0) {
+        if (args.length == 0) {
             sender.sendMessage(" ");
             sender.sendMessage(instance.colorize("&f&nAbout:"));
             sender.sendMessage(instance.colorize("&r &8&m->&r &7Running &b&lMicroLib &bv" + instance.getDescription().getVersion() + "&7, developed by &flokka30&7."));
@@ -31,10 +35,10 @@ public class MicroLibCommand implements TabExecutor {
             sender.sendMessage(instance.colorize("&r &8&m->&b /microlib reload&8 (&7reloads the configuration files&8)"));
             sender.sendMessage(instance.colorize("&r &8&m->&b /microlib backup&8 (&7generates a backup of the configuration files&8)"));
             sender.sendMessage(" ");
-        } else if(args.length == 1) {
-            switch(args[0].toLowerCase()) {
+        } else if (args.length == 1) {
+            switch (args[0].toLowerCase()) {
                 case "reload":
-                    if(sender.hasPermission("microlib.reload")) {
+                    if (sender.hasPermission("microlib.reload")) {
                         sender.sendMessage(instance.colorize("&7&oThe reload subcommand has not been created yet. :("));
                         //TODO
                     } else {
@@ -42,7 +46,7 @@ public class MicroLibCommand implements TabExecutor {
                     }
                     break;
                 case "backup":
-                    if(sender.hasPermission("microlib.backup")) {
+                    if (sender.hasPermission("microlib.backup")) {
                         sender.sendMessage(instance.colorize("&7&oThe backup subcommand has not been created yet. :("));
                         //TODO
                     } else {
@@ -61,7 +65,7 @@ public class MicroLibCommand implements TabExecutor {
 
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         List<String> recommendations = new ArrayList<>();
-        if(args.length == 0) {
+        if (args.length == 0) {
             recommendations.add("reload");
             recommendations.add("backup");
         }

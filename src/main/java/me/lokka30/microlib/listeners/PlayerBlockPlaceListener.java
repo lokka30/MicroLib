@@ -9,14 +9,18 @@ import org.bukkit.metadata.FixedMetadataValue;
 /**
  * This listener adds metadata to placaed blocks
  * Creation Date: 15 September 2020
+ *
  * @author lokka30
- * @since v1.0.0-ALPHA
  * @version 1
+ * @since v1.0.0-ALPHA
  */
 public class PlayerBlockPlaceListener implements Listener {
 
     private MicroLib instance;
-    public PlayerBlockPlaceListener(MicroLib instance) { this.instance = instance; }
+
+    public PlayerBlockPlaceListener(MicroLib instance) {
+        this.instance = instance;
+    }
 
     @EventHandler
     public void onPlace(final BlockPlaceEvent event) {

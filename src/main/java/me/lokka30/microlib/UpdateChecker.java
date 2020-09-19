@@ -13,8 +13,9 @@ import java.util.Scanner;
  * An adapted version of the update checker code on the SpigotMC.org Wiki
  * Creation Date: 15 September 2020
  * Sourced from https://www.spigotmc.org/wiki/creating-an-update-checker-that-checks-for-updates/
- * @since v1.0.0-ALPHA
+ *
  * @version 1
+ * @since v1.0.0-ALPHA
  */
 @SuppressWarnings("unused")
 public class UpdateChecker {
@@ -39,12 +40,15 @@ public class UpdateChecker {
         });
     }
 
-    public String getCurrentVersion() { return plugin.getDescription().getVersion(); }
+    public String getCurrentVersion() {
+        return plugin.getDescription().getVersion();
+    }
+
     public String getLatestVersion() {
         String[] latestVersion = {getCurrentVersion()};
         try {
             retrieveLatestVersion(spigotVersion -> latestVersion[0] = spigotVersion);
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             plugin.getLogger().warning("MicroLib was unable to retrieve the latest version from the SpigotMC resource page. If your server is running a version lower than Minecraft 1.11.0, then you must find a way to disable this resource's update checker by configuration.");
         }
         return latestVersion[0];

@@ -15,17 +15,18 @@ import java.util.Objects;
 /**
  * Main class of the plugin
  * Creation Date: 14 September 2020
+ *
  * @author lokka30
- * @since v1.0.0-ALPHA
  * @version 4
+ * @since v1.0.0-ALPHA
  */
 public class MicroLib extends JavaPlugin {
 
-    private MicroLogger microLogger = new MicroLogger("&b&lMicroLib: &7");
     public File settingsFile = new File(getDataFolder(), "settings.yml");
     public YamlConfiguration settingsCfg;
     public File messagesFile = new File(getDataFolder(), "messages.yml");
     public YamlConfiguration messagesCfg;
+    private MicroLogger microLogger = new MicroLogger("&b&lMicroLib: &7");
 
     @Override
     public void onEnable() {
@@ -62,20 +63,20 @@ public class MicroLib extends JavaPlugin {
 
         saveResourceIfNotExists("settings.yml");
         settingsCfg = YamlConfiguration.loadConfiguration(settingsFile);
-        if(settingsCfg.getInt("other.file-version") != 1) {
+        if (settingsCfg.getInt("other.file-version") != 1) {
             microLogger.log(MicroLogger.LogLevel.WARNING, "File '&bsettings.yml&7' doesn't seem to be the correct version for this version of MicroLib. Please merge/replace with a newly generated file, else errors could occur!");
         }
 
         saveResourceIfNotExists("messages.yml");
         messagesCfg = YamlConfiguration.loadConfiguration(messagesFile);
-        if(messagesCfg.getInt("other.file-version") != 2) {
+        if (messagesCfg.getInt("other.file-version") != 2) {
             microLogger.log(MicroLogger.LogLevel.WARNING, "File '&bmessages.yml&7' doesn't seem to be the correct version for this version of MicroLib. Please merge/replace with a newly generated file, else errors could occur!");
         }
     }
 
     private void saveResourceIfNotExists(String fileName) {
         File file = new File(getDataFolder(), fileName);
-        if(!file.exists()) {
+        if (!file.exists()) {
             saveResource(fileName, false);
         }
     }
@@ -129,7 +130,9 @@ public class MicroLib extends JavaPlugin {
         microLogger.log(MicroLogger.LogLevel.INFO, "Plugin disabled! &8(&7took &b" + duration + "ms&8)");
     }
 
-    public String colorize(String msg) { return ChatColor.translateAlternateColorCodes('&', msg); }
+    public String colorize(String msg) {
+        return ChatColor.translateAlternateColorCodes('&', msg);
+    }
 
     public String prefixMessage(String messagesFilePath) {
         //Get the strings required
@@ -137,10 +140,10 @@ public class MicroLib extends JavaPlugin {
         String message = messagesCfg.getString(messagesFilePath);
 
         //Assert that these values are not null. Makes it easier to debug problems with configs.
-        if(prefix == null) {
+        if (prefix == null) {
             prefix = "[NullPrefix]";
         }
-        if(message == null) {
+        if (message == null) {
             message = "[NullMessage]";
         }
 

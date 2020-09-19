@@ -9,9 +9,10 @@ import java.util.List;
 /**
  * An Object that makes it easier to store and send titles
  * Creation Date: 15 September 2020
+ *
  * @author lokka30
- * @since v1.0.0-ALPHA
  * @version 1
+ * @since v1.0.0-ALPHA
  */
 @SuppressWarnings("unused")
 public class WholeTitle {
@@ -36,19 +37,19 @@ public class WholeTitle {
     }
 
     public void send(Player[] players) {
-        for(Player player : players) {
+        for (Player player : players) {
             send(player);
         }
     }
 
     public void send(List<Player> players) {
-        for(Player player : players) {
+        for (Player player : players) {
             send(player);
         }
     }
 
     public void sendToAll() {
-        for(Player player : Bukkit.getOnlinePlayers()) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
             send(player);
         }
     }

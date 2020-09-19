@@ -16,9 +16,10 @@ import java.util.*;
 /**
  * This class allows you to create an ItemStack object with one line of code
  * Creation Date: 15 September 2020
+ *
  * @author lokka30
- * @since v1.0.0-ALPHA
  * @version 1
+ * @since v1.0.0-ALPHA
  */
 @SuppressWarnings("unused")
 public class ItemBuilder {
@@ -263,7 +264,7 @@ public class ItemBuilder {
         } else {
             enchantments.put(Enchantment.ARROW_INFINITE, 1);
         }
-        if(!itemFlags.contains(ItemFlag.HIDE_ENCHANTS)) {
+        if (!itemFlags.contains(ItemFlag.HIDE_ENCHANTS)) {
             itemFlags.add(ItemFlag.HIDE_ENCHANTS);
         }
         return this;
