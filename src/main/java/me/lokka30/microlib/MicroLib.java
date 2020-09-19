@@ -58,25 +58,27 @@ public class MicroLib extends JavaPlugin {
     }
 
     private void loadFiles() {
-        microLogger.log(MicroLogger.LogLevel.INFO, " &8&m->&7 Loading configuration files");
+        microLogger.log(MicroLogger.LogLevel.INFO, " &8&m->&7 Creating and loading files");
 
-        //create (if necessary) and load the files
-        if(!settingsFile.exists() || settingsFile.isDirectory()) {
-            saveResource("settings.yml", false);
-        }
-        if(!messagesFile.exists() || messagesFile.isDirectory()) {
-            saveResource("messages.yml", false);
-        }
+        saveResourceIfNotExists("LICENSE.md");
+
+        saveResourceIfNotExists("settings.yml");
         settingsCfg = YamlConfiguration.loadConfiguration(settingsFile);
-        messagesCfg = YamlConfiguration.loadConfiguration(messagesFile);
-
-        //check file versions
         if(settingsCfg.getInt("other.file-version") != 1) {
             microLogger.log(MicroLogger.LogLevel.WARNING, "File '&bsettings.yml&7' doesn't seem to be the correct version for this version of MicroLib. Please merge/replace with a newly generated file, else errors could occur!");
         }
 
+        saveResourceIfNotExists("messages.yml");
+        messagesCfg = YamlConfiguration.loadConfiguration(messagesFile);
         if(messagesCfg.getInt("other.file-version") != 2) {
             microLogger.log(MicroLogger.LogLevel.WARNING, "File '&bmessages.yml&7' doesn't seem to be the correct version for this version of MicroLib. Please merge/replace with a newly generated file, else errors could occur!");
+        }
+    }
+
+    private void saveResourceIfNotExists(String fileName) {
+        File file = new File(getDataFolder(), fileName);
+        if(!file.exists()) {
+            saveResource(fileName, false);
         }
     }
 

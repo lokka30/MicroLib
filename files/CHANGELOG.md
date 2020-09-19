@@ -18,3 +18,6 @@ This is MicroLib's changelog file, where changes in each version are noted.
 
 ### v1.0.3-ALPHA
 * Various minor undocumented changes.
+
+### v1.0.4-ALPHA
+* Changes to file loading on enable.
