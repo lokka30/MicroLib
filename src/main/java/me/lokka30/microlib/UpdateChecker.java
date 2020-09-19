@@ -49,7 +49,8 @@ public class UpdateChecker {
         try {
             retrieveLatestVersion(spigotVersion -> latestVersion[0] = spigotVersion);
         } catch (Exception exception) {
-            plugin.getLogger().warning("MicroLib was unable to retrieve the latest version from the SpigotMC resource page. If your server is running a version lower than Minecraft 1.11.0, then you must find a way to disable this resource's update checker by configuration.");
+            MicroLogger logger = new MicroLogger("&b&lMicroLogger: &7");
+            logger.log(MicroLogger.LogLevel.WARNING, "MicroLib was unable to retrieve the latest version from the SpigotMC resource page. If your server is running a version lower than Minecraft 1.11.0, then you must find a way to disable this resource's update checker by configuration.");
         }
         return latestVersion[0];
     }

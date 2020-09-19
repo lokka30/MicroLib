@@ -27,3 +27,8 @@ This is MicroLib's changelog file, where changes in each version are noted.
 
 ### v1.0.6-ALPHA
 * Code Cleanup
+
+### v1.0.7-ALPHA
+* Update checker now available
+* Changed logging method in UpdateChecker
+* Updated README.md (Spigot link added)

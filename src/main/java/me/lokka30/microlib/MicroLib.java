@@ -103,14 +103,14 @@ public class MicroLib extends JavaPlugin {
 
     private void checkForUpdates() {
         microLogger.log(MicroLogger.LogLevel.INFO, " &8&m->&7 Checking for updates (if enabled)");
-        /*if(settingsCfg.getBoolean("check-for-updates")) {
-            UpdateChecker updateChecker = new UpdateChecker(this, 12345); //TODO CHANGE RESOURCE ID
+        if(settingsCfg.getBoolean("check-for-updates")) {
+            UpdateChecker updateChecker = new UpdateChecker(this, 84017);
             String latestVersion = updateChecker.getLatestVersion();
             String currentVersion = getDescription().getVersion();
             if(!latestVersion.equals(currentVersion)) {
                 microLogger.log(MicroLogger.LogLevel.WARNING, "&bThere seems to be an update available on the SpigotMC resource page.&7 Please install the update as soon as possible. &8(&7Latest version: &b" + latestVersion + "&7, current version: &b" + currentVersion + "&8)");
             }
-        }*/
+        }
     }
 
     @Override
