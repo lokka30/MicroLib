@@ -1,0 +1,27 @@
+# This will replace the %prefix% placeholder in other messages
+prefix: '&b&lMicroLib: &7'
+
+# Messages pertaining to the '/microlib' command
+command:
+  reload:
+    started: '%prefix% Reloading configuration files ...'
+    file: '%prefix% &8&m->&7 File ''&b%file%&7'' reloaded.'
+    complete: '%prefix% ... configuration files reloaded.'
+  backup:
+    started: '%prefix% Backing up configuration files ...'
+    directory: '%prefix% &8&m->&7 Created a new backup directory.'
+    file: '%prefix% &8&m->&7 File ''&b%file%&7'' backed up.'
+    complete: '%prefix% ... configuration files backed up; placed in the ''&b/plugins/MicroLib/backups/&7'' folder.'
+    wait: '%prefix% Please wait a second before performing another backup.'
+  usage: '%prefix% Usage: &b/%label% [reload/backup]'
+  no-permission: '%prefix% You don''t have access to that.'
+
+# Please do not touch these values unless you are fully aware of what you are doing.
+other:
+
+  # Version of this file.
+  file-version: 2
+
+  # Version of the plugin that this file was originally generated with.
+  # MicroLib does not access this value, it is only present for debugging purposes.
+  generated-with: '${project.version}'
