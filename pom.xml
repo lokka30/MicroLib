@@ -6,7 +6,7 @@
 
     <groupId>me.lokka30</groupId>
     <artifactId>MicroLib</artifactId>
-    <version>1.0.4-ALPHA</version>
+    <version>1.0.5-ALPHA</version>
 
     <name>MicroLib</name>
     <description>A SpigotMC plugin with common code that is depended on by multiple other resources.</description>

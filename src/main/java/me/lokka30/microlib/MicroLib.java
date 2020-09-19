@@ -60,8 +60,6 @@ public class MicroLib extends JavaPlugin {
     private void loadFiles() {
         microLogger.log(MicroLogger.LogLevel.INFO, " &8&m->&7 Creating and loading files");
 
-        saveResourceIfNotExists("LICENSE.md");
-
         saveResourceIfNotExists("settings.yml");
         settingsCfg = YamlConfiguration.loadConfiguration(settingsFile);
         if(settingsCfg.getInt("other.file-version") != 1) {
