@@ -16,7 +16,7 @@ import org.bukkit.metadata.FixedMetadataValue;
  */
 public class PlayerBlockPlaceListener implements Listener {
 
-    private MicroLib instance;
+    private final MicroLib instance;
 
     public PlayerBlockPlaceListener(MicroLib instance) {
         this.instance = instance;

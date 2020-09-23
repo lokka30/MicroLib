@@ -7,18 +7,19 @@ import org.bukkit.command.TabExecutor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The /microlib command is handled here
  * Creation Date: 15 September 2020
  *
  * @author lokka30
- * @version 1
+ * @version 2
  * @since v1.0.0-ALPHA
  */
 public class MicroLibCommand implements TabExecutor {
 
-    private MicroLib instance;
+    private final MicroLib instance;
 
     public MicroLibCommand(MicroLib instance) {
         this.instance = instance;
@@ -26,15 +27,9 @@ public class MicroLibCommand implements TabExecutor {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(" ");
-            sender.sendMessage(instance.colorize("&f&nAbout:"));
-            sender.sendMessage(instance.colorize("&r &8&m->&r &7Running &b&lMicroLib &bv" + instance.getDescription().getVersion() + "&7, developed by &flokka30&7."));
-            sender.sendMessage(instance.colorize("&r &8&m->&r &7&o'" + instance.getDescription().getDescription() + "'"));
-            sender.sendMessage(" ");
-            sender.sendMessage(instance.colorize("&f&nAvailable Commands:"));
-            sender.sendMessage(instance.colorize("&r &8&m->&b /microlib reload&8 (&7reloads the configuration files&8)"));
-            sender.sendMessage(instance.colorize("&r &8&m->&b /microlib backup&8 (&7generates a backup of the configuration files&8)"));
-            sender.sendMessage(" ");
+            for (String message : instance.messagesCfg.getStringList("command.main")) {
+                sender.sendMessage(instance.colorize(message));
+            }
         } else if (args.length == 1) {
             switch (args[0].toLowerCase()) {
                 case "reload":
@@ -42,7 +37,8 @@ public class MicroLibCommand implements TabExecutor {
                         sender.sendMessage(instance.colorize("&7&oThe reload subcommand has not been created yet. :("));
                         //TODO
                     } else {
-                        sender.sendMessage(instance.prefixMessage("command.no-permission"));
+                        sender.sendMessage(instance.colorize(Objects.requireNonNull(instance.messagesCfg.getString("command.no-permission"))
+                                .replace("%prefix%", Objects.requireNonNull(instance.messagesCfg.getString("prefix")))));
                     }
                     break;
                 case "backup":
@@ -50,15 +46,20 @@ public class MicroLibCommand implements TabExecutor {
                         sender.sendMessage(instance.colorize("&7&oThe backup subcommand has not been created yet. :("));
                         //TODO
                     } else {
-                        sender.sendMessage(instance.prefixMessage("command.no-permission"));
+                        sender.sendMessage(instance.colorize(Objects.requireNonNull(instance.messagesCfg.getString("command.no-permission"))
+                                .replace("%prefix%", Objects.requireNonNull(instance.messagesCfg.getString("prefix")))));
                     }
                     break;
                 default:
-                    sender.sendMessage(instance.prefixMessage("command.usage").replace("%label%", label));
+                    sender.sendMessage(instance.colorize(Objects.requireNonNull(instance.messagesCfg.getString("command.usage"))
+                            .replace("%prefix%", Objects.requireNonNull(instance.messagesCfg.getString("prefix"))
+                                    .replace("%label%", label))));
                     break;
             }
         } else {
-            sender.sendMessage(instance.prefixMessage("command.usage").replace("%label%", label));
+            sender.sendMessage(instance.colorize(Objects.requireNonNull(instance.messagesCfg.getString("command.usage"))
+                    .replace("%prefix%", Objects.requireNonNull(instance.messagesCfg.getString("prefix"))
+                            .replace("%label%", label))));
         }
         return true;
     }

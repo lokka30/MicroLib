@@ -32,3 +32,13 @@ This is MicroLib's changelog file, where changes in each version are noted.
 * Update checker now available
 * Changed logging method in UpdateChecker
 * Updated README.md (Spigot link added)
+
+### v1.0.8-ALPHA b8
+* **Important Information**
+    * `messages.yml` updated to version `3`. Reset or merge your current file with a newly generated file.
+    * This release was not tested.
+* Added customisable main command message to `messages.yml`.
+* Added `setFrom` and `setTo` to movement events.
+* Modified startup banner.
+* Removed disable banner.
+* Various minor changes.

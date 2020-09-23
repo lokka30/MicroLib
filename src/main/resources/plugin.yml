@@ -2,12 +2,9 @@ name: ${project.name}
 version: ${project.version}
 description: ${project.description}
 author: lokka30
-website: www.lokka30.me
-contributors: [lokka30, BtoBastian, Lori00]
-
+website: https://www.spigotmc.org
 main: me.lokka30.microlib.MicroLib
 api-version: '1.13'
-load: STARTUP
 
 commands:
   microlib:

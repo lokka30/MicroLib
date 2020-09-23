@@ -3,6 +3,15 @@ prefix: '&b&lMicroLib: &7'
 
 # Messages pertaining to the '/microlib' command
 command:
+  main:
+    - ' '
+    - '&f&nAbout'
+    - '&8 &m->&7 Running &b&lMicroLib&b v%version%&7 by lokka30'
+    - ' '
+    - '&f&nAvailable Commands'
+    - '&8 &m->&b /microlib reload &8(&7Reload all config files&8)'
+    - '&8 &m->&b /microlib backup &8(&7Backup all config files&8)'
+    - ' '
   reload:
     started: '%prefix% Reloading configuration files ...'
     file: '%prefix% &8&m->&7 File ''&b%file%&7'' reloaded.'
@@ -16,12 +25,7 @@ command:
   usage: '%prefix% Usage: &b/%label% [reload/backup]'
   no-permission: '%prefix% You don''t have access to that.'
 
-# Please do not touch these values unless you are fully aware of what you are doing.
+# Do not touch these values unless you are fully aware of what you are doing.
 other:
-
-  # Version of this file.
-  file-version: 2
-
-  # Version of the plugin that this file was originally generated with.
-  # MicroLib does not access this value, it is only present for debugging purposes.
+  file-version: 3
   generated-with: '${project.version}'

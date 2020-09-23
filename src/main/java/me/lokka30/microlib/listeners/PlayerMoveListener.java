@@ -29,6 +29,9 @@ public class PlayerMoveListener implements Listener {
             Bukkit.getPluginManager().callEvent(playerMoveXYZEvent);
             if (playerMoveXYZEvent.isCancelled()) {
                 event.setCancelled(true);
+            } else {
+                event.setFrom(playerMoveXYZEvent.getFrom());
+                event.setTo(playerMoveXYZEvent.getTo());
             }
         }
     }
@@ -44,6 +47,9 @@ public class PlayerMoveListener implements Listener {
 
             if (playerMoveFullXYZEvent.isCancelled()) {
                 event.setCancelled(true);
+            } else {
+                event.setFrom(playerMoveFullXYZEvent.getFrom());
+                event.setTo(playerMoveFullXYZEvent.getTo());
             }
         }
     }

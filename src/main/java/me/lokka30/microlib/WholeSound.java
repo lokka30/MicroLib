@@ -19,8 +19,9 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public class WholeSound {
 
-    public Sound sound;
-    public float volume, pitch;
+    public final Sound sound;
+    public final float volume;
+    public final float pitch;
 
     public WholeSound(Sound sound, float volume, float pitch) {
         this.sound = sound;

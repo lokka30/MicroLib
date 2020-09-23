@@ -22,21 +22,21 @@ import java.util.Objects;
  */
 public class MicroLib extends JavaPlugin {
 
-    public File settingsFile = new File(getDataFolder(), "settings.yml");
+    public final File settingsFile = new File(getDataFolder(), "settings.yml");
+    public final File messagesFile = new File(getDataFolder(), "messages.yml");
+    private final MicroLogger microLogger = new MicroLogger("&b&lMicroLib: &7");
     public YamlConfiguration settingsCfg;
-    public File messagesFile = new File(getDataFolder(), "messages.yml");
     public YamlConfiguration messagesCfg;
-    private MicroLogger microLogger = new MicroLogger("&b&lMicroLib: &7");
 
     @Override
     public void onEnable() {
         final long startTime = System.currentTimeMillis();
 
         /* Loading Banner */
-        microLogger.log(MicroLogger.LogLevel.INFO, "&8&m+---------------------------+");
-        microLogger.log(MicroLogger.LogLevel.INFO, "&b&lMicroLib &fv" + getDescription().getVersion() + " &8// &7developed by &blokka30");
+        microLogger.log(MicroLogger.LogLevel.INFO, "&8&m+-------------------------------------+");
+        microLogger.log(MicroLogger.LogLevel.INFO, "&b&lMicroLib &fv" + getDescription().getVersion() + "&7 by lokka30");
         microLogger.log(MicroLogger.LogLevel.INFO, "&f(Loading Plugin)");
-        microLogger.log(MicroLogger.LogLevel.INFO, "&8&m+---------------------------+");
+        microLogger.log(MicroLogger.LogLevel.INFO, "&8&m+-------------------------------------+");
 
         /* Files */
         loadFiles();
@@ -59,7 +59,7 @@ public class MicroLib extends JavaPlugin {
     }
 
     private void loadFiles() {
-        microLogger.log(MicroLogger.LogLevel.INFO, " &8&m->&7 Creating and loading files");
+        microLogger.log(MicroLogger.LogLevel.INFO, "Creating and loading files");
 
         saveResourceIfNotExists("settings.yml");
         settingsCfg = YamlConfiguration.loadConfiguration(settingsFile);
@@ -69,7 +69,7 @@ public class MicroLib extends JavaPlugin {
 
         saveResourceIfNotExists("messages.yml");
         messagesCfg = YamlConfiguration.loadConfiguration(messagesFile);
-        if (messagesCfg.getInt("other.file-version") != 2) {
+        if (messagesCfg.getInt("other.file-version") != 3) {
             microLogger.log(MicroLogger.LogLevel.WARNING, "File '&bmessages.yml&7' doesn't seem to be the correct version for this version of MicroLib. Please merge/replace with a newly generated file, else errors could occur!");
         }
     }
@@ -82,7 +82,7 @@ public class MicroLib extends JavaPlugin {
     }
 
     private void registerEvents() {
-        microLogger.log(MicroLogger.LogLevel.INFO, " &8&m->&7 Registering events");
+        microLogger.log(MicroLogger.LogLevel.INFO, "Registering events");
 
         PluginManager pluginManager = getServer().getPluginManager();
 
@@ -91,63 +91,28 @@ public class MicroLib extends JavaPlugin {
     }
 
     private void registerCommands() {
-        microLogger.log(MicroLogger.LogLevel.INFO, " &8&m->&7 Registering commands");
+        microLogger.log(MicroLogger.LogLevel.INFO, "Registering commands");
 
         Objects.requireNonNull(getCommand("microlib")).setExecutor(new MicroLibCommand(this));
     }
 
     private void startMetrics() {
-        microLogger.log(MicroLogger.LogLevel.INFO, " &8&m->&7 Starting bStats Metrics");
+        microLogger.log(MicroLogger.LogLevel.INFO, "Starting bStats Metrics");
         new Metrics(this, 8899);
     }
 
     private void checkForUpdates() {
-        microLogger.log(MicroLogger.LogLevel.INFO, " &8&m->&7 Checking for updates (if enabled)");
-        if(settingsCfg.getBoolean("check-for-updates")) {
+        if (settingsCfg.getBoolean("check-for-updates")) {
             UpdateChecker updateChecker = new UpdateChecker(this, 84017);
             String latestVersion = updateChecker.getLatestVersion();
             String currentVersion = getDescription().getVersion();
-            if(!latestVersion.equals(currentVersion)) {
-                microLogger.log(MicroLogger.LogLevel.WARNING, "&bThere seems to be an update available on the SpigotMC resource page.&7 Please install the update as soon as possible. &8(&7Latest version: &b" + latestVersion + "&7, current version: &b" + currentVersion + "&8)");
+            if (!latestVersion.equals(currentVersion)) {
+                microLogger.log(MicroLogger.LogLevel.WARNING, "&bThere seems to be an update available on the SpigotMC resource page!&7 Please install the update as soon as possible. &8(&7Latest version: &b" + latestVersion + "&7, current version: &b" + currentVersion + "&8)");
             }
         }
     }
 
-    @Override
-    public void onDisable() {
-        final long startTime = System.currentTimeMillis();
-
-        //Disabling Banner.
-        microLogger.log(MicroLogger.LogLevel.INFO, "&8&m+---------------------------+");
-        microLogger.log(MicroLogger.LogLevel.INFO, "&b&lMicroLib &fv" + getDescription().getVersion() + " &8// &7developed by &blokka30");
-        microLogger.log(MicroLogger.LogLevel.INFO, "&f(Disabling Plugin)");
-        microLogger.log(MicroLogger.LogLevel.INFO, "&8&m+---------------------------+");
-
-        //Do disabling things here.
-
-        //Disabling Completed.
-        final long duration = System.currentTimeMillis() - startTime;
-        microLogger.log(MicroLogger.LogLevel.INFO, "Plugin disabled! &8(&7took &b" + duration + "ms&8)");
-    }
-
     public String colorize(String msg) {
         return ChatColor.translateAlternateColorCodes('&', msg);
-    }
-
-    public String prefixMessage(String messagesFilePath) {
-        //Get the strings required
-        String prefix = messagesCfg.getString("messages.prefix");
-        String message = messagesCfg.getString(messagesFilePath);
-
-        //Assert that these values are not null. Makes it easier to debug problems with configs.
-        if (prefix == null) {
-            prefix = "[NullPrefix]";
-        }
-        if (message == null) {
-            message = "[NullMessage]";
-        }
-
-        //Return the final prefixed message from the config
-        return colorize(message.replace("%prefix%", prefix));
     }
 }

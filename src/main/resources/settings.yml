@@ -2,12 +2,7 @@
 # Default: [true]
 check-for-updates: true
 
-# Please do not touch these values unless you are fully aware of what you are doing.
+# Do not touch these values unless you are fully aware of what you are doing.
 other:
-
-  # Version of this file.
   file-version: 1
-
-  # Version of the plugin that this file was originally generated with.
-  # MicroLib does not access this value, it is only present for debugging purposes.
   generated-with: '${project.version}'

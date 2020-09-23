@@ -17,8 +17,11 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class WholeTitle {
 
-    String title, subtitle;
-    int fadeIn, stay, fadeOut;
+    final String title;
+    final String subtitle;
+    final int fadeIn;
+    final int stay;
+    final int fadeOut;
 
     public WholeTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
         this.title = colorize(title);

@@ -17,8 +17,8 @@ import org.bukkit.event.HandlerList;
 public class PlayerMoveXYZEvent extends Event {
 
     private static final HandlerList HANDLERS = new HandlerList();
+    private final Player player;
     private boolean isCancelled = false;
-    private Player player;
     private Location from, to;
 
     public PlayerMoveXYZEvent(Player player, Location from, Location to) {
@@ -53,5 +53,13 @@ public class PlayerMoveXYZEvent extends Event {
 
     public Location getTo() {
         return to;
+    }
+
+    public void setFrom(Location from) {
+        this.from = from;
+    }
+
+    public void setTo(Location to) {
+        this.to = to;
     }
 }
