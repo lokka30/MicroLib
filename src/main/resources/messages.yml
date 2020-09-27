@@ -14,7 +14,6 @@ command:
     - ' '
   reload:
     started: '%prefix% Reloading configuration files ...'
-    file: '%prefix% &8&m->&7 File ''&b%file%&7'' reloaded.'
     complete: '%prefix% ... configuration files reloaded.'
   backup:
     started: '%prefix% Backing up configuration files ...'

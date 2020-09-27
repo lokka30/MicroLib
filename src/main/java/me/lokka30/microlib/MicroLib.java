@@ -58,7 +58,7 @@ public class MicroLib extends JavaPlugin {
         microLogger.log(MicroLogger.LogLevel.INFO, "Loading complete! &8(&7took &b" + duration + "ms&8)");
     }
 
-    private void loadFiles() {
+    public void loadFiles() {
         microLogger.log(MicroLogger.LogLevel.INFO, "Creating and loading files");
 
         saveResourceIfNotExists("settings.yml");

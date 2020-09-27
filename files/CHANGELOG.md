@@ -42,3 +42,8 @@ This is MicroLib's changelog file, where changes in each version are noted.
 * Modified startup banner.
 * Removed disable banner.
 * Various minor changes.
+
+### v1.0.9
+* Removed unused message from `messages.yml` (no file update is required, file version unchanged)
+* Added functionality to `/microlib reload`.
+* Versioning changed again, removed build number. Also, ML is no longer in alpha.

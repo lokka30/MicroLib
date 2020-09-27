@@ -34,8 +34,11 @@ public class MicroLibCommand implements TabExecutor {
             switch (args[0].toLowerCase()) {
                 case "reload":
                     if (sender.hasPermission("microlib.reload")) {
-                        sender.sendMessage(instance.colorize("&7&oThe reload subcommand has not been created yet. :("));
-                        //TODO
+                        sender.sendMessage(instance.colorize(Objects.requireNonNull(instance.messagesCfg.getString("command.reload.started"))
+                                .replace("%prefix%", Objects.requireNonNull(instance.messagesCfg.getString("prefix")))));
+                        instance.loadFiles();
+                        sender.sendMessage(instance.colorize(Objects.requireNonNull(instance.messagesCfg.getString("command.reload.complete"))
+                                .replace("%prefix%", Objects.requireNonNull(instance.messagesCfg.getString("prefix")))));
                     } else {
                         sender.sendMessage(instance.colorize(Objects.requireNonNull(instance.messagesCfg.getString("command.no-permission"))
                                 .replace("%prefix%", Objects.requireNonNull(instance.messagesCfg.getString("prefix")))));
