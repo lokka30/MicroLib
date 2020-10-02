@@ -4,23 +4,5 @@ description: ${project.description}
 author: lokka30
 website: https://www.spigotmc.org
 main: me.lokka30.microlib.MicroLib
+load: STARTUP
 api-version: '1.13'
-
-commands:
-  microlib:
-    description: View information about MicroLib, or manage the plugin.
-    usage: /<command> [reload/backup]
-
-permissions:
-  microlib.*:
-    description: Contains all MicroLib permissions.
-    default: op
-    children:
-      microlib.reload: true
-      microlib.backup: true
-  microlib.reload:
-    description: Allows the user to run /microlib reload.
-    default: op
-  microlib.backup:
-    description: Allows the user to run /microlib backup.
-    default: op

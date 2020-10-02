@@ -10,12 +10,8 @@ import java.net.URL;
 import java.util.Scanner;
 
 /**
- * An adapted version of the update checker code on the SpigotMC.org Wiki
- * Creation Date: 15 September 2020
- * Sourced from https://www.spigotmc.org/wiki/creating-an-update-checker-that-checks-for-updates/
- *
- * @version 1
- * @since v1.0.0-ALPHA
+ * An adapted version of the Update Checker from the SpigotMC.org Wiki
+ * Sourced from https://www.spigotmc.org/wiki/creating-an-update-checker-that-checks-for-updates/ on 15 September 2020
  */
 @SuppressWarnings("unused")
 public class UpdateChecker {
@@ -49,8 +45,7 @@ public class UpdateChecker {
         try {
             retrieveLatestVersion(spigotVersion -> latestVersion[0] = spigotVersion);
         } catch (Exception exception) {
-            MicroLogger logger = new MicroLogger("&b&lMicroLogger: &7");
-            logger.log(MicroLogger.LogLevel.WARNING, "MicroLib was unable to retrieve the latest version from the SpigotMC resource page. If your server is running a version lower than Minecraft 1.11.0, then you must find a way to disable this resource's update checker by configuration.");
+            new MicroLogger("&b&lMicroLib: &7").warning("The developer of the plugin '" + plugin.getName() + "' is utilising MicroLib's asynchronous update checker. An error occured whilst attempting to check for updates. If your server is running a version lower than Minecraft 1.11.0, kindly ask the developer of '" + plugin.getName() + "', 'How do I disable the update checker?' (and include this warning in your message).");
         }
         return latestVersion[0];
     }

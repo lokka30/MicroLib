@@ -7,12 +7,9 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 /**
- * An Object that makes it easier to store and send titles
- * Creation Date: 15 September 2020
+ * An object that makes it easier to store and send titles
  *
  * @author lokka30
- * @version 1
- * @since v1.0.0-ALPHA
  */
 @SuppressWarnings("unused")
 public class WholeTitle {

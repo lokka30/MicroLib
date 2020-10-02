@@ -9,12 +9,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * An Object that makes it easier to store and play sounds
- * Creation Date: 15 September 2020
+ * An object that makes it easier to store and play sounds
  *
  * @author lokka30
- * @version 1
- * @since v1.0.0-ALPHA
  */
 @SuppressWarnings("unused")
 public class WholeSound {

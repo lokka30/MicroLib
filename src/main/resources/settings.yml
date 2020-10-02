@@ -1,8 +1,0 @@
-# Should MicroLib check for updates?
-# Default: [true]
-check-for-updates: true
-
-# Do not touch these values unless you are fully aware of what you are doing.
-other:
-  file-version: 1
-  generated-with: '${project.version}'
