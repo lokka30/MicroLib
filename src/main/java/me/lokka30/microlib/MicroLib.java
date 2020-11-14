@@ -10,13 +10,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 @SuppressWarnings("unused")
 public class MicroLib extends JavaPlugin {
 
+    private final MicroLogger logger = new MicroLogger("&b&lMicroLib: &7");
+
     @Override
     public void onEnable() {
-        new MicroLogger("&b&lMicroLib: &7").info("Plugin enabled.");
+        logger.info("&fEnabled successfully.");
     }
 
     @Override
     public void onDisable() {
-        new MicroLogger("&b&lMicroLib: &7").info("Plugin disabled.");
+        logger.info("&fDisabled successfully.");
     }
 }

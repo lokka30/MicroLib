@@ -67,3 +67,10 @@ This is MicroLib's changelog file, where changes in each version are noted.
       * WholeTitle
     * Other things:
       * Removed bStats as it is not suitable for this resource anymore.
+      
+### v2.1.0
+* **IMPORTANT:** Removed old UpdateChecker#getLatestVersion method.
+* **IMPORTANT:** Renamed old UpdateChecker#retrieveLatestVersion method to UpdateChecker#getLatestVersion
+* Added the `YamlConfigFile` class for easier YAML config file management
+* Added the `QuickTimer` class for easy timing with no repeating tasks. Useful for timing start-up and shut-down times, etc.
+* Code improvements.

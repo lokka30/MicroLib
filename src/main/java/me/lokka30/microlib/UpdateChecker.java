@@ -24,29 +24,20 @@ public class UpdateChecker {
         this.resourceId = resourceId;
     }
 
-    private void retrieveLatestVersion(final Consumer<String> consumer) {
-        Bukkit.getScheduler().runTaskAsynchronously(this.plugin, () -> {
+    private void getLatestVersion(final Consumer<String> consumer) {
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=" + this.resourceId).openStream(); Scanner scanner = new Scanner(inputStream)) {
                 if (scanner.hasNext()) {
                     consumer.accept(scanner.next());
                 }
             } catch (IOException exception) {
-                this.plugin.getLogger().warning("Unable to look for updates: " + exception.getMessage());
+                plugin.getLogger().warning("An internal error occured whilst attempting to check the latest version available for the resource. Stack trace: ");
+                exception.printStackTrace();
             }
         });
     }
 
     public String getCurrentVersion() {
         return plugin.getDescription().getVersion();
-    }
-
-    public String getLatestVersion() {
-        String[] latestVersion = {getCurrentVersion()};
-        try {
-            retrieveLatestVersion(spigotVersion -> latestVersion[0] = spigotVersion);
-        } catch (Exception exception) {
-            new MicroLogger("&b&lMicroLib: &7").warning("The developer of the plugin '" + plugin.getName() + "' is utilising MicroLib's asynchronous update checker. An error occured whilst attempting to check for updates. If your server is running a version lower than Minecraft 1.11.0, kindly ask the developer of '" + plugin.getName() + "', 'How do I disable the update checker?' (and include this warning in your message).");
-        }
-        return latestVersion[0];
     }
 }
