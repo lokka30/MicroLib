@@ -74,3 +74,6 @@ This is MicroLib's changelog file, where changes in each version are noted.
 * Added the `YamlConfigFile` class for easier YAML config file management
 * Added the `QuickTimer` class for easy timing with no repeating tasks. Useful for timing start-up and shut-down times, etc.
 * Code improvements.
+
+### v2.1.1
+* Fixed `UpdateChecker#getLatestVersion`'s visibility (`private` -> `public`).

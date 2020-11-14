@@ -24,7 +24,7 @@ public class UpdateChecker {
         this.resourceId = resourceId;
     }
 
-    private void getLatestVersion(final Consumer<String> consumer) {
+    public void getLatestVersion(final Consumer<String> consumer) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=" + this.resourceId).openStream(); Scanner scanner = new Scanner(inputStream)) {
                 if (scanner.hasNext()) {
