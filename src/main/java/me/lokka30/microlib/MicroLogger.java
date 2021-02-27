@@ -9,6 +9,7 @@ import java.util.logging.Logger;
  *
  * @author lokka30
  */
+@SuppressWarnings("unused")
 public class MicroLogger {
 
     private final Logger logger;
@@ -27,7 +28,6 @@ public class MicroLogger {
     /**
      * @return the current prefix
      */
-    @SuppressWarnings("unused")
     public String getPrefix() {
         return prefix;
     }
@@ -35,22 +35,18 @@ public class MicroLogger {
     /**
      * @param prefix the prefix that should be set
      */
-    @SuppressWarnings("unused")
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
 
-    @SuppressWarnings("unused")
     public void info(String message) {
-        logger.info(MicroUtils.colorize(prefix + message));
+        logger.info(MessageUtils.colorizeAll(prefix + message));
     }
 
-    @SuppressWarnings("unused")
     public void warning(String message) {
-        logger.warning(MicroUtils.colorize(prefix + message));
+        logger.warning(MessageUtils.colorizeAll(prefix + message));
     }
-
     public void error(String message) {
-        logger.severe(MicroUtils.colorize(prefix + message));
+        logger.severe(MessageUtils.colorizeAll(prefix + message));
     }
 }

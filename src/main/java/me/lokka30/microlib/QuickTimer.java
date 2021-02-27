@@ -1,24 +1,34 @@
 package me.lokka30.microlib;
 
+/**
+ * This is a small class useful for timing simple things such as the time required to start-up a plugin or run a command.
+ *
+ * @author lokka30
+ */
 @SuppressWarnings("unused")
 public class QuickTimer {
 
-    private long millis = 0;
-    private long timer = 0;
+    private long start;
 
-    public void start() {
-        timer = 0;
-        millis = System.currentTimeMillis();
+    public QuickTimer() {
+        start();
     }
 
-    public long getTimer() {
-        //reset millis and dump into timer
-        if (timer != 0) {
-            timer = timer + (System.currentTimeMillis() - millis);
-        }
-        millis = System.currentTimeMillis();
+    public QuickTimer(long start) {
+        this.start = start;
+    }
 
-        //return the current timer
-        return timer;
+    /**
+     * (re)start the timer.
+     */
+    public void start() {
+        start = System.currentTimeMillis();
+    }
+
+    /**
+     * @return time (millis) since start time
+     */
+    public long getTimer() {
+        return System.currentTimeMillis() - start;
     }
 }

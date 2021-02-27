@@ -12,6 +12,8 @@ import java.util.Scanner;
 /**
  * An adapted version of the Update Checker from the SpigotMC.org Wiki
  * Sourced from https://www.spigotmc.org/wiki/creating-an-update-checker-that-checks-for-updates/ on 15 September 2020
+ *
+ * @author lokka30
  */
 @SuppressWarnings("unused")
 public class UpdateChecker {
@@ -24,6 +26,9 @@ public class UpdateChecker {
         this.resourceId = resourceId;
     }
 
+    /*
+    Credit for this method is given to the editors of the Wiki page linked above.
+     */
     public void getLatestVersion(final Consumer<String> consumer) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=" + this.resourceId).openStream(); Scanner scanner = new Scanner(inputStream)) {
@@ -31,7 +36,7 @@ public class UpdateChecker {
                     consumer.accept(scanner.next());
                 }
             } catch (IOException exception) {
-                plugin.getLogger().warning("An internal error occured whilst attempting to check the latest version available for the resource. Stack trace: ");
+                plugin.getLogger().severe("An internal error occured whilst attempting to check the latest version available for the resource. Stack trace: ");
                 exception.printStackTrace();
             }
         });

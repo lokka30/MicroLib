@@ -1,16 +1,24 @@
 package me.lokka30.microlib;
 
-import org.bukkit.ChatColor;
-
 /**
  * Minor useful utilities.
  *
  * @author lokka30
+ * @deprecated since v2.2.0 - use MessageUtils#colorizeAll instead.
  */
 public class MicroUtils {
 
-    // Shorter way to use the translateAlternateColorCodes method.
+    /**
+     * WARNING: DEPRECATED - Use MessageUtils#colorizeAll(str) instead!
+     * <p>
+     * Colorizes text using & color codes.
+     *
+     * @param msg msg to translate
+     * @return translated msg
+     * @deprecated Use MessageUtils#colorizeAll(str) instead. This class will be removed soon.
+     */
+    @Deprecated
     public static String colorize(String msg) {
-        return ChatColor.translateAlternateColorCodes('&', msg);
+        return MessageUtils.colorizeAll(msg);
     }
 }

@@ -9,6 +9,8 @@ import java.io.IOException;
 
 /**
  * This class allows you to easily work with YAML configuration files.
+ *
+ * @author lokka30
  */
 @SuppressWarnings("unused")
 public class YamlConfigFile {

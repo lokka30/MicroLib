@@ -28,10 +28,8 @@ public class ItemBuilder {
     private int amount = 1;
     private int damage = 0;
     private Map<Enchantment, Integer> enchantments = new HashMap<>();
-    @SuppressWarnings("CanBeFinal")
-    private List<String> lore = new ArrayList<>();
-    @SuppressWarnings("CanBeFinal")
-    private List<ItemFlag> itemFlags = new ArrayList<>();
+    private final List<String> lore = new ArrayList<>();
+    private final List<ItemFlag> itemFlags = new ArrayList<>();
 
     public ItemBuilder(Material material) {
         this.material = material;

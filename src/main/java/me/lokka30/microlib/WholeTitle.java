@@ -1,7 +1,6 @@
 package me.lokka30.microlib;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -21,15 +20,11 @@ public class WholeTitle {
     final int fadeOut;
 
     public WholeTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
-        this.title = colorize(title);
-        this.subtitle = colorize(subtitle);
+        this.title = MessageUtils.colorizeAll(title);
+        this.subtitle = MessageUtils.colorizeAll(subtitle);
         this.fadeIn = fadeIn;
         this.stay = stay;
         this.fadeOut = fadeOut;
-    }
-
-    private String colorize(String msg) {
-        return ChatColor.translateAlternateColorCodes('&', msg);
     }
 
     public void send(Player player) {

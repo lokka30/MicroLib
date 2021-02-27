@@ -6,7 +6,6 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * An object that makes it easier to store and play sounds
@@ -81,7 +80,8 @@ public class WholeSound {
     }
 
     public void playToAllAtLocation(Location location) {
-        Objects.requireNonNull(location.getWorld()).playSound(location, sound, volume, pitch);
+        assert location.getWorld() != null;
+        location.getWorld().playSound(location, sound, volume, pitch);
     }
 
     public void playToAllAtLocations(Location[] locations) {
