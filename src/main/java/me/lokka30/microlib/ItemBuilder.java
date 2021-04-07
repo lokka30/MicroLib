@@ -1,7 +1,6 @@
 package me.lokka30.microlib;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.enchantments.Enchantment;
@@ -40,27 +39,24 @@ public class ItemBuilder {
         this.amount = amount;
 
         itemStack = new ItemStack(material, amount);
-        if (itemStack.hasItemMeta())
-            itemMeta = itemStack.getItemMeta();
+        itemMeta = itemStack.getItemMeta();
     }
 
     public ItemBuilder(Material material, String displayName) {
         this.material = material;
-        this.displayName = displayName;
+        withDisplayName(displayName);
 
         itemStack = new ItemStack(material, amount);
-        if (itemStack.hasItemMeta())
-            itemMeta = itemStack.getItemMeta();
+        itemMeta = itemStack.getItemMeta();
     }
 
     public ItemBuilder(Material material, int amount, String displayName) {
         this.material = material;
         this.amount = amount;
-        this.displayName = displayName;
+        withDisplayName(displayName);
 
         itemStack = new ItemStack(material, amount);
-        if (itemStack.hasItemMeta())
-            itemMeta = itemStack.getItemMeta();
+        itemMeta = itemStack.getItemMeta();
     }
 
     public ItemBuilder(ItemStack itemStack) {
@@ -68,24 +64,22 @@ public class ItemBuilder {
         this.material = itemStack.getType();
         this.amount = itemStack.getAmount();
 
-        if (itemStack.hasItemMeta()) {
-            itemMeta = itemStack.getItemMeta();
-            assert itemMeta != null;
+        itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
 
-            if (itemMeta.hasDisplayName()) {
-                displayName = itemMeta.getDisplayName();
-            }
+        if (itemMeta.hasDisplayName()) {
+            displayName = itemMeta.getDisplayName();
+        }
 
-            itemFlags.addAll(itemStack.getItemMeta().getItemFlags());
+        itemFlags.addAll(itemStack.getItemMeta().getItemFlags());
 
-            if (itemMeta instanceof Damageable) {
-                Damageable damageable = (Damageable) itemMeta;
-                damage = damageable.getDamage();
-            }
+        if (itemMeta instanceof Damageable) {
+            Damageable damageable = (Damageable) itemMeta;
+            damage = damageable.getDamage();
+        }
 
-            if (itemMeta.hasEnchants()) {
-                enchantments = itemMeta.getEnchants();
-            }
+        if (itemMeta.hasEnchants()) {
+            enchantments = itemMeta.getEnchants();
         }
     }
 
@@ -163,7 +157,7 @@ public class ItemBuilder {
      * @return ItemBuilder
      */
     public ItemBuilder withDisplayName(String displayName) {
-        this.displayName = ChatColor.translateAlternateColorCodes('&', displayName);
+        this.displayName = MessageUtils.colorizeAll(displayName);
         return this;
     }
 
@@ -174,7 +168,7 @@ public class ItemBuilder {
      * @return ItemBuilder
      */
     public ItemBuilder withLore(String lore) {
-        this.lore.add(ChatColor.translateAlternateColorCodes('&', lore));
+        this.lore.add(MessageUtils.colorizeAll(lore));
         return this;
     }
 
@@ -186,7 +180,7 @@ public class ItemBuilder {
      */
     public ItemBuilder withLore(List<String> lore) {
         for (String line : lore) {
-            this.lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            this.lore.add(MessageUtils.colorizeAll(line));
         }
         return this;
     }
@@ -199,7 +193,7 @@ public class ItemBuilder {
      */
     public ItemBuilder withLore(String[] lore) {
         for (String line : lore) {
-            this.lore.add(ChatColor.translateAlternateColorCodes('&', line));
+            this.lore.add(MessageUtils.colorizeAll(line));
         }
         return this;
     }
@@ -212,7 +206,7 @@ public class ItemBuilder {
      * @return ItemBuilder
      */
     public ItemBuilder withLore(String lore, int index) {
-        this.lore.set(index, ChatColor.translateAlternateColorCodes('&', lore));
+        this.lore.set(index, MessageUtils.colorizeAll(lore));
         return this;
     }
 
