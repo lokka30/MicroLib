@@ -175,3 +175,18 @@ start experiencing errors.**
   new `MessageUtils.java` class.
 * Improved javadocs in most classes.
 * Now compiled with MC 1.16.5 instead of MC 1.16.3
+
+***
+
+# v2.2.1
+
+## Notes:
+
+* This version has not been tested.
+* Developers, the deprecated **MicroUtils** class will be **removed** in the next MicroLib update. Please switch to **
+  MessageUtils#colorizeAll** as soon as possible. You have had a long notice :)
+
+## Changelog
+
+* Attempted fix for ItemBuilder's item meta systems not working properly
+* Small improvements to ItemBuilder
