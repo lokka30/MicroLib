@@ -42,23 +42,6 @@ public class ItemBuilder {
         itemMeta = itemStack.getItemMeta();
     }
 
-    public ItemBuilder(Material material, String displayName) {
-        this.material = material;
-        withDisplayName(displayName);
-
-        itemStack = new ItemStack(material, amount);
-        itemMeta = itemStack.getItemMeta();
-    }
-
-    public ItemBuilder(Material material, int amount, String displayName) {
-        this.material = material;
-        this.amount = amount;
-        withDisplayName(displayName);
-
-        itemStack = new ItemStack(material, amount);
-        itemMeta = itemStack.getItemMeta();
-    }
-
     public ItemBuilder(ItemStack itemStack) {
         this.itemStack = itemStack;
         this.material = itemStack.getType();
@@ -91,6 +74,7 @@ public class ItemBuilder {
      */
     public ItemBuilder withAmount(int amount) {
         this.amount = amount;
+        itemStack.setAmount(amount);
         return this;
     }
 
@@ -113,6 +97,7 @@ public class ItemBuilder {
      */
     public ItemBuilder withMaterial(Material material) {
         this.material = material;
+        itemStack.setType(material);
         return this;
     }
 
@@ -124,6 +109,7 @@ public class ItemBuilder {
      */
     public ItemBuilder withMeta(ItemMeta itemMeta) {
         this.itemMeta = itemMeta;
+        itemStack.setItemMeta(itemMeta);
         return this;
     }
 
@@ -347,30 +333,25 @@ public class ItemBuilder {
      * @return ItemStack
      */
     public ItemStack buildItemStack() {
-        itemStack = new ItemStack(material, amount);
-
-        if (itemStack.hasItemMeta()) {
-            if (displayName != null) {
-                itemMeta.setDisplayName(displayName);
-            }
-            if (!enchantments.isEmpty()) {
-                itemStack.addEnchantments(enchantments);
-            }
-            if (itemFlags.size() != 0) {
-                ItemFlag[] itemFlagsArray = (ItemFlag[]) itemFlags.toArray();
-                itemMeta.addItemFlags(itemFlagsArray);
-            }
-            if (lore.size() != 0) {
-                itemMeta.setLore(lore);
-            }
-            if (damage != 0 && itemStack.getItemMeta() instanceof Damageable) {
-                Damageable damageable = (Damageable) itemStack.getItemMeta();
-                damageable.setDamage(damage);
-            }
+        if (displayName != null) {
+            itemMeta.setDisplayName(displayName);
+        }
+        if (!enchantments.isEmpty()) {
+            itemStack.addEnchantments(enchantments);
+        }
+        if (itemFlags.size() != 0) {
+            ItemFlag[] itemFlagsArray = (ItemFlag[]) itemFlags.toArray();
+            itemMeta.addItemFlags(itemFlagsArray);
+        }
+        if (lore.size() != 0) {
+            itemMeta.setLore(lore);
+        }
+        if (damage != 0 && itemStack.getItemMeta() instanceof Damageable) {
+            Damageable damageable = (Damageable) itemStack.getItemMeta();
+            damageable.setDamage(damage);
         }
 
         itemStack.setItemMeta(itemMeta);
-        itemStack.setAmount(amount);
 
         return itemStack;
     }
