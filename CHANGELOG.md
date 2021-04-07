@@ -190,3 +190,21 @@ start experiencing errors.**
 
 * Attempted fix for ItemBuilder's item meta systems not working properly
 * Small improvements to ItemBuilder
+
+***
+
+# v2.2.3
+
+## Notes:
+
+* This version has been tested: the only changes this update were to the `ItemBuilder` class.
+* Developers, please note:
+    * The deprecated **MicroUtils** class will be **removed** in the next major MicroLib update. Please switch to **
+      MessageUtils#colorizeAll** as soon as possible. You have had a long notice :)
+    * Are you using the **ItemBuilder** class? If so, the constructors using displaynames have been removed in this
+      update. Please use `ItemBuilder#withDisplayName` instead.
+
+## Changelog:
+
+* Fixed ItemBuilder item meta issue.
+* Improved ItemBuilder code.
