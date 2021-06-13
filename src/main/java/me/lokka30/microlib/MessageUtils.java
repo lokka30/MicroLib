@@ -1,7 +1,8 @@
 package me.lokka30.microlib;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -73,6 +74,16 @@ public class MessageUtils {
      * @return the color-translated message.
      */
     public static String colorizeStandardCodes(String msg) {
-        return ChatColor.translateAlternateColorCodes('&', msg);
+        boolean hasMD5 = false;
+        try{
+            Class.forName("net.md_5.bungee.api.ChatColor");
+            hasMD5 = true;
+        }
+        catch (ClassNotFoundException ignored){ }
+
+        if (hasMD5)
+            return BukkitCompat.colorizeStandardCodes(msg);
+        else
+            return org.bukkit.ChatColor.translateAlternateColorCodes('&', msg);
     }
 }
