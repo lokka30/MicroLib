@@ -18,6 +18,8 @@ public class VersionUtils {
      * @return the latest supported MajorMinecraftVersion by MicroLib. It will return UNKNOWN if the server is older than 1.6.
      */
     public static MajorMinecraftVersion getMajorMinecraftVersion() {
+        if (isOneEighteen()) return MajorMinecraftVersion.ONE_EIGHTEEN;
+        if (isOneSeventeen()) return MajorMinecraftVersion.ONE_SEVENTEEN;
         if (isOneSixteen()) return MajorMinecraftVersion.ONE_SIXTEEN;
         if (isOneFifteen()) return MajorMinecraftVersion.ONE_FIFTEEN;
         if (isOneFourteen()) return MajorMinecraftVersion.ONE_FOURTEEN;
@@ -30,6 +32,32 @@ public class VersionUtils {
         if (isOneSeven()) return MajorMinecraftVersion.ONE_SEVEN;
         if (isOneSix()) return MajorMinecraftVersion.ONE_SIX;
         return MajorMinecraftVersion.UNKNOWN;
+    }
+
+    /**
+     * @return if the server is MC 1.17 or newer.
+     */
+    @SuppressWarnings("unused")
+    public static boolean isOneEighteen() {
+        try {
+            EntityType.valueOf("WARDEN");
+        } catch (IllegalArgumentException ex) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @return if the server is MC 1.17 or newer.
+     */
+    @SuppressWarnings("unused")
+    public static boolean isOneSeventeen() {
+        try {
+            EntityType.valueOf("AXOLOTL");
+        } catch (IllegalArgumentException ex) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -180,6 +208,8 @@ public class VersionUtils {
      * If the server is older than 1.7 then the UNKNOWN value should be used.
      */
     public enum MajorMinecraftVersion {
+        ONE_EIGHTEEN,
+        ONE_SEVENTEEN,
         ONE_SIXTEEN,
         ONE_FIFTEEN,
         ONE_FOURTEEN,
