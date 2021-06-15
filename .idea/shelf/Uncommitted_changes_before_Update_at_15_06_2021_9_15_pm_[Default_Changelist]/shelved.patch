@@ -1,0 +1,118 @@
+Index: src/main/java/me/lokka30/microlib/DirectionUtils.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/me/lokka30/microlib/DirectionUtils.java b/src/main/java/me/lokka30/microlib/DirectionUtils.java
+new file mode 100644
+--- /dev/null	(date 1617970493739)
++++ b/src/main/java/me/lokka30/microlib/DirectionUtils.java	(date 1617970493739)
+@@ -0,0 +1,86 @@
++package me.lokka30.microlib;
++
++import org.bukkit.Location;
++import org.jetbrains.annotations.NotNull;
++
++import java.util.Arrays;
++import java.util.Comparator;
++
++/**
++ * @author lokka30
++ *
++ * This class is from the MicroLib resource:
++ * - A code library with a bunch of useful things for SpigotMC plugins to utilise.
++ * - Available at: https://www.spigotmc.org/resources/microlib.84017/
++ *
++ * MIT License
++ *
++ * @version 3
++ */
++@SuppressWarnings("unused")
++public class DirectionUtils {
++
++    public enum Direction {
++        NORTH(-180),
++        NORTH_NORTH_EAST(-157.5),
++        NORTH_EAST(-135),
++        NORTH_EAST_EAST(-112.5),
++        EAST(-90),
++        SOUTH_EAST_EAST(-67.5),
++        SOUTH_EAST(-45),
++        SOUTH_SOUTH_EAST(-22.5),
++        SOUTH(0),
++        SOUTH_SOUTH_WEST(22.5),
++        SOUTH_WEST(45),
++        SOUTH_WEST_WEST(67.5),
++        WEST(90),
++        NORTH_WEST_WEST(112.5),
++        NORTH_WEST(135),
++        NORTH_NORTH_WEST(157.5);
++
++        public final double minPitch;
++        Direction(final double minPitch) { this.minPitch = minPitch; }
++
++        /**
++         * @return The lower pitch barrier of the direction
++         */
++        public double getMinPitch() { return minPitch; }
++    }
++
++    /**
++     * Returns a Direction from a given pitch (i.e., Location#getYaw).
++     *
++     * Yaw must be from -180 to 180, as Minecraft uses these values.
++     *
++     * The method is inclusive of the larger pitch (e.g. NORTH is
++     * greater than -180 but less than and equal to -90).
++     *
++     * @param pitch pitch to get Direction of
++     * @return Direction from given pitch
++     */
++    @NotNull
++    public static Direction getDirection(double pitch) {
++        // Limit pitch from -180 to 180.
++        pitch = Math.max(-180, pitch);
++        pitch = Math.min(180, pitch);
++
++        Direction[] directions = Direction.values();
++        Arrays.sort(directions, Comparator.comparing(Direction::getMinPitch));
++
++        for(Direction direction : directions) {
++            if(pitch >= direction.getMinPitch()) return direction;
++        }
++
++        throw new IllegalStateException("Somehow a valid direction was not found.");
++    }
++
++    /**
++     * Get the direction from the yaw of given location.
++     * @param location Location to get direction of.
++     * @return Direction of location.
++     */
++    @NotNull
++    public static Direction getDirection(@NotNull Location location) {
++        return getDirection(location.getYaw());
++    }
++}
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <groupId>me.lokka30</groupId>\r\n    <artifactId>MicroLib</artifactId>\r\n    <version>2.2.3</version>\r\n\r\n    <name>MicroLib</name>\r\n    <description>A code library with a bunch of useful things for SpigotMC plugins to utilise.</description>\r\n\r\n    <properties>\r\n        <java.version>1.8</java.version>\r\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n        <maven.compiler.source>1.8</maven.compiler.source>\r\n        <maven.compiler.target>1.8</maven.compiler.target>\r\n    </properties>\r\n\r\n    <repositories>\r\n        <repository>\r\n            <id>spigot-repo</id>\r\n            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>\r\n        </repository>\r\n    </repositories>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.spigotmc</groupId>\r\n            <artifactId>spigot-api</artifactId>\r\n            <version>1.16.5-R0.1-SNAPSHOT</version>\r\n            <scope>provided</scope>\r\n        </dependency>\r\n    </dependencies>\r\n\r\n    <build>\r\n        <resources>\r\n            <resource>\r\n                <directory>src/main/resources</directory>\r\n                <filtering>true</filtering>\r\n            </resource>\r\n        </resources>\r\n    </build>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision 6dc302e12a183ab8fe76a971716a298c60f891bb)
++++ b/pom.xml	(date 1617958502982)
+@@ -32,6 +32,11 @@
+             <version>1.16.5-R0.1-SNAPSHOT</version>
+             <scope>provided</scope>
+         </dependency>
++        <dependency>
++            <groupId>org.jetbrains</groupId>
++            <artifactId>annotations</artifactId>
++            <version>16.0.2</version>
++        </dependency>
+     </dependencies>
+ 
+     <build>

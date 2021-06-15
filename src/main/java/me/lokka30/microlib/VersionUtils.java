@@ -35,7 +35,7 @@ public class VersionUtils {
     }
 
     /**
-     * @return if the server is MC 1.17 or newer.
+     * @return if the server is MC 1.18 or newer.
      */
     @SuppressWarnings("unused")
     public static boolean isOneEighteen() {
