@@ -1,8 +1,5 @@
 package me.lokka30.microlib;
 
-import org.bukkit.Bukkit;
-
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,7 +47,7 @@ public class MessageUtils {
      * @author Elementeral @SpigotMC.org and imDaniX @ SpigotMC.org ~ https://www.spigotmc.org/threads/hex-color-code-translate.449748/#post-3867804
      */
     public static String colorizeHexCodes(String startTag, String endTag, String message) {
-        if (!VersionUtils.isOneSixteen()) return message;
+        if (!VersionUtils.isOneSixteen() || !VersionUtils.isRunningSpigot()) return message;
 
         final Pattern hexPattern = Pattern.compile(startTag + "([A-Fa-f0-9]{6})" + endTag);
         Matcher matcher = hexPattern.matcher(message);
@@ -74,16 +71,6 @@ public class MessageUtils {
      * @return the color-translated message.
      */
     public static String colorizeStandardCodes(String msg) {
-        boolean hasMD5 = false;
-        try{
-            Class.forName("net.md_5.bungee.api.ChatColor");
-            hasMD5 = true;
-        }
-        catch (ClassNotFoundException ignored){ }
-
-        if (hasMD5)
-            return BukkitCompat.colorizeStandardCodes(msg);
-        else
-            return org.bukkit.ChatColor.translateAlternateColorCodes('&', msg);
+        return org.bukkit.ChatColor.translateAlternateColorCodes('&', msg);
     }
 }

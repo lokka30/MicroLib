@@ -223,4 +223,17 @@ public class VersionUtils {
         ONE_SIX,
         UNKNOWN
     }
+
+    /**
+     * @return if the server is running SpigotMC or
+     * a SpigotMC-based software like Paper.
+     */
+    public static boolean isRunningSpigot() {
+        try {
+            Class.forName("net.md_5.bungee.api.ChatColor");
+            return true;
+        } catch (ClassNotFoundException ignored) {
+            return false;
+        }
+    }
 }
