@@ -208,3 +208,14 @@ start experiencing errors.**
 
 * Fixed ItemBuilder item meta issue.
 * Improved ItemBuilder code.
+
+***
+
+# v2.3.0
+
+* @stumper66 & @lokka30 fixed CraftBukkit incompatibility
+* @stumper66 added 'Is1.17' and 'Is1.18' methods to the VersionUtils class
+* @lokka30 added Spigot software checking to VersionUtils class
+* @lokka30 added a Direction class which can be useful when using directions
+* @stumper66 updated dependencies in pom (spigot-api)
+* @lokka30 removed `.idea` directory from repo
