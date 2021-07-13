@@ -55,6 +55,7 @@ public class MicroLogger {
         else
             logger.warning(MessageUtils.colorizeAll(prefix + message));
     }
+
     public void error(String message) {
         if (serverIsSpigot)
             Bukkit.getServer().getConsoleSender().sendMessage(MessageUtils.colorizeAll(ChatColor.RED + "[ERROR] " + prefix + message));
