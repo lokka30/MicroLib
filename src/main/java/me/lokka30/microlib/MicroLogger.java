@@ -1,6 +1,7 @@
 package me.lokka30.microlib;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import java.util.logging.Logger;
 @SuppressWarnings("unused")
 public class MicroLogger {
 
+    final boolean serverIsSpigot;
     private final Logger logger;
     private String prefix;
 
@@ -23,6 +25,7 @@ public class MicroLogger {
     public MicroLogger(String prefix) {
         this.prefix = prefix;
         this.logger = Bukkit.getLogger();
+        this.serverIsSpigot = Bukkit.getName().equalsIgnoreCase("CraftBukkit");
     }
 
     /**
@@ -40,13 +43,22 @@ public class MicroLogger {
     }
 
     public void info(String message) {
-        logger.info(MessageUtils.colorizeAll(prefix + message));
+        if (serverIsSpigot)
+            Bukkit.getServer().getConsoleSender().sendMessage(MessageUtils.colorizeAll(prefix + message));
+        else
+            logger.info(MessageUtils.colorizeAll(prefix + message));
     }
 
     public void warning(String message) {
-        logger.warning(MessageUtils.colorizeAll(prefix + message));
+        if (serverIsSpigot)
+            Bukkit.getServer().getConsoleSender().sendMessage(MessageUtils.colorizeAll(ChatColor.YELLOW + "[WARN] " + prefix + message));
+        else
+            logger.warning(MessageUtils.colorizeAll(prefix + message));
     }
     public void error(String message) {
-        logger.severe(MessageUtils.colorizeAll(prefix + message));
+        if (serverIsSpigot)
+            Bukkit.getServer().getConsoleSender().sendMessage(MessageUtils.colorizeAll(ChatColor.RED + "[ERROR] " + prefix + message));
+        else
+            logger.severe(MessageUtils.colorizeAll(prefix + message));
     }
 }
