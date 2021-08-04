@@ -1,13 +1,20 @@
+/*
+ * Copyright (c) 2020-2021 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
+ * This class is bundled inside the MicroLib resource, a library purposed for Bukkit/SpigotMC plugin developers. Read more about the resource here: https://www.spigotmc.org/resources/microlib.84017/
+ */
+
 package me.lokka30.microlib;
 
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 
 /**
- * This class is used to check the major minecraft version of the server. It does this by checking if the server accepts required blocks or entities that were added in these updates.
+ * This class is used to check the major minecraft version of the server.
+ * It does this by checking if the server accepts required blocks or
+ * entities that were added in these updates.
  *
- * @author lokka30
- * @since MicroLib v2.2.0
+ * @author lokka30, stumper66
+ * @since MicroLib 2.2.0
  */
 @SuppressWarnings("unused")
 public class VersionUtils {
@@ -16,6 +23,9 @@ public class VersionUtils {
      * If possible, use one of the individual methods e.g. isOneTwelve(), since they are quicker calculations.
      *
      * @return the latest supported MajorMinecraftVersion by MicroLib. It will return UNKNOWN if the server is older than 1.6.
+     * @author lokka30
+     * @see MajorMinecraftVersion
+     * @since unknown
      */
     public static MajorMinecraftVersion getMajorMinecraftVersion() {
         if (isOneEighteen()) return MajorMinecraftVersion.ONE_EIGHTEEN;
@@ -39,12 +49,7 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneEighteen() {
-        try {
-            EntityType.valueOf("WARDEN");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasEntityType("WARDEN");
     }
 
     /**
@@ -52,12 +57,7 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneSeventeen() {
-        try {
-            EntityType.valueOf("AXOLOTL");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasEntityType("AXOLOTL");
     }
 
     /**
@@ -65,12 +65,7 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneSixteen() {
-        try {
-            EntityType.valueOf("PIGLIN");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasEntityType("PIGLIN");
     }
 
     /**
@@ -78,12 +73,7 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneFifteen() {
-        try {
-            EntityType.valueOf("BEE");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasEntityType("BEE");
     }
 
     /**
@@ -91,12 +81,7 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneFourteen() {
-        try {
-            EntityType.valueOf("PILLAGER");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasEntityType("PILLAGER");
     }
 
     /**
@@ -104,12 +89,7 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneThirteen() {
-        try {
-            EntityType.valueOf("TURTLE");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasEntityType("TURTLE");
     }
 
     /**
@@ -117,12 +97,7 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneTwelve() {
-        try {
-            Material.valueOf("WHITE_CONCRETE");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasMaterial("WHITE_CONCRETE");
     }
 
     /**
@@ -130,12 +105,7 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneEleven() {
-        try {
-            Material.valueOf("OBSERVER");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasMaterial("OBSERVER");
     }
 
     /**
@@ -143,12 +113,7 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneTen() {
-        try {
-            Material.valueOf("MAGMA_BLOCK");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasMaterial("MAGMA_BLOCK");
     }
 
     /**
@@ -156,12 +121,7 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneNine() {
-        try {
-            Material.valueOf("END_ROD");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasMaterial("END_ROD");
     }
 
     /**
@@ -169,12 +129,7 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneEight() {
-        try {
-            Material.valueOf("PRISMARINE");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasMaterial("PRISMARINE");
     }
 
     /**
@@ -182,12 +137,7 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneSeven() {
-        try {
-            Material.valueOf("WHITE_STAINED_GLASS");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasMaterial("WHITE_STAINED_GLASS");
     }
 
     /**
@@ -195,17 +145,15 @@ public class VersionUtils {
      */
     @SuppressWarnings("unused")
     public static boolean isOneSix() {
-        try {
-            EntityType.valueOf("HORSE");
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+        return hasEntityType("HORSE");
     }
 
     /**
      * This enum contains all major Minecraft versions (1.6 and newer).
      * If the server is older than 1.7 then the UNKNOWN value should be used.
+     *
+     * @author lokka30
+     * @since unknown
      */
     public enum MajorMinecraftVersion {
         ONE_EIGHTEEN,
@@ -225,8 +173,9 @@ public class VersionUtils {
     }
 
     /**
-     * @return if the server is running SpigotMC or
-     * a SpigotMC-based software like Paper.
+     * @return if the server is running SpigotMC or any SpigotMC derivative such as PaperMC and Tuinity.
+     * @author lokka30
+     * @since unknown
      */
     public static boolean isRunningSpigot() {
         try {
@@ -235,5 +184,37 @@ public class VersionUtils {
         } catch (ClassNotFoundException ignored) {
             return false;
         }
+    }
+
+    /**
+     * @param entityTypeStr type to check
+     * @return if the type is valid with the current server version
+     * @author lokka30
+     * @see EntityType
+     * @since 2.4.0
+     */
+    private static boolean hasEntityType(String entityTypeStr) {
+        try {
+            EntityType.valueOf(entityTypeStr);
+        } catch (IllegalArgumentException ignored) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @param materialStr type to check
+     * @return if the type is valid with the current server version
+     * @author lokka30
+     * @see Material
+     * @since 2.4.0
+     */
+    private static boolean hasMaterial(String materialStr) {
+        try {
+            Material.valueOf(materialStr);
+        } catch (IllegalArgumentException ignored) {
+            return false;
+        }
+        return true;
     }
 }

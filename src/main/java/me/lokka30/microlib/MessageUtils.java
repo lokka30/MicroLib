@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2020-2021 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
+ * This class is bundled inside the MicroLib resource, a library purposed for Bukkit/SpigotMC plugin developers. Read more about the resource here: https://www.spigotmc.org/resources/microlib.84017/
+ */
+
 package me.lokka30.microlib;
 
 import org.bukkit.Bukkit;
@@ -8,9 +13,14 @@ import java.util.regex.Pattern;
 import static net.md_5.bungee.api.ChatColor.COLOR_CHAR;
 
 /**
- * @author lokka30
- * @contributors Sullivan_Bognar, imDaniX
- * @since MicroLib v2.2.0
+ * This class contains a bunch of methods which
+ * make it very easy to translate '&'-based color
+ * codes in messages. You can colorize standard codes
+ * (&a, &b, &1, &2, etc), and even hex codes (&#abccdef),
+ * and also both in one method :)
+ *
+ * @author lokka30, Sullivan_Bognar, imDaniX
+ * @since 2.2.0
  */
 public class MessageUtils {
 
@@ -20,6 +30,10 @@ public class MessageUtils {
      *
      * @param msg the message to translate color codes from.
      * @return the color-translated message.
+     * @author lokka30
+     * @see MessageUtils#colorizeHexCodes(String)
+     * @see MessageUtils#colorizeStandardCodes(String)
+     * @since unknown
      */
     public static String colorizeAll(String msg) {
         return colorizeStandardCodes(colorizeHexCodes(msg));
@@ -27,10 +41,12 @@ public class MessageUtils {
 
     /**
      * This defaults the 'startTag' to '&#' and endTag to '' (nothing) to colorizeHexCodes.
-     * See javadoc for colorizeHexCodes(String, String, String) for more info.
      *
      * @param msg message to translate
      * @return the translated string
+     * @author lokka30
+     * @see MessageUtils#colorizeHexCodes(String, String, String)
+     * @since unknown
      */
     public static String colorizeHexCodes(String msg) {
         return colorizeHexCodes("&#", "", msg);
@@ -40,13 +56,15 @@ public class MessageUtils {
      * (WARNING!) This does NOT colorize standard codes, ONLY hex codes.
      * This translates all hex codes in a message. Hex codes are prefixed by '&#', e.g. '&#abcdef'.
      * This method ensures the version is 1.16 or newer before translating - else, it will not translate the message.
-     * Full credit to Sullivan_Bognar and imDaniX on SpigotMC for creating this method.
+     *
+     * @author Elementeral @SpigotMC.org and imDaniX @ SpigotMC.org ~ https://www.spigotmc.org/threads/hex-color-code-translate.449748/#post-3867804
      *
      * @param startTag what the tag should begin with - '&#' is recommended
      * @param endTag   what the tag should end with - '' (nothing) is recommended
      * @param message  the message that should be translated
      * @return the translated string
-     * @author Elementeral @SpigotMC.org and imDaniX @ SpigotMC.org ~ https://www.spigotmc.org/threads/hex-color-code-translate.449748/#post-3867804
+     *
+     * @since unknown
      */
     public static String colorizeHexCodes(String startTag, String endTag, String message) {
         if (!VersionUtils.isOneSixteen() || !VersionUtils.isRunningSpigot()) return message;
@@ -66,11 +84,15 @@ public class MessageUtils {
     }
 
     /**
-     * (WARNING!) This does NOT colorize hex codes, ONLY standard codes.
+     * This does NOT colorize hex codes, ONLY standard codes.
      * This translated all standard codes in a message. Standard codes are prefixed by '&', e.g. '&a'.
+     *
+     * @author lokka30
      *
      * @param msg the message to translate standard color codes from.
      * @return the color-translated message.
+     *
+     * @since unknown
      */
     public static String colorizeStandardCodes(String msg) {
         if (Bukkit.getName().equalsIgnoreCase("CraftBukkit"))

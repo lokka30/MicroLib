@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2020-2021 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
+ * This class is bundled inside the MicroLib resource, a library purposed for Bukkit/SpigotMC plugin developers. Read more about the resource here: https://www.spigotmc.org/resources/microlib.84017/
+ */
+
 package me.lokka30.microlib;
 
 import org.bukkit.Bukkit;
@@ -13,9 +18,11 @@ import org.bukkit.inventory.meta.SkullMeta;
 import java.util.*;
 
 /**
- * This class allows you to create an ItemStack object with one line of code
+ * This class allows you to create an ItemStack object,
+ * with as little as 1 line of code.
  *
  * @author lokka30
+ * @since unknown
  */
 @SuppressWarnings("unused")
 public class ItemBuilder {
