@@ -1,2 +1,5 @@
-/.idea
+# IntelliJ Files
+/.idea/
 /target/
+MicroLib.iml
+/test/

@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2020-2021 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
+ * This class is bundled inside the MicroLib resource, a library purposed for Bukkit/SpigotMC plugin developers. Read more about the resource here: https://www.spigotmc.org/resources/microlib.84017/
+ */
+
 package me.lokka30.microlib;
 
 import org.bukkit.Location;
@@ -7,6 +12,8 @@ import org.bukkit.event.player.PlayerMoveEvent;
  * This class contains 2 static methods which can help you increase the performance of your plugin by disregarding when players rotate their head and body.
  *
  * @author lokka30
+ * @see PlayerMoveEvent
+ * @since unknown
  */
 @SuppressWarnings("unused")
 public class PlayerMoveEventUtils {
@@ -15,7 +22,9 @@ public class PlayerMoveEventUtils {
      * Has the player moved to a different X, Y or Z coordinate? (e.g. going from x=2 to x=2.1, x=2 to x=3, etc.)
      *
      * @param event the PlayerMoveEvent
-     * @return if the player has moved x, y or z in the playermoveevent
+     * @return if the player has moved x, y or z in the PlayerMoveEvent.
+     * @author lokka30
+     * @since unknown
      */
     public static boolean hasMovedXYZ(final PlayerMoveEvent event) {
         final Location from = event.getFrom();
@@ -30,6 +39,8 @@ public class PlayerMoveEventUtils {
      *
      * @param event the PlayerMoveEvent
      * @return if the player has moved a full x, y or z coordinate
+     * @author lokka30
+     * @since unknown
      */
     public static boolean hasMovedFullXYZ(final PlayerMoveEvent event) {
         final Location from = event.getFrom();
