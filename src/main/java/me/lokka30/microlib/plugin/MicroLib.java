@@ -5,13 +5,15 @@
 
 package me.lokka30.microlib.plugin;
 
-import me.lokka30.microlib.MicroLogger;
+import me.lokka30.microlib.messaging.MicroLogger;
+import me.lokka30.microlib.plugin.listeners.PlayerMoveListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * Main class loaded by the Bukkit plugin manager
- * (if it is installed in the plugins folder)
+ * This class only functions if MicroLib is installed as
+ * a PLUGIN, in the plugins folder of the server, and
+ * it must be enabled.
  *
  * @author lokka30
  * @since unknown
@@ -33,20 +35,40 @@ public class MicroLib extends JavaPlugin {
     /**
      * @author lokka30
      * @see JavaPlugin#onEnable()
+     *
+     * Called by Bukkit when the plugin is being enabled.
+     *
      * @since unknown
      */
     @Override
     public void onEnable() {
+        registerListeners();
+
         logger.info("&fEnabled successfully.");
     }
 
     /**
      * @author lokka30
      * @see JavaPlugin#onDisable()
+     *
+     * Called by Bukkit when the plugin is being disabled.
+     *
      * @since unknown
      */
     @Override
     public void onDisable() {
         logger.info("&fDisabled successfully.");
+    }
+
+    /**
+     * @author lokka30
+     * @since v3.0.0
+     * <p>
+     * Registers any listeners that MicroLib has.
+     */
+    private void registerListeners() {
+        logger.info("Registering listeners...");
+
+        Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(), this);
     }
 }
