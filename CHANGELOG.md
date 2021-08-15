@@ -6,7 +6,52 @@
 
 ***
 
-# 2.4.0
+# MicroLib v3.0.0
+
+## Important
+
+**Server owners!** Nothing of your concern this update. Only update if the plugin(s) that use MicroLib have updated to
+use this version.
+
+**Developers!** A lot of upgradeshave been done to the library, check the changelog before updating. Almost all classes
+have been moved to separate packages in an organisation effort for future-proofing.
+
+## Changelog
+
+* Added `MultiMessage` class at `me.lokka30.microlib.messaging.MultiMessage`.
+  * Makes it far easier to send colored multi-line messages with multiple placeholders.
+  * Has already been tested in PhantomWorlds 2 and is working really well. Will be implemented in my other plugins over
+    time.
+* Moved a lot of classes into separate sub-packages for organisation purposes. The location after 'Moved <...>' is the
+  new location of the class.
+  * Moved `me.lokka30.microlib.MessageUtils`
+  * Moved `me.lokka30.microlib.MicroLogger`
+  * Moved `me.lokka30.microlib.items.ItemBuilder`
+  * Moved `me.lokka30.microlib.maths.QuickTimer`
+  * Moved `me.lokka30.microlib.other.UpdateChecker`
+  * Moved `me.lokka30.microlib.other.VersionUtils`
+  * Moved `me.lokka30.microlib.wholes.WholeSound`
+  * Moved `me.lokka30.microlib.wholes.WholeTitle`
+  * Moved `me.lokka30.microlib.files.YamlConfigFile`
+* Events!
+  * Removed `PlayerMoveEventUtils`, replaced by two new events, see below.
+  * Added `PlayerMoveFullXYZEvent`, derived from `PlayerMoveEvent`. Only fires when a player moves to a different X, Y
+    or Z coordinate as an integer (e.g. 1 to 2 yes, 1.9 to 2.0 yes, not 1.8 to 1.9 or 1.0 to 1.9)
+  * Added `PlayerMoveXYZEvent`, derived from `PlayerMoveEvent`. Only fires when a player moves on the X, Y or Z axis in
+    any amount. Head rotations do not fire this event.
+  * **These events are only fired if MicroLib is installed as a plugin. If it is shaded into your plugin then these
+    events will not fire.**
+  * **These events have not been tested. If you are using one or both of these events then please let me know how it
+    goes. :)**
+
+## Note
+
+* I would not recommend using `ItemBuilder` at the moment, it seems to be quite broken. I will fix it in the future, but
+  it is very low on my priorities.
+
+***
+
+# MicroLib v2.4.0
 
 ## Important
 

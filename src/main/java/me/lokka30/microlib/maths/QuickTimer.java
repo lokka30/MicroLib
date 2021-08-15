@@ -3,7 +3,7 @@
  * This class is bundled inside the MicroLib resource, a library purposed for Bukkit/SpigotMC plugin developers. Read more about the resource here: https://www.spigotmc.org/resources/microlib.84017/
  */
 
-package me.lokka30.microlib;
+package me.lokka30.microlib.maths;
 
 /**
  * This is a small class useful for timing simple things such as the time required to start-up a plugin or run a command.

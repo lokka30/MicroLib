@@ -3,7 +3,7 @@
  * This class is bundled inside the MicroLib resource, a library purposed for Bukkit/SpigotMC plugin developers. Read more about the resource here: https://www.spigotmc.org/resources/microlib.84017/
  */
 
-package me.lokka30.microlib;
+package me.lokka30.microlib.wholes;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

@@ -5,13 +5,15 @@
 
 package me.lokka30.microlib.exceptions;
 
+import me.lokka30.microlib.other.VersionUtils;
+
 /**
  * This exception should be thrown when a feature in a plugin
  * requires a certain server version, but the server running
  * the plugin isn't running a recent enough Minecraft version to do so.
  *
  * @author lokka30
- * @see me.lokka30.microlib.VersionUtils
+ * @see VersionUtils
  * @since 2.4.0
  */
 public class OutdatedServerVersionException extends Exception {
