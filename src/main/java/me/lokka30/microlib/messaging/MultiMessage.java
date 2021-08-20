@@ -131,8 +131,7 @@ public class MultiMessage {
      * at an individual level, e.g. maybe you do not want
      * an invalid user input placeholder to format colors.
      */
-    @SuppressWarnings("InnerClassMayBeStatic")
-    public class Placeholder {
+    public static class Placeholder {
         public final String id;
         public final String value;
         public final boolean colorizeValue;
