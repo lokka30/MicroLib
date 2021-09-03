@@ -1,8 +1,0 @@
-name: 'MicroLib'
-version: '${project.version}'
-description: '${project.description}'
-author: 'lokka30'
-website: 'https://www.spigotmc.org/resources/microlib.84017/'
-main: 'me.lokka30.microlib.plugin.MicroLib'
-load: 'STARTUP'
-api-version: '1.13'
