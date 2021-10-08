@@ -6,6 +6,13 @@
 
 ***
 
+# MicroLib v3.1.0
+* I (@lokka30) re-programmed the [ItemBuilder]() class! It should work great now.
+  * **Note:** The new ItemBuilder class has not been tested, please let me know if you use it and run into any issues.
+  * **Note:** Any plugins using the old ItemBuilder will need to update their code.
+
+***
+
 # MicroLib v3.0.1
 
 * @lokka30 made the `MultiMessage.Placeholder` class static, fixed inability to use the `MultiMessage` class.
