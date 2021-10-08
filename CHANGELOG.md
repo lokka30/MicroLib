@@ -6,6 +6,12 @@
 
 ***
 
+# MicroLib v3.0.1
+
+* @lokka30 made the `MultiMessage.Placeholder` class static, fixed inability to use the `MultiMessage` class.
+
+***
+
 # MicroLib v3.0.0
 
 ## Important
