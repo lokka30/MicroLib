@@ -7,7 +7,7 @@
 ***
 
 # MicroLib v3.1.0
-* I (@lokka30) re-programmed the [ItemBuilder]() class! It should work great now.
+* I (@lokka30) re-programmed the [ItemBuilder](https://github.com/lokka30/MicroLib/blob/master/src/main/java/me/lokka30/microlib/items/ItemBuilder.java) class! It should work great now.
   * **Note:** The new ItemBuilder class has not been tested, please let me know if you use it and run into any issues.
   * **Note:** Any plugins using the old ItemBuilder will need to update their code.
 
