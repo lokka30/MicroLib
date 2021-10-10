@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -50,7 +51,7 @@ public class ItemBuilder {
         itemMeta = itemStack.getItemMeta();
     }
 
-    public ItemBuilder(ItemStack itemStack) {
+    public ItemBuilder(@NotNull ItemStack itemStack) {
         this.itemStack = itemStack;
         this.material = itemStack.getType();
         this.amount = itemStack.getAmount();
@@ -172,7 +173,7 @@ public class ItemBuilder {
      * @param lore the line to add
      * @return ItemBuilder
      */
-    public ItemBuilder withLore(List<String> lore) {
+    public ItemBuilder withLore(@NotNull List<String> lore) {
         for (String line : lore) {
             this.lore.add(MessageUtils.colorizeAll(line));
         }
@@ -185,7 +186,7 @@ public class ItemBuilder {
      * @param lore the line to add
      * @return ItemBuilder
      */
-    public ItemBuilder withLore(String[] lore) {
+    public ItemBuilder withLore(String @NotNull [] lore) {
         for (String line : lore) {
             this.lore.add(MessageUtils.colorizeAll(line));
         }
@@ -324,7 +325,7 @@ public class ItemBuilder {
     }
 
     public ItemFlag[] getItemFlags() {
-        return (ItemFlag[]) itemFlags.toArray();
+        return itemFlags.toArray(new ItemFlag[0]);
     }
 
     public Material getMaterial() {
@@ -347,11 +348,11 @@ public class ItemBuilder {
         if (!enchantments.isEmpty()) {
             itemStack.addEnchantments(enchantments);
         }
-        if (itemFlags.size() != 0) {
-            ItemFlag[] itemFlagsArray = (ItemFlag[]) itemFlags.toArray();
+        if (!itemFlags.isEmpty()) {
+            ItemFlag[] itemFlagsArray = itemFlags.toArray(new ItemFlag[0]);
             itemMeta.addItemFlags(itemFlagsArray);
         }
-        if (lore.size() != 0) {
+        if (!lore.isEmpty()) {
             itemMeta.setLore(lore);
         }
         if (damage != 0 && itemStack.getItemMeta() instanceof Damageable) {
