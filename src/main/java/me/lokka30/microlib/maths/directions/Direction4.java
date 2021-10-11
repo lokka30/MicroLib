@@ -45,7 +45,7 @@ public enum Direction4 {
         this.minPitch = minPitch;
     }
 
-    public double minPitch;
+    public final double minPitch;
 
     /* Translate a Pitch into a Direction */
     public static Direction4 getDirection(float pitch) {
