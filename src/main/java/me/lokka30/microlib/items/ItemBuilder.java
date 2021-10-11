@@ -5,8 +5,6 @@
 
 package me.lokka30.microlib.items;
 
-import me.lokka30.microlib.messaging.MessageUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.enchantments.Enchantment;
@@ -15,353 +13,355 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 /**
- * This class allows you to create an ItemStack object,
- * with as little as 1 line of code.
- *
  * @author lokka30
  * @since unknown
+ * This class allows you to easily create ItemStacks.
+ * @see ItemStack
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class ItemBuilder {
 
-    private ItemStack itemStack;
-    private ItemMeta itemMeta;
-    private String displayName;
-    private Material material;
-    private int amount = 1;
-    private int damage = 0;
-    private Map<Enchantment, Integer> enchantments = new HashMap<>();
-    private final List<String> lore = new ArrayList<>();
-    private final List<ItemFlag> itemFlags = new ArrayList<>();
+    /**
+     * @since v3.1.0
+     * The current ItemStack in the ItemBuilder, as
+     * set in the constructor and modified thereon.
+     */
+    @NotNull private final ItemStack itemStack;
 
-    public ItemBuilder(Material material) {
-        this.material = material;
-    }
-
-    public ItemBuilder(Material material, int amount) {
-        this.material = material;
-        this.amount = amount;
-
-        itemStack = new ItemStack(material, amount);
-        itemMeta = itemStack.getItemMeta();
-    }
-
-    public ItemBuilder(ItemStack itemStack) {
+    /**
+     * @author lokka30
+     * @since v3.1.0
+     * Starts off the ItemBuilder using an existing ItemStack.
+     * @param itemStack to begin the ItemBuilder with.
+     */
+    public ItemBuilder(@NotNull final ItemStack itemStack) {
         this.itemStack = itemStack;
-        this.material = itemStack.getType();
-        this.amount = itemStack.getAmount();
-
-        itemMeta = itemStack.getItemMeta();
-        assert itemMeta != null;
-
-        if (itemMeta.hasDisplayName()) {
-            displayName = itemMeta.getDisplayName();
-        }
-
-        itemFlags.addAll(itemStack.getItemMeta().getItemFlags());
-
-        if (itemMeta instanceof Damageable) {
-            Damageable damageable = (Damageable) itemMeta;
-            damage = damageable.getDamage();
-        }
-
-        if (itemMeta.hasEnchants()) {
-            enchantments = itemMeta.getEnchants();
-        }
     }
 
     /**
-     * Set the amount of the ItemStack
-     *
-     * @param amount the amount of the item stack
+     * @author lokka30
+     * @since v3.1.0
+     * Starts off the ItemBuilder with a new ItemStack of specified material.
+     * @param type (Material) of the new ItemStack.
+     */
+    public ItemBuilder(@NotNull final Material type) {
+        this.itemStack = new ItemStack(type);
+    }
+
+    /**
+     * @author lokka30
+     * @since v3.1.0
+     * Get the current ItemStack (the built item).
+     * @return the current ItemStack.
+     */
+    @NotNull
+    public ItemStack getItemStack() {
+        return itemStack;
+    }
+
+    /**
+     * @author lokka30
+     * @since v3.1.0
+     * @param amount to set on the item.
      * @return ItemBuilder
      */
-    public ItemBuilder withAmount(int amount) {
-        this.amount = amount;
+    @NotNull
+    public ItemBuilder setAmount(final int amount) {
         itemStack.setAmount(amount);
         return this;
     }
 
     /**
-     * Set the damage of the ItemStack (how much durability is removed)
-     *
-     * @param damage the amount of damage
+     * @author lokka30
+     * @since v3.1.0
+     * @param type (Material) to set on the item.
      * @return ItemBuilder
      */
-    public ItemBuilder withDamage(int damage) {
-        this.damage = damage;
+    @NotNull
+    public ItemBuilder setType(@NotNull final Material type) {
+        itemStack.setType(type);
         return this;
     }
 
     /**
-     * Set the material of the ItemStack (aka Type)
-     *
-     * @param material the material
+     * @author lokka30
+     * @since v3.1.0
+     * This method is an alias of the method `setType`.
+     * @param material to set on the item.
      * @return ItemBuilder
+     * @see ItemBuilder#setType(Material)
      */
-    public ItemBuilder withMaterial(Material material) {
-        this.material = material;
-        itemStack.setType(material);
-        return this;
+    @NotNull
+    public ItemBuilder setMaterial(@NotNull final Material material) {
+        return setType(material);
     }
 
     /**
-     * Set the ItemMeta of the ItemStack
-     *
-     * @param itemMeta the item meta
+     * @author lokka30
+     * @since v3.1.0
+     * Replaces the existing ItemMeta of the ItemStack.
+     * @param itemMeta to set on the item.
      * @return ItemBuilder
      */
-    public ItemBuilder withMeta(ItemMeta itemMeta) {
-        this.itemMeta = itemMeta;
+    @NotNull
+    public ItemBuilder setItemMeta(@NotNull final ItemMeta itemMeta) {
         itemStack.setItemMeta(itemMeta);
         return this;
     }
 
     /**
-     * Add an enchant to the enchants list
-     *
-     * @param enchantment the enchantment
-     * @param level       the level of the enchantment
+     * @author lokka30
+     * @since v3.1.0
+     * @param displayName to set on the item.
      * @return ItemBuilder
      */
-    public ItemBuilder withEnchant(Enchantment enchantment, int level) {
-        this.enchantments.put(enchantment, level);
+    @NotNull
+    public ItemBuilder setDisplayName(@NotNull final String displayName) {
+        if(!itemStack.hasItemMeta()) return this;
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+        itemMeta.setDisplayName(displayName);
         return this;
     }
 
     /**
-     * Set the enchantments of the ItemStack
-     *
-     * @param enchantments the enchantments map
+     * @author lokka30
+     * @since v3.1.0
+     * @param lines of the lore to set on the item.
      * @return ItemBuilder
      */
-    public ItemBuilder withEnchants(Map<Enchantment, Integer> enchantments) {
-        this.enchantments = enchantments;
+    @NotNull
+    public ItemBuilder setLore(@NotNull final List<String> lines) {
+        if(!itemStack.hasItemMeta()) return this;
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+
+        itemMeta.setLore(lines);
         return this;
     }
 
     /**
-     * Set the display name of the ItemStack, it will translate color codes for you
-     *
-     * @param displayName the display name
+     * @author lokka30
+     * @since v3.1.0
+     * @param line of the lore to set on the item.
      * @return ItemBuilder
      */
-    public ItemBuilder withDisplayName(String displayName) {
-        this.displayName = MessageUtils.colorizeAll(displayName);
+    @NotNull
+    public ItemBuilder setLore(@NotNull final String line) {
+        return setLore(Collections.singletonList(line));
+    }
+
+    /**
+     * @author lokka30
+     * @since v3.1.0
+     * @param lines of the lore to add on the item.
+     * @return ItemBuilder
+     */
+    @NotNull
+    public ItemBuilder addLore(@NotNull final List<String> lines) {
+        ArrayList<String> newLore = new ArrayList<>();
+
+        if(!itemStack.hasItemMeta()) return this;
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+
+        newLore.addAll(itemMeta.getLore());
+        newLore.addAll(lines);
+
+        itemMeta.setLore(newLore);
         return this;
     }
 
     /**
-     * Add a line to the lore of the ItemStack, it will translate color codes for you
-     *
-     * @param lore the line to add
+     * @author lokka30
+     * @since v3.1.0
+     * @param line of the lore to add on the item.
      * @return ItemBuilder
      */
-    public ItemBuilder withLore(String lore) {
-        this.lore.add(MessageUtils.colorizeAll(lore));
+    @NotNull
+    public ItemBuilder addLore(@NotNull final String line) {
+        return addLore(Collections.singletonList(line));
+    }
+
+    /**
+     * @author lokka30
+     * @since v3.1.0
+     * @param damage to set on the item.
+     * @return ItemBuilder
+     */
+    @NotNull
+    public ItemBuilder setDamage(final int damage) {
+        if(!itemStack.hasItemMeta()) return this;
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+        if(!(itemMeta instanceof Damageable)) return this;
+
+        ((Damageable) itemMeta).setDamage(damage);
         return this;
     }
 
     /**
-     * Set the lore of the ItemStack, it will translate color codes for you
-     *
-     * @param lore the line to add
+     * @author lokka30
+     * @since v3.1.0
+     * @param enchantmentLevelsMap to add on the item, a map of Enchantments with each of their corresponding levels.
+     * @param ignoreLevelRestriction if set to 'true', levels may be higher than their maximum obtainable limits (e.g. Sharpness V).
      * @return ItemBuilder
      */
-    public ItemBuilder withLore(List<String> lore) {
-        for (String line : lore) {
-            this.lore.add(MessageUtils.colorizeAll(line));
-        }
+    @NotNull
+    public ItemBuilder addEnchantments(@NotNull final HashMap<Enchantment, Integer> enchantmentLevelsMap, final boolean ignoreLevelRestriction) {
+        if(!itemStack.hasItemMeta()) return this;
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+
+        enchantmentLevelsMap.forEach(((enchantment, level) -> itemMeta.addEnchant(enchantment, level, ignoreLevelRestriction)));
+
         return this;
     }
 
     /**
-     * Set the lore of the ItemStack, it will translate color codes for you
-     *
-     * @param lore the line to add
+     * @author lokka30
+     * @since v3.1.0
+     * @param enchantment to add on the item.
+     * @param level of the specified enchantment.
+     * @param ignoreLevelRestriction if set to 'true', the level may be higher than the enchantment's maximum obtainable limit (e.g. Sharpness V).
      * @return ItemBuilder
      */
-    public ItemBuilder withLore(String[] lore) {
-        for (String line : lore) {
-            this.lore.add(MessageUtils.colorizeAll(line));
-        }
+    @NotNull
+    public ItemBuilder addEnchantment(@NotNull final Enchantment enchantment, final int level, final boolean ignoreLevelRestriction) {
+        if(!itemStack.hasItemMeta()) return this;
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+
+        itemMeta.addEnchant(enchantment, level, ignoreLevelRestriction);
+
         return this;
     }
 
     /**
-     * Set a specific line of the lore of the ItemStack, it will translate color codes for you
-     *
-     * @param lore  the line
-     * @param index the line number that will be changed
+     * @author lokka30
+     * @since v3.1.0
+     * @param itemFlags to add on the item.
      * @return ItemBuilder
      */
-    public ItemBuilder withLore(String lore, int index) {
-        this.lore.set(index, MessageUtils.colorizeAll(lore));
+    @NotNull
+    public ItemBuilder addItemFlags(@NotNull final ItemFlag[] itemFlags) {
+        if(!itemStack.hasItemMeta()) return this;
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+
+        itemMeta.addItemFlags(itemFlags);
+
         return this;
     }
 
     /**
-     * Add an item flag to the ItemStack
-     *
-     * @param itemFlag the item flag to add
+     * @author lokka30
+     * @since v3.1.0
+     * @param itemFlags to add on the item.
      * @return ItemBuilder
      */
-    public ItemBuilder withFlag(ItemFlag itemFlag) {
-        itemFlags.add(itemFlag);
+    @NotNull
+    public ItemBuilder addItemFlags(@NotNull final List<ItemFlag> itemFlags) {
+        return addItemFlags(itemFlags.toArray(new ItemFlag[0]));
+    }
+
+    /**
+     * @author lokka30
+     * @since v3.1.0
+     * @param itemFlag to add on the item.
+     * @return ItemBuilder
+     */
+    @NotNull
+    public ItemBuilder addItemFlag(@NotNull final ItemFlag itemFlag) {
+        return addItemFlags(Collections.singletonList(itemFlag));
+    }
+
+    /**
+     * @author lokka30
+     * @since v3.1.0
+     * @param state whether the item should be unbreakable or not.
+     * @return ItemBuilder
+     */
+    @NotNull
+    public ItemBuilder setUnbreakable(final boolean state) {
+
+        if(!itemStack.hasItemMeta()) return this;
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+
+        itemMeta.setUnbreakable(state);
         return this;
     }
 
     /**
-     * Set the item flags of the ItemStack
-     *
-     * @param itemFlags the item flags list
+     * @author lokka30
+     * @since v3.1.0
+     * Adds a 'glowing' effect to the item by
+     * adding a useless enchantment.
+     * This will hide ALL enchantments on the item,
+     * even enchantments that are not applied by this method.
      * @return ItemBuilder
      */
-    public ItemBuilder withFlags(List<ItemFlag> itemFlags) {
-        this.itemFlags.addAll(itemFlags);
-        return this;
-    }
+    @NotNull
+    public ItemBuilder setGlowing() {
+        Enchantment enchantment;
 
-    /**
-     * Set the item flags of the ItemStack
-     *
-     * @param itemFlags the item flags array
-     * @return ItemBuilder
-     */
-    public ItemBuilder withFlags(ItemFlag[] itemFlags) {
-        this.itemFlags.addAll(Arrays.asList(itemFlags));
-        return this;
-    }
-
-    /**
-     * Set the unbreakability state of the ItemStack
-     *
-     * @param isUnbreakable if the item stack should be unbreakable
-     * @return ItemBuilder
-     */
-    public ItemBuilder setUnbreakable(boolean isUnbreakable) {
-        itemMeta.setUnbreakable(isUnbreakable);
-        return this;
-    }
-
-    /**
-     * Make the item stack glow like it has an enchantment
-     * Note: All enchantments on the item will be hidden!
-     *
-     * @return ItemBuilder
-     */
-    public ItemBuilder withGlow() {
-        if (material == Material.BOW) {
-            enchantments.put(Enchantment.LUCK, 1);
+        if(itemStack.getType() == Material.BOW) {
+            enchantment = Enchantment.LURE;
         } else {
-            enchantments.put(Enchantment.ARROW_INFINITE, 1);
+            enchantment = Enchantment.ARROW_INFINITE;
         }
-        if (!itemFlags.contains(ItemFlag.HIDE_ENCHANTS)) {
-            itemFlags.add(ItemFlag.HIDE_ENCHANTS);
-        }
+
+        addEnchantment(enchantment, 0, true);
+        addItemFlag(ItemFlag.HIDE_ENCHANTS);
+
         return this;
     }
 
     /**
-     * Set the skull owner of the player head
-     *
-     * @param skullOwner the username behind the skin used on the player head
+     * @author lokka30
+     * @since v3.1.0
+     * @param offlinePlayer to set the skull texture of.
      * @return ItemBuilder
      */
-    @SuppressWarnings("deprecation")
-    public ItemBuilder withSkullOwner(String skullOwner) {
-        SkullMeta skullMeta = (SkullMeta) itemMeta;
-        skullMeta.setOwner(skullOwner);
-        itemStack.setItemMeta(skullMeta);
+    @NotNull
+    public ItemBuilder setSkullOwner(@NotNull final OfflinePlayer offlinePlayer) {
+        if(!itemStack.hasItemMeta()) return this;
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+        if(!(itemMeta instanceof SkullMeta)) return this;
+
+        ((SkullMeta) itemMeta).setOwningPlayer(offlinePlayer);
         return this;
     }
 
     /**
-     * Set the skull owner of the player head
-     *
-     * @param skullOwner the offline player behind the skin used on the player head
+     * @author lokka30
+     * @since v3.1.0
+     * `setSkullOwner(OfflinePlayer)` should be used wherever possible,
+     * I am unsure whether that method supports the old versions.
+     * Thus, this only exists for legacy compatibility.
+     * @param username to set the skull texture of.
      * @return ItemBuilder
      */
-    public ItemBuilder withSkullOwner(OfflinePlayer skullOwner) {
-        SkullMeta skullMeta = (SkullMeta) itemMeta;
-        skullMeta.setOwningPlayer(skullOwner);
-        itemStack.setItemMeta(skullMeta);
+    @NotNull
+    @Deprecated
+    public ItemBuilder setSkullOwner(@NotNull final String username) {
+        if(!itemStack.hasItemMeta()) return this;
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+        if(!(itemMeta instanceof SkullMeta)) return this;
+
+        ((SkullMeta) itemMeta).setOwner(username);
         return this;
-    }
-
-    /**
-     * Set the skull owner of the player head
-     *
-     * @param uuid the uuid of an offline player behind the skin used on the player head
-     * @return ItemBuilder
-     */
-    public ItemBuilder withSkullOwner(UUID uuid) {
-        return withSkullOwner(Bukkit.getOfflinePlayer(uuid));
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public Map<Enchantment, Integer> getEnchantments() {
-        return enchantments;
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public List<String> getLore() {
-        return lore;
-    }
-
-    public ItemFlag[] getItemFlags() {
-        return (ItemFlag[]) itemFlags.toArray();
-    }
-
-    public Material getMaterial() {
-        return material;
-    }
-
-    public ItemMeta getItemMeta() {
-        return itemMeta;
-    }
-
-    /**
-     * Return the final ItemStack
-     *
-     * @return ItemStack
-     */
-    public ItemStack buildItemStack() {
-        if (displayName != null) {
-            itemMeta.setDisplayName(displayName);
-        }
-        if (!enchantments.isEmpty()) {
-            itemStack.addEnchantments(enchantments);
-        }
-        if (itemFlags.size() != 0) {
-            ItemFlag[] itemFlagsArray = (ItemFlag[]) itemFlags.toArray();
-            itemMeta.addItemFlags(itemFlagsArray);
-        }
-        if (lore.size() != 0) {
-            itemMeta.setLore(lore);
-        }
-        if (damage != 0 && itemStack.getItemMeta() instanceof Damageable) {
-            Damageable damageable = (Damageable) itemStack.getItemMeta();
-            damageable.setDamage(damage);
-        }
-
-        itemStack.setItemMeta(itemMeta);
-
-        return itemStack;
     }
 
 }
