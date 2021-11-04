@@ -14,7 +14,7 @@ import org.bukkit.entity.EntityType;
  * entities that were added in these updates.
  *
  * @author lokka30, stumper66
- * @since MicroLib 2.2.0
+ * @since 2.2.0
  */
 @SuppressWarnings("unused")
 public class VersionUtils {
@@ -23,9 +23,8 @@ public class VersionUtils {
      * If possible, use one of the individual methods e.g. isOneTwelve(), since they are quicker calculations.
      *
      * @return the latest supported MajorMinecraftVersion by MicroLib. It will return UNKNOWN if the server is older than 1.6.
-     * @author lokka30
      * @see MajorMinecraftVersion
-     * @since unknown
+     * @since 2.2.0
      */
     public static MajorMinecraftVersion getMajorMinecraftVersion() {
         if (isOneEighteen()) return MajorMinecraftVersion.ONE_EIGHTEEN;
@@ -136,9 +135,8 @@ public class VersionUtils {
     }
 
     /**
-     * @return if the server is running SpigotMC or any SpigotMC derivative such as PaperMC and Tuinity.
-     * @author lokka30
-     * @since unknown
+     * @return if the server is running SpigotMC or any SpigotMC derivative such as PaperMC, Airplane, Purpur, and so on.
+     * @since 2.4.0
      */
     public static boolean isRunningSpigot() {
         try {
@@ -150,43 +148,54 @@ public class VersionUtils {
     }
 
     /**
+     * Credit to <a href="https://www.spigotmc.org/threads/how-do-i-detect-if-a-server-is-running-paper.499064/#post-4130735">this</a> post.
+     *
+     * @return if the server is running PaperMC or any PaperMC derivative such as Airplane, Purpur, and so on.
+     * @since 3.1.2
+     */
+    public static boolean isRunningPaper() {
+        try {
+            Class.forName("com.destroystokyo.paper.ParticleBuilder");
+            return true;
+        } catch(ClassNotFoundException ignored) {
+            return false;
+        }
+    }
+
+    /**
      * @param entityTypeStr type to check
      * @return if the type is valid with the current server version
-     * @author lokka30
      * @see EntityType
      * @since 2.4.0
      */
-    private static boolean hasEntityType(String entityTypeStr) {
+    public static boolean hasEntityType(String entityTypeStr) {
         try {
             EntityType.valueOf(entityTypeStr);
+            return true;
         } catch (IllegalArgumentException ignored) {
             return false;
         }
-        return true;
     }
 
     /**
      * @param materialStr type to check
      * @return if the type is valid with the current server version
-     * @author lokka30
      * @see Material
      * @since 2.4.0
      */
-    private static boolean hasMaterial(String materialStr) {
+    public static boolean hasMaterial(String materialStr) {
         try {
             Material.valueOf(materialStr);
+            return true;
         } catch (IllegalArgumentException ignored) {
             return false;
         }
-        return true;
     }
 
     /**
      * This enum contains all major Minecraft versions (1.6 and newer).
      * If the server is older than 1.7 then the UNKNOWN value should be used.
-     *
-     * @author lokka30
-     * @since unknown
+     * @since 2.4.0
      */
     public enum MajorMinecraftVersion {
         ONE_EIGHTEEN,
