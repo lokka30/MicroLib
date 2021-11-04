@@ -7,6 +7,7 @@ package me.lokka30.microlib.messaging;
 
 import me.lokka30.microlib.other.VersionUtils;
 import org.bukkit.Bukkit;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,7 +37,7 @@ public class MessageUtils {
      * @see MessageUtils#colorizeStandardCodes(String)
      * @since unknown
      */
-    public static String colorizeAll(String msg) {
+    public static @NotNull String colorizeAll(String msg) {
         return colorizeStandardCodes(colorizeHexCodes(msg));
     }
 
@@ -95,7 +96,7 @@ public class MessageUtils {
      *
      * @since unknown
      */
-    public static String colorizeStandardCodes(String msg) {
+    public static @NotNull String colorizeStandardCodes(String msg) {
         if (Bukkit.getName().equalsIgnoreCase("CraftBukkit"))
             return org.bukkit.ChatColor.translateAlternateColorCodes('&', msg);
         else

@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -31,39 +32,39 @@ public class WholeSound {
         this.pitch = pitch;
     }
 
-    public void playToIndividual(Player player) {
+    public void playToIndividual(@NotNull Player player) {
         player.playSound(player.getLocation(), sound, volume, pitch);
     }
 
-    public void playToIndividuals(Player[] players) {
+    public void playToIndividuals(Player @NotNull [] players) {
         for (Player player : players) {
             playToIndividual(player);
         }
     }
 
-    public void playToIndividuals(List<Player> players) {
+    public void playToIndividuals(@NotNull List<Player> players) {
         for (Player player : players) {
             playToIndividual(player);
         }
     }
 
-    public void playToIndividualAtLocation(Player player, Location location) {
+    public void playToIndividualAtLocation(@NotNull Player player, Location location) {
         player.playSound(location, sound, volume, pitch);
     }
 
-    public void playToIndividualsAtLocation(Player[] players, Location location) {
+    public void playToIndividualsAtLocation(Player @NotNull [] players, Location location) {
         for (Player player : players) {
             playToIndividualAtLocation(player, location);
         }
     }
 
-    public void playToIndividualsAtLocation(List<Player> players, Location location) {
+    public void playToIndividualsAtLocation(@NotNull List<Player> players, Location location) {
         for (Player player : players) {
             playToIndividualAtLocation(player, location);
         }
     }
 
-    public void playToIndividualsAtLocations(Player[] players, Location[] locations) {
+    public void playToIndividualsAtLocations(Player @NotNull [] players, Location[] locations) {
         for (Player player : players) {
             for (Location location : locations) {
                 playToIndividualAtLocation(player, location);
@@ -71,7 +72,7 @@ public class WholeSound {
         }
     }
 
-    public void playToIndividualsAtLocations(List<Player> players, List<Location> locations) {
+    public void playToIndividualsAtLocations(@NotNull List<Player> players, List<Location> locations) {
         for (Player player : players) {
             for (Location location : locations) {
                 playToIndividualAtLocation(player, location);
@@ -85,18 +86,20 @@ public class WholeSound {
         }
     }
 
-    public void playToAllAtLocation(Location location) {
-        assert location.getWorld() != null;
+    public void playToAllAtLocation(@NotNull Location location) {
+        if (location.getWorld() == null) {
+            return;
+        }
         location.getWorld().playSound(location, sound, volume, pitch);
     }
 
-    public void playToAllAtLocations(Location[] locations) {
+    public void playToAllAtLocations(Location @NotNull [] locations) {
         for (Location location : locations) {
             playToAllAtLocation(location);
         }
     }
 
-    public void playToAllAtLocations(List<Location> locations) {
+    public void playToAllAtLocations(@NotNull List<Location> locations) {
         for (Location location : locations) {
             playToAllAtLocation(location);
         }

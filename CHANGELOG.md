@@ -6,7 +6,15 @@
 
 ***
 
+# MicroLib v3.1.2
+
+* (@lokka30) MicroLib now uses the `Consumer` class from `java.util.function`, not Bukkit. This only affects the **Update Checker** class. If you are using the update checker please simply change the import you are using to the Java one when you update to MicroLib 3.1.2.
+* (@lokka30) MicroLib now contains a method to check if the server is running PaperMC or any derivative of it such as Airplane and Purpur: simply assert `VersionUtils.isRunningPaper()` before running any Paper-dependent code.
+
+***
+
 # MicroLib v3.1.0
+
 * I (@lokka30) re-programmed the [ItemBuilder](https://github.com/lokka30/MicroLib/blob/master/src/main/java/me/lokka30/microlib/items/ItemBuilder.java) class! It should work great now.
   * **Note:** The new ItemBuilder class has not been tested, please let me know if you use it and run into any issues.
   * **Note:** Any plugins using the old ItemBuilder will need to update their code.

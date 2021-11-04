@@ -7,6 +7,7 @@ package me.lokka30.microlib.messaging;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class MultiMessage {
      * @see MultiMessage#getUntranslatedContent()
      * @since v3.0.0
      */
-    public ArrayList<String> getTranslatedContent() {
+    public List<String> getTranslatedContent() {
         ArrayList<String> translated = new ArrayList<>();
 
         for (String line : content) {
@@ -75,7 +76,7 @@ public class MultiMessage {
      * @see MultiMessage#content
      * @since v3.0.0
      */
-    public void setContent(ArrayList<String> content) {
+    public void setContent(List<String> content) {
         this.content = content;
     }
 
@@ -105,7 +106,7 @@ public class MultiMessage {
      * @see MultiMessage#getTranslatedContent()
      * @since v3.0.0
      */
-    public void send(CommandSender sender) {
+    public void send(@NotNull CommandSender sender) {
         getTranslatedContent().forEach(sender::sendMessage);
     }
 
@@ -115,7 +116,7 @@ public class MultiMessage {
      * @see MultiMessage#getTranslatedContent()
      * @since v3.0.0
      */
-    public void send(Player player) {
+    public void send(@NotNull Player player) {
         getTranslatedContent().forEach(player::sendMessage);
     }
 

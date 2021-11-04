@@ -8,6 +8,7 @@ package me.lokka30.microlib.wholes;
 import me.lokka30.microlib.messaging.MessageUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -34,17 +35,17 @@ public class WholeTitle {
         this.fadeOut = fadeOut;
     }
 
-    public void send(Player player) {
+    public void send(@NotNull Player player) {
         player.sendTitle(title, subtitle, fadeIn, stay, fadeOut);
     }
 
-    public void send(Player[] players) {
+    public void send(Player @NotNull [] players) {
         for (Player player : players) {
             send(player);
         }
     }
 
-    public void send(List<Player> players) {
+    public void send(@NotNull List<Player> players) {
         for (Player player : players) {
             send(player);
         }
