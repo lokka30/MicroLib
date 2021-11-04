@@ -16,7 +16,8 @@ import me.lokka30.microlib.other.VersionUtils;
  * @see VersionUtils
  * @since 2.4.0
  */
-public class OutdatedServerVersionException extends Exception {
+@SuppressWarnings("unused")
+public class OutdatedServerVersionException extends RuntimeException {
 
     public OutdatedServerVersionException(String errorMsg) {
         super(errorMsg);

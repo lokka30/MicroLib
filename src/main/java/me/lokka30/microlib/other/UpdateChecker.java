@@ -5,7 +5,6 @@
 
 package me.lokka30.microlib.other;
 
-import me.lokka30.microlib.exceptions.OutdatedServerVersionException;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -37,14 +36,9 @@ public class UpdateChecker {
      * Credit to the editors of <a href="https://www.spigotmc.org/wiki/creating-an-update-checker-that-checks-for-updates">this</a> wiki page. (sourced at 15th September 2020)
      *
      * @param consumer what to do once an update checker result is found
-     * @throws OutdatedServerVersionException if the server is older than 1.11
      * @since unknown
      */
-    public void getLatestVersion(final Consumer<String> consumer) throws OutdatedServerVersionException {
-        if (!VersionUtils.isOneEleven()) {
-            throw new OutdatedServerVersionException("The update checker requires the server to be Minecraft 1.11 or any newer version. Versions older than Minecraft 1.11 lack the code required to operate the update checker.");
-        }
-
+    public void getLatestVersion(final Consumer<String> consumer) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
 
             InputStream inputStream;
