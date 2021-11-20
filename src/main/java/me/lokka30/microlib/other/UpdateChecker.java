@@ -19,8 +19,7 @@ import java.util.function.Consumer;
  * An adapted version of the Update Checker from the SpigotMC.org Wiki.
  *
  * @author lokka30
- * @see UpdateChecker#getLatestVersion(Consumer)
- * @since unknown
+ * @since 1.0.3-ALPHA
  */
 @SuppressWarnings("unused")
 public class UpdateChecker {
@@ -28,17 +27,24 @@ public class UpdateChecker {
     private final JavaPlugin plugin;
     private final int resourceId;
 
-    public UpdateChecker(JavaPlugin plugin, int resourceId) {
+    /**
+     * Instantiates a new update checker.
+     *
+     * @param plugin     the plugin which will check for an update.
+     * @param resourceId the resource id of plugin.
+     */
+    public UpdateChecker(final JavaPlugin plugin, int resourceId) {
         this.plugin = plugin;
         this.resourceId = resourceId;
     }
 
     /**
-     * Credit to the editors of <a href="https://www.spigotmc.org/wiki/creating-an-update-checker-that-checks-for-updates">this</a> wiki page. (sourced at 15th September 2020)
+     * Credit to the editors of <a href="https://www.spigotmc.org/wiki/creating-an-update-checker-that-checks-for-updates">this</a> wiki page.
+     * (sourced at 15th September 2020)
      *
      * @param consumer what to do once an update checker result is found
      * @throws OutdatedServerVersionException if the server is older than 1.11
-     * @since unknown
+     * @since 1.0.3-ALPHA
      */
     public void getLatestVersion(final Consumer<String> consumer) throws OutdatedServerVersionException {
         if (!VersionUtils.isOneEleven()) {
@@ -63,7 +69,10 @@ public class UpdateChecker {
     }
 
     /**
+     * Gets plugin current version.
+     *
      * @return the version string from the plugin's plugin.yml file, i.e., what the user is currently running.
+     * @since 1.0.6-ALPHA
      */
     public String getCurrentVersion() {
         return plugin.getDescription().getVersion();

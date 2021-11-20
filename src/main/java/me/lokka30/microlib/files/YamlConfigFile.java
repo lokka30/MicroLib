@@ -8,6 +8,7 @@ package me.lokka30.microlib.files;
 import org.apache.commons.lang.Validate;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,8 +17,9 @@ import java.io.IOException;
  * This class allows you to easily work with YAML configuration files.
  *
  * @author lokka30
+ * @version 3.1.3
  * @see YamlConfiguration
- * @since unknown
+ * @since 2.1.0
  */
 @SuppressWarnings("unused")
 public class YamlConfigFile {
@@ -27,19 +29,41 @@ public class YamlConfigFile {
     private YamlConfiguration config;
     private boolean copyDefaults = false;
 
-    public YamlConfigFile(final Plugin plugin, final File configFile) {
+    /**
+     * Instantiates a new Yaml configuration file.
+     *
+     * @param plugin     The plugin which will be used to create new file.
+     * @param configFile The config file to be created and used.
+     * @since 2.1.0
+     */
+    public YamlConfigFile(final @NotNull Plugin plugin, final File configFile) {
         this.plugin = plugin;
         this.configFile = configFile;
     }
 
     /**
-     * Create the file if it doesn't exist. It saves it from the plugin's .jar file - if that isn't accessible then it saves an empty file.
+     * Instantiates a new Yaml configuration file.
      *
+     * @param plugin     The plugin which will be used to create new file.
+     * @param configName The configuration name. Example: 'config.yml'
+     * @apiNote Config will be created in your plugin folder. If you want to set custom path use/instantiate {@link #YamlConfigFile(Plugin, File)}.
+     * @since 3.1.3
+     */
+    public YamlConfigFile(final @NotNull Plugin plugin, final String configName) {
+        this.plugin = plugin;
+        this.configFile = new File(plugin.getDataFolder(), configName);
+    }
+
+    /**
+     * Create the file if it doesn't exist.
+     * It saves it from the plugin's .jar file - if that isn't accessible then it saves an empty file.
+     *
+     * @throws IOException Thrown if file is null or inaccessible.
      * @author lokka30
-     * @since unknown
+     * @since 2.1.0
      */
     private void createIfNotExists() throws IOException {
-        if (!configFile.exists() || configFile.isDirectory()) {
+        if (!getConfigFile().exists() || getConfigFile().isDirectory()) {
             try {
                 plugin.saveResource(getName(), false);
             } catch (IllegalArgumentException exception) {
@@ -49,62 +73,70 @@ public class YamlConfigFile {
     }
 
     /**
-     * Load/reload values from the file into the config
+     * Load/reload values from the file into the config.
      *
+     * @throws IOException Thrown if file is null or inaccessible.
      * @author lokka30
-     * @since unknown
+     * @since 2.1.0
      */
     public void load() throws IOException {
         createIfNotExists();
-        config = YamlConfiguration.loadConfiguration(configFile);
-        config.options().copyDefaults(copyDefaults);
+        config = YamlConfiguration.loadConfiguration(getConfigFile());
+        getConfig().options().copyDefaults(copyDefaults);
     }
 
     /**
      * Saves modified config values to the file.
      *
-     * @throws IOException if the file is inaccessible
+     * @throws IOException Thrown if the file is inaccessible.
      * @author lokka30
-     * @since unknown
+     * @since 2.1.0
      */
     public void save() throws IOException {
         createIfNotExists();
-        config.save(configFile);
+        getConfig().save(getConfigFile());
     }
 
     /**
      * If config values are missing in the current config, should the defaults be copied over?
      *
-     * @param copyDefaults if the config should copy defaults
+     * @apiNote By default, it does not copy defaults.
+     * @param copyDefaults Whether the config should copy defaults.
      * @author lokka30
-     * @since unknown
+     * @since 2.1.0
      */
     public void setCopyDefaults(boolean copyDefaults) {
         this.copyDefaults = copyDefaults;
     }
 
     /**
-     * @return self-explanatory
+     * Gets configuration file.
+     *
+     * @return The configuration file.
      * @author lokka30
-     * @since unknown
+     * @since 2.1.0
      */
     public File getConfigFile() {
         return configFile;
     }
 
     /**
-     * @return self-explanatory
+     * Gets Yaml configuration.
+     *
+     * @return The YAML configuration.
      * @author lokka30
-     * @since unknown
+     * @since 2.1.0
      */
     public YamlConfiguration getConfig() {
         return config;
     }
 
     /**
+     * Gets configuration file name.
+     *
      * @return the file name (e.g. 'settings.yml')
      * @author lokka30
-     * @since unknown
+     * @since 2.1.0
      */
     public String getName() {
         return configFile.getName();

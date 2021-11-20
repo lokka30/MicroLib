@@ -239,7 +239,7 @@ public class VersionUtils {
      * @see EntityType
      * @since 2.4.0
      */
-    public static boolean hasEntityType(String entityTypeStr) {
+    public static boolean hasEntityType(final String entityTypeStr) {
         try {
             EntityType.valueOf(entityTypeStr);
             return true;
@@ -256,7 +256,7 @@ public class VersionUtils {
      * @see Material
      * @since 2.4.0
      */
-    public static boolean hasMaterial(String materialStr) {
+    public static boolean hasMaterial(final String materialStr) {
         try {
             Material.valueOf(materialStr);
             return true;
@@ -273,7 +273,7 @@ public class VersionUtils {
      * @see Biome
      * @since 3.1.3
      */
-    public static boolean hasBiome(String biome) {
+    public static boolean hasBiome(final String biome) {
         try {
             Biome.valueOf(biome);
             return true;

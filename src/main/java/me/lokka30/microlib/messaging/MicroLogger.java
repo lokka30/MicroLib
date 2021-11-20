@@ -12,11 +12,11 @@ import org.bukkit.ChatColor;
 import java.util.logging.Logger;
 
 /**
- * Logging utility class
+ * Logging utility class.
  *
  * @author lokka30, stumper66
  * @see Logger
- * @since 1.0.3-ALPHA
+ * @since 1.0.3 -ALPHA
  */
 @SuppressWarnings("unused")
 public class MicroLogger {
@@ -26,11 +26,11 @@ public class MicroLogger {
     private String prefix;
 
     /**
-     * Create a new instance of MicroLogger with a custom prefix
+     * Creates a new instance of MicroLogger with a custom prefix.
      *
      * @param prefix the prefix to use
      * @author lokka30
-     * @since 1.0.3-ALPHA
+     * @since 1.0.3 -ALPHA
      */
     public MicroLogger(String prefix) {
         this.prefix = prefix;
@@ -39,25 +39,31 @@ public class MicroLogger {
     }
 
     /**
-     * @return the current prefix
+     * Gets the logger prefix.
+     *
+     * @return the current prefix.
      * @author lokka30
-     * @since 1.0.3-ALPHA
+     * @since 1.0.3 -ALPHA
      */
     public String getPrefix() {
         return prefix;
     }
 
     /**
-     * @param prefix the prefix that should be set
+     * Sets the logger prefix.
+     *
+     * @param prefix the prefix that should be set.
      * @author lokka30
-     * @since 1.0.3-ALPHA
+     * @since 1.0.3 -ALPHA
      */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
 
     /**
-     * @param message message to send with INFO log-level
+     * Logs an INFO message.
+     *
+     * @param message Message to send with INFO log-level.
      * @author lokka30, stumper66
      * @since 2.0.0
      */
@@ -69,7 +75,9 @@ public class MicroLogger {
     }
 
     /**
-     * @param message message to send with WARNING log-level
+     * Logs an WARNING message.
+     *
+     * @param message Message to send with WARNING log-level.
      * @author lokka30, stumper66
      * @since 2.0.0
      */
@@ -81,6 +89,8 @@ public class MicroLogger {
     }
 
     /**
+     * Logs an ERROR message.
+     *
      * @param message message to send with ERROR log-level
      * @author lokka30, stumper66
      * @since 2.0.0
