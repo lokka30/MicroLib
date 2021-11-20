@@ -35,9 +35,9 @@ public class MessageUtils {
      * @author lokka30
      * @see MessageUtils#colorizeHexCodes(String)
      * @see MessageUtils#colorizeStandardCodes(String)
-     * @since unknown
+     * @since 2.2.0
      */
-    public static @NotNull String colorizeAll(String msg) {
+    public static @NotNull String colorizeAll(final String msg) {
         return colorizeStandardCodes(colorizeHexCodes(msg));
     }
 
@@ -48,9 +48,9 @@ public class MessageUtils {
      * @return the translated string
      * @author lokka30
      * @see MessageUtils#colorizeHexCodes(String, String, String)
-     * @since unknown
+     * @since 2.2.0
      */
-    public static String colorizeHexCodes(String msg) {
+    public static String colorizeHexCodes(final String msg) {
         return colorizeHexCodes("&#", "", msg);
     }
 
@@ -66,9 +66,9 @@ public class MessageUtils {
      * @param message  the message that should be translated
      * @return the translated string
      *
-     * @since unknown
+     * @since 2.2.0
      */
-    public static String colorizeHexCodes(String startTag, String endTag, String message) {
+    public static String colorizeHexCodes(final String startTag, final String endTag, final String message) {
         if (!VersionUtils.isOneSixteen() || !VersionUtils.isRunningSpigot()) return message;
 
         final Pattern hexPattern = Pattern.compile(startTag + "([A-Fa-f0-9]{6})" + endTag);
@@ -94,9 +94,9 @@ public class MessageUtils {
      * @param msg the message to translate standard color codes from.
      * @return the color-translated message.
      *
-     * @since unknown
+     * @since 2.2.0
      */
-    public static @NotNull String colorizeStandardCodes(String msg) {
+    public static @NotNull String colorizeStandardCodes(final String msg) {
         if (Bukkit.getName().equalsIgnoreCase("CraftBukkit"))
             return org.bukkit.ChatColor.translateAlternateColorCodes('&', msg);
         else

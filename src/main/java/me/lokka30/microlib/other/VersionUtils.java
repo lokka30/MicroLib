@@ -6,6 +6,7 @@
 package me.lokka30.microlib.other;
 
 import org.bukkit.Material;
+import org.bukkit.block.Biome;
 import org.bukkit.entity.EntityType;
 
 /**
@@ -14,6 +15,7 @@ import org.bukkit.entity.EntityType;
  * entities that were added in these updates.
  *
  * @author lokka30, stumper66
+ * @version 3.1.3
  * @since 2.2.0
  */
 @SuppressWarnings("unused")
@@ -27,6 +29,7 @@ public class VersionUtils {
      * @since 2.2.0
      */
     public static MajorMinecraftVersion getMajorMinecraftVersion() {
+        if (isOneNineteen()) return MajorMinecraftVersion.ONE_NINETEEN;
         if (isOneEighteen()) return MajorMinecraftVersion.ONE_EIGHTEEN;
         if (isOneSeventeen()) return MajorMinecraftVersion.ONE_SEVENTEEN;
         if (isOneSixteen()) return MajorMinecraftVersion.ONE_SIXTEEN;
@@ -44,97 +47,162 @@ public class VersionUtils {
     }
 
     /**
-     * @return if the server is MC 1.18 or newer.
+     * Checks whether the server is running on MC 1.19 or newer version.
+     *
+     * @return If the server is MC 1.19 or newer.
+     * @apiNote This works by checking if server has entity type "WARDEN"
+     * @since 3.1.3
      */
-    public static boolean isOneEighteen() {
+    public static boolean isOneNineteen() {
         return hasEntityType("WARDEN");
     }
 
     /**
+     * Checks whether the server is running on MC 1.18 or newer version.
+     *
+     * @return if the server is MC 1.18 or newer.
+     * @apiNote This works by checking if server has biome called "GROVE"
+     * @since 2.2.4
+     */
+    public static boolean isOneEighteen() {
+        return hasBiome("GROVE");
+    }
+
+    /**
+     * Checks whether the server is running on MC 1.17 or newer version.
+     *
      * @return if the server is MC 1.17 or newer.
+     * @apiNote This works by checking if server has entity type "AXOLOTL"
+     * @since 2.2.4
      */
     public static boolean isOneSeventeen() {
         return hasEntityType("AXOLOTL");
     }
 
     /**
+     * Checks whether the server is running on MC 1.16 or newer version.
+     *
      * @return if the server is MC 1.16 or newer.
+     * @apiNote This works by checking if server has entity type "PIGLIN"
+     * @since 2.2.0
      */
     public static boolean isOneSixteen() {
         return hasEntityType("PIGLIN");
     }
 
     /**
+     * Checks whether the server is running on MC 1.15 or newer version.
+     *
      * @return if the server is MC 1.15 or newer.
+     * @apiNote This works by checking if server has entity type "BEE"
+     * @since 2.2.0
      */
     public static boolean isOneFifteen() {
         return hasEntityType("BEE");
     }
 
     /**
+     * Checks whether the server is running on MC 1.14 or newer version.
+     *
      * @return if the server is MC 1.14 or newer.
+     * @apiNote This works by checking if server has entity type "PILLAGER"
+     * @since 2.2.0
      */
     public static boolean isOneFourteen() {
         return hasEntityType("PILLAGER");
     }
 
     /**
+     * Checks whether the server is running on MC 1.13 or newer version.
+     *
      * @return if the server is MC 1.13 or newer.
+     * @apiNote This works by checking if server has entity type "TURTLE"
+     * @since 2.2.0
      */
     public static boolean isOneThirteen() {
         return hasEntityType("TURTLE");
     }
 
     /**
+     * Checks whether the server is running on MC 1.12 or newer version.
+     *
      * @return if the server is MC 1.12 or newer.
+     * @apiNote This works by checking if server has material "WHITE_CONCRETE"
+     * @since 2.2.0
      */
     public static boolean isOneTwelve() {
         return hasMaterial("WHITE_CONCRETE");
     }
 
     /**
+     * Checks whether the server is running on MC 1.11 or newer version.
+     *
      * @return if the server is MC 1.11 or newer.
+     * @apiNote This works by checking if server has material "OBSERVER"
+     * @since 2.2.0
      */
     public static boolean isOneEleven() {
         return hasMaterial("OBSERVER");
     }
 
     /**
+     * Checks whether the server is running on MC 1.10 or newer version.
+     *
      * @return if the server is MC 1.10 or newer.
+     * @apiNote This works by checking if server has material "MAGMA_BLOCK"
+     * @since 2.2.0
      */
     public static boolean isOneTen() {
         return hasMaterial("MAGMA_BLOCK");
     }
 
     /**
+     * Checks whether the server is running on MC 1.9 or newer version.
+     *
      * @return if the server is MC 1.9 or newer.
+     * @apiNote This works by checking if server has material "END_ROD"
+     * @since 2.2.0
      */
     public static boolean isOneNine() {
         return hasMaterial("END_ROD");
     }
 
     /**
+     * Checks whether the server is running on MC 1.8 or newer version.
+     *
      * @return if the server is MC 1.8 or newer.
+     * @apiNote This works by checking if server has material "PRISMARINE"
+     * @since 2.2.0
      */
     public static boolean isOneEight() {
         return hasMaterial("PRISMARINE");
     }
 
     /**
+     * Checks whether the server is running on MC 1.7 or newer version.
+     *
      * @return if the server is MC 1.7 or newer.
+     * @apiNote This works by checking if server has material "WHITE_STAINED_GLASS"
+     * @since 2.2.0
      */
     public static boolean isOneSeven() {
         return hasMaterial("WHITE_STAINED_GLASS");
     }
 
     /**
+     * Checks whether the server is running on MC 1.6 or newer version.
+     *
      * @return if the server is MC 1.6 or newer.
+     * @apiNote This works by checking if server has entity type "HORSE"
+     * @since 2.2.0
      */
     public static boolean isOneSix() {
         return hasEntityType("HORSE");
     }
 
     /**
+     * Checks whether the server is running on SpigotMC (or based) software.
+     *
      * @return if the server is running SpigotMC or any SpigotMC derivative such as PaperMC, Airplane, Purpur, and so on.
      * @since 2.4.0
      */
@@ -148,6 +216,7 @@ public class VersionUtils {
     }
 
     /**
+     * Checks whether the server is running on PaperMC (or based) software.
      * Credit to <a href="https://www.spigotmc.org/threads/how-do-i-detect-if-a-server-is-running-paper.499064/#post-4130735">this</a> post.
      *
      * @return if the server is running PaperMC or any PaperMC derivative such as Airplane, Purpur, and so on.
@@ -163,8 +232,10 @@ public class VersionUtils {
     }
 
     /**
-     * @param entityTypeStr type to check
-     * @return if the type is valid with the current server version
+     * Checks whether the server has entity type.
+     *
+     * @param entityTypeStr Type to check if exists.
+     * @return If the type is valid with the current server version.
      * @see EntityType
      * @since 2.4.0
      */
@@ -178,8 +249,10 @@ public class VersionUtils {
     }
 
     /**
-     * @param materialStr type to check
-     * @return if the type is valid with the current server version
+     * Checks whether the server has material.
+     *
+     * @param materialStr Type to check if exists.
+     * @return If the type is valid with the current server version.
      * @see Material
      * @since 2.4.0
      */
@@ -193,11 +266,30 @@ public class VersionUtils {
     }
 
     /**
+     * Checks whether the server has biome.
+     *
+     * @param biome Type to check if exists.
+     * @return If the type is valid with the current server version.
+     * @see Biome
+     * @since 3.1.3
+     */
+    public static boolean hasBiome(String biome) {
+        try {
+            Biome.valueOf(biome);
+            return true;
+        } catch (IllegalArgumentException ignored) {
+            return false;
+        }
+    }
+
+    /**
      * This enum contains all major Minecraft versions (1.6 and newer).
      * If the server is older than 1.7 then the UNKNOWN value should be used.
+     *
      * @since 2.4.0
      */
     public enum MajorMinecraftVersion {
+        ONE_NINETEEN,
         ONE_EIGHTEEN,
         ONE_SEVENTEEN,
         ONE_SIXTEEN,

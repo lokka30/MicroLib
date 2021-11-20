@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author lokka30, stumper66
  * @see Logger
- * @since unknown
+ * @since 1.0.3-ALPHA
  */
 @SuppressWarnings("unused")
 public class MicroLogger {
@@ -30,7 +30,7 @@ public class MicroLogger {
      *
      * @param prefix the prefix to use
      * @author lokka30
-     * @since unknown
+     * @since 1.0.3-ALPHA
      */
     public MicroLogger(String prefix) {
         this.prefix = prefix;
@@ -41,7 +41,7 @@ public class MicroLogger {
     /**
      * @return the current prefix
      * @author lokka30
-     * @since unknown
+     * @since 1.0.3-ALPHA
      */
     public String getPrefix() {
         return prefix;
@@ -50,7 +50,7 @@ public class MicroLogger {
     /**
      * @param prefix the prefix that should be set
      * @author lokka30
-     * @since unknown
+     * @since 1.0.3-ALPHA
      */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
@@ -59,7 +59,7 @@ public class MicroLogger {
     /**
      * @param message message to send with INFO log-level
      * @author lokka30, stumper66
-     * @since unknown
+     * @since 2.0.0
      */
     public void info(String message) {
         if (serverIsSpigot)
@@ -71,7 +71,7 @@ public class MicroLogger {
     /**
      * @param message message to send with WARNING log-level
      * @author lokka30, stumper66
-     * @since unknown
+     * @since 2.0.0
      */
     public void warning(String message) {
         if (serverIsSpigot)
@@ -83,7 +83,7 @@ public class MicroLogger {
     /**
      * @param message message to send with ERROR log-level
      * @author lokka30, stumper66
-     * @since unknown
+     * @since 2.0.0
      */
     public void error(String message) {
         if (serverIsSpigot)
