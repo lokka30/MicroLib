@@ -33,7 +33,7 @@ public class MultiMessage {
      * @author lokka30
      * @since v3.0.0
      */
-    public MultiMessage(List<String> content, List<Placeholder> placeholders) {
+    public MultiMessage(final List<String> content, final List<Placeholder> placeholders) {
         this.content = content;
         this.placeholders = placeholders;
     }
@@ -79,7 +79,7 @@ public class MultiMessage {
      * @author lokka30
      * @since v3.0.0
      */
-    public void setContent(List<String> content) {
+    public void setContent(final List<String> content) {
         this.content = content;
     }
 
@@ -101,7 +101,7 @@ public class MultiMessage {
      * @author lokka30
      * @since v3.0.0
      */
-    public void setPlaceholders(List<Placeholder> placeholders) {
+    public void setPlaceholders(final List<Placeholder> placeholders) {
         this.placeholders = placeholders;
     }
 
@@ -112,7 +112,7 @@ public class MultiMessage {
      * @author lokka30
      * @since v3.0.0
      */
-    public void send(@NotNull CommandSender sender) {
+    public void send(final @NotNull CommandSender sender) {
         getTranslatedContent().forEach(sender::sendMessage);
     }
 
@@ -123,7 +123,7 @@ public class MultiMessage {
      * @author lokka30
      * @since v3.0.0
      */
-    public void send(@NotNull Player player) {
+    public void send(final @NotNull Player player) {
         getTranslatedContent().forEach(player::sendMessage);
     }
 
@@ -149,7 +149,7 @@ public class MultiMessage {
          * @author lokka30
          * @since v3.0.0
          */
-        public Placeholder(String id, String value, boolean colorizeValue) {
+        public Placeholder(final String id, final String value, boolean colorizeValue) {
             this.id = id;
             this.value = value;
             this.colorizeValue = colorizeValue;
@@ -163,7 +163,7 @@ public class MultiMessage {
          * @author lokka30
          * @since v3.0.0
          */
-        public String translateInMessage(String msg) {
+        public String translateInMessage(final String msg) {
             if (colorizeValue) {
                 return msg.replace("%" + id + "%", MessageUtils.colorizeAll(value));
             } else {

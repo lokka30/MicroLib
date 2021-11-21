@@ -32,7 +32,7 @@ public class MicroLogger {
      * @author lokka30
      * @since 1.0.3 -ALPHA
      */
-    public MicroLogger(String prefix) {
+    public MicroLogger(final String prefix) {
         this.prefix = prefix;
         this.logger = Bukkit.getLogger();
         this.serverIsSpigot = VersionUtils.isRunningSpigot();
@@ -56,7 +56,7 @@ public class MicroLogger {
      * @author lokka30
      * @since 1.0.3 -ALPHA
      */
-    public void setPrefix(String prefix) {
+    public void setPrefix(final String prefix) {
         this.prefix = prefix;
     }
 
@@ -67,7 +67,7 @@ public class MicroLogger {
      * @author lokka30, stumper66
      * @since 2.0.0
      */
-    public void info(String message) {
+    public void info(final String message) {
         if (serverIsSpigot)
             Bukkit.getServer().getConsoleSender().sendMessage(MessageUtils.colorizeAll(prefix + message));
         else
@@ -81,7 +81,7 @@ public class MicroLogger {
      * @author lokka30, stumper66
      * @since 2.0.0
      */
-    public void warning(String message) {
+    public void warning(final String message) {
         if (serverIsSpigot)
             Bukkit.getServer().getConsoleSender().sendMessage(MessageUtils.colorizeAll(ChatColor.YELLOW + "[WARN] " + ChatColor.RESET + prefix + message));
         else
@@ -95,7 +95,7 @@ public class MicroLogger {
      * @author lokka30, stumper66
      * @since 2.0.0
      */
-    public void error(String message) {
+    public void error(final String message) {
         if (serverIsSpigot)
             Bukkit.getServer().getConsoleSender().sendMessage(MessageUtils.colorizeAll(ChatColor.RED + "[ERROR] " + ChatColor.RESET + prefix + message));
         else

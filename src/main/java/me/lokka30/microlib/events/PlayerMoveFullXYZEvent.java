@@ -33,13 +33,13 @@ import org.jetbrains.annotations.NotNull;
 @SuppressWarnings("unused")
 public class PlayerMoveFullXYZEvent extends Event implements Cancellable {
 
-    /* HandlerList */
+    /* Handler List */
     private static final HandlerList HANDLERS = new HandlerList();
 
     /**
      * Gets the handlers.
      *
-     * @return The handlers.
+     * @return the handler list for this event.
      * @since 3.0.0
      */
     @NotNull
@@ -49,9 +49,9 @@ public class PlayerMoveFullXYZEvent extends Event implements Cancellable {
     }
 
     /**
-     * Gets handler list.
+     * Gets the handler list for this event.
      *
-     * @return the handler list
+     * @return the handler list for this event.
      * @since 3.0.0
      */
     @NotNull
@@ -80,7 +80,7 @@ public class PlayerMoveFullXYZEvent extends Event implements Cancellable {
     }
 
     /**
-     * Gets the player who moved to a different X, Y and/or Z coordinate ENTIRELY.
+     * Get the player who triggered the event.
      *
      * @return The moving player.
      * @since 3.0.0
@@ -131,7 +131,7 @@ public class PlayerMoveFullXYZEvent extends Event implements Cancellable {
     }
 
     /**
-     * Sets the cancelled state of this event.
+     * Set whether the event should be cancelled or not.
      *
      * @param isCancelled True if yes, otherwise false.
      * @since 3.0.0

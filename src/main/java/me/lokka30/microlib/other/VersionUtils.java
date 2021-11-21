@@ -284,7 +284,7 @@ public class VersionUtils {
 
     /**
      * This enum contains all major Minecraft versions (1.6 and newer).
-     * If the server is older than 1.7 then the UNKNOWN value should be used.
+     * If the server is older than 1.6 then the UNKNOWN value should be used.
      *
      * @since 2.4.0
      */

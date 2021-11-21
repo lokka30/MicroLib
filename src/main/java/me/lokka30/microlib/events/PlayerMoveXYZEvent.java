@@ -34,9 +34,9 @@ public class PlayerMoveXYZEvent extends Event implements Cancellable {
     private static final HandlerList HANDLERS = new HandlerList();
 
     /**
-     * Gets handlers.
+     * Gets the handlers.
      *
-     * @return The handlers.
+     * @return the handler list for this event.
      * @since 3.0.0
      */
     @NotNull
@@ -46,9 +46,9 @@ public class PlayerMoveXYZEvent extends Event implements Cancellable {
     }
 
     /**
-     * Gets handler list.
+     * Gets the handler list for this event.
      *
-     * @return the handler list.
+     * @return the handler list for this event.
      * @since 3.0.0
      */
     @NotNull
@@ -77,7 +77,7 @@ public class PlayerMoveXYZEvent extends Event implements Cancellable {
     }
 
     /**
-     * Gets a player who moved to a different X, Y and/or Z coordinate.
+     * Get the player who triggered the event.
      *
      * @return The moving player.
      * @since 3.0.0

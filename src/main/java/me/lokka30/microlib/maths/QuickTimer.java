@@ -25,24 +25,24 @@ public class QuickTimer {
     /**
      * Instantiates a new quick timer.
      *
-     * @param timerType The timer type which you want to use.
-     * @param startTime The starting time.
+     * @param timerUnits The timer units which you want to use.
+     * @param startTime  The starting time.
      * @since 3.1.3
      */
-    public QuickTimer(final @NotNull QuickTimerType timerType, long startTime) {
+    public QuickTimer(final @NotNull TimerUnits timerUnits, long startTime) {
         this.startTime = startTime;
-        switch (timerType) {
-            case MILLIS:
+        switch (timerUnits) {
+            case MILLISECONDS:
                 start();
                 break;
-            case NANO:
+            case NANOSECONDS:
                 startNano();
                 break;
         }
     }
 
     /**
-     * Instantiates a new Quick timer.
+     * Instantiates a new quick timer.
      *
      * @param startTime the starting time.
      * @since 2.4.0
@@ -94,16 +94,16 @@ public class QuickTimer {
      *
      * @since 3.1.3
      */
-    public enum QuickTimerType {
+    public enum TimerUnits {
         /**
          * Represents time in milliseconds.
          * @since 3.1.3
          */
-        MILLIS,
+        MILLISECONDS,
         /**
          * Represents time in nanoseconds.
          * @since 3.1.3
          */
-        NANO
+        NANOSECONDS
     }
 }

@@ -50,8 +50,7 @@ public class YamlConfigFile {
      * @since 3.1.3
      */
     public YamlConfigFile(final @NotNull Plugin plugin, final String configName) {
-        this.plugin = plugin;
-        this.configFile = new File(plugin.getDataFolder(), configName);
+        this(plugin, new File(plugin.getDataFolder(), configName));
     }
 
     /**
@@ -67,7 +66,7 @@ public class YamlConfigFile {
             try {
                 plugin.saveResource(getName(), false);
             } catch (IllegalArgumentException exception) {
-                Validate.isTrue(configFile.createNewFile(), "Unable to create new file");
+                Validate.isTrue(getConfigFile().createNewFile(), "Unable to create new YAML file!");
             }
         }
     }

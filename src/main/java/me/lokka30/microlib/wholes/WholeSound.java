@@ -34,7 +34,7 @@ public class WholeSound {
      * @param pitch  The pitch of sound
      * @since 1.0.3 -ALPHA
      */
-    public WholeSound(Sound sound, float volume, float pitch) {
+    public WholeSound(final Sound sound, float volume, float pitch) {
         this.sound = sound;
         this.volume = volume;
         this.pitch = pitch;
@@ -46,7 +46,7 @@ public class WholeSound {
      * @param player The player to which you will play a sound.
      * @since 1.0.3 -ALPHA
      */
-    public void playToIndividual(@NotNull Player player) {
+    public void playToIndividual(final @NotNull Player player) {
         player.playSound(player.getLocation(), sound, volume, pitch);
     }
 
@@ -56,7 +56,7 @@ public class WholeSound {
      * @param players The players to which you will play a sound.
      * @since 1.0.3 -ALPHA
      */
-    public void playToIndividuals(Player @NotNull [] players) {
+    public void playToIndividuals(final Player @NotNull [] players) {
         for (Player player : players) {
             playToIndividual(player);
         }
@@ -68,7 +68,7 @@ public class WholeSound {
      * @param players The players to which you will play a sound.
      * @since 1.0.3 -ALPHA
      */
-    public void playToIndividuals(@NotNull List<Player> players) {
+    public void playToIndividuals(final @NotNull List<Player> players) {
         for (Player player : players) {
             playToIndividual(player);
         }
@@ -81,7 +81,7 @@ public class WholeSound {
      * @param location The location of player to which you will play a sound.
      * @since 1.0.3 -ALPHA
      */
-    public void playToIndividualAtLocation(@NotNull Player player, Location location) {
+    public void playToIndividualAtLocation(final @NotNull Player player, final Location location) {
         player.playSound(location, sound, volume, pitch);
     }
 
@@ -92,7 +92,7 @@ public class WholeSound {
      * @param location The location of players to which you will play a sound.
      * @since 1.0.3 -ALPHA
      */
-    public void playToIndividualsAtLocation(Player @NotNull [] players, Location location) {
+    public void playToIndividualsAtLocation(final Player @NotNull [] players, final Location location) {
         for (Player player : players) {
             playToIndividualAtLocation(player, location);
         }
@@ -105,7 +105,7 @@ public class WholeSound {
      * @param location The location of players to which you will play a sound.
      * @since 1.0.3 -ALPHA
      */
-    public void playToIndividualsAtLocation(@NotNull List<Player> players, Location location) {
+    public void playToIndividualsAtLocation(final @NotNull List<Player> players, final Location location) {
         for (Player player : players) {
             playToIndividualAtLocation(player, location);
         }
@@ -118,7 +118,7 @@ public class WholeSound {
      * @param locations The locations of players to which you will play a sound.
      * @since 1.0.3 -ALPHA
      */
-    public void playToIndividualsAtLocations(Player @NotNull [] players, Location[] locations) {
+    public void playToIndividualsAtLocations(final Player @NotNull [] players, final Location[] locations) {
         for (Player player : players) {
             for (Location location : locations) {
                 playToIndividualAtLocation(player, location);
@@ -133,7 +133,7 @@ public class WholeSound {
      * @param locations The locations of players to which you will play a sound.
      * @since 1.0.3 -ALPHA
      */
-    public void playToIndividualsAtLocations(@NotNull List<Player> players, List<Location> locations) {
+    public void playToIndividualsAtLocations(final @NotNull List<Player> players, final List<Location> locations) {
         for (Player player : players) {
             for (Location location : locations) {
                 playToIndividualAtLocation(player, location);
@@ -158,7 +158,7 @@ public class WholeSound {
      * @param location The location of players to which you will play a sound.
      * @since 1.0.3 -ALPHA
      */
-    public void playToAllAtLocation(@NotNull Location location) {
+    public void playToAllAtLocation(final @NotNull Location location) {
         if (location.getWorld() == null) {
             return;
         }
@@ -171,7 +171,7 @@ public class WholeSound {
      * @param locations The locations of players to which you will play a sound.
      * @since 1.0.3 -ALPHA
      */
-    public void playToAllAtLocations(Location @NotNull [] locations) {
+    public void playToAllAtLocations(final Location @NotNull [] locations) {
         for (Location location : locations) {
             playToAllAtLocation(location);
         }
@@ -183,7 +183,7 @@ public class WholeSound {
      * @param locations The locations of players to which you will play a sound.
      * @since 1.0.3 -ALPHA
      */
-    public void playToAllAtLocations(@NotNull List<Location> locations) {
+    public void playToAllAtLocations(final @NotNull List<Location> locations) {
         for (Location location : locations) {
             playToAllAtLocation(location);
         }
