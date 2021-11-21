@@ -20,7 +20,7 @@ import java.util.Objects;
  * An object that makes it easier to store and send titles.
  *
  * @author lokka30
- * @version 3.1.3
+ * @version 3.2.0
  * @since 1.0.3 -ALPHA
  */
 @SuppressWarnings("unused")
@@ -105,10 +105,17 @@ public class WholeTitle {
      * @since 1.0.3 -ALPHA
      */
     public void send(final @NotNull Player player) {
+        // 1.8 and possibly 1.7
         if (!VersionUtils.isOneNine()) {
             sendWithNMS(player);
             return;
         }
+        // 1.9 & 1.10
+        if (VersionUtils.isSpecific("1.9") || VersionUtils.isSpecific("1.10")) {
+            player.sendTitle(title, subtitle);
+            return;
+        }
+        // 1.11 +
         player.sendTitle(title, subtitle, fadeIn, stay, fadeOut);
     }
 

@@ -5,6 +5,7 @@
 
 package me.lokka30.microlib.other;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.EntityType;
@@ -229,6 +230,16 @@ public class VersionUtils {
         } catch(ClassNotFoundException ignored) {
             return false;
         }
+    }
+
+    /**
+     * Check whether the server is running on specific version.
+     *
+     * @param version The server version to check.
+     * @return True if yes, otherwise false.
+     */
+    public static boolean isSpecific(final String version) {
+        return Bukkit.getServer().getVersion().contains(version);
     }
 
     /**
