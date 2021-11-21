@@ -8,7 +8,6 @@ package me.lokka30.microlib.files;
 import org.apache.commons.lang.Validate;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +35,7 @@ public class YamlConfigFile {
      * @param configFile The config file to be created and used.
      * @since 2.1.0
      */
-    public YamlConfigFile(final @NotNull Plugin plugin, final File configFile) {
+    public YamlConfigFile(final Plugin plugin, final File configFile) {
         this.plugin = plugin;
         this.configFile = configFile;
     }
@@ -49,7 +48,7 @@ public class YamlConfigFile {
      * @apiNote Config will be created in your plugin folder. If you want to set custom path use/instantiate {@link #YamlConfigFile(Plugin, File)}.
      * @since 3.1.3
      */
-    public YamlConfigFile(final @NotNull Plugin plugin, final String configName) {
+    public YamlConfigFile(final Plugin plugin, final String configName) {
         this(plugin, new File(plugin.getDataFolder(), configName));
     }
 

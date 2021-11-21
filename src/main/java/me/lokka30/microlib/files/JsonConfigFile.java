@@ -65,7 +65,7 @@ public class JsonConfigFile {
     }
 
     /**
-     * the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+     * Gets the value to which the specified key is mapped, or null if this map contains no mapping for the key.
      *
      * @param key The key whose associated value is to be returned.
      * @return The value to which the specified key is mapped, or null if this map contains no mapping for the key.
