@@ -18,7 +18,7 @@ public class Reflection {
      *
      * @since 3.1.3
      */
-    public Reflection() {
+    private Reflection() {
         throw new UnsupportedOperationException();
     }
 
