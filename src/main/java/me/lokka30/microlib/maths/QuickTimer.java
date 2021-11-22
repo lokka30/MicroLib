@@ -33,10 +33,10 @@ public class QuickTimer {
         this.startTime = startTime;
         switch (timerUnits) {
             case MILLISECONDS:
-                start();
+                startMilliTimer();
                 break;
             case NANOSECONDS:
-                startNano();
+                startNanoTimer();
                 break;
         }
     }
@@ -56,7 +56,7 @@ public class QuickTimer {
      *
      * @since 2.4.0
      */
-    public void start() {
+    public void startMilliTimer() {
         startTime = System.currentTimeMillis();
     }
 
@@ -65,7 +65,7 @@ public class QuickTimer {
      *
      * @since 3.1.3
      */
-    public void startNano() {
+    public void startNanoTimer() {
         startTime = System.nanoTime();
     }
 

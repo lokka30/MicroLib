@@ -23,7 +23,7 @@ import java.util.Objects;
  * @version 3.2.0
  * @since 1.0.3 -ALPHA
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "deprecation"})
 public class WholeTitle {
 
     final String title;
