@@ -28,7 +28,7 @@ public class OutdatedServerVersionException extends Exception {
      * @param errorMsg The error message.
      * @since 2.4.0
      */
-    public OutdatedServerVersionException(String errorMsg) {
+    public OutdatedServerVersionException(final String errorMsg) {
         super(errorMsg);
     }
 }

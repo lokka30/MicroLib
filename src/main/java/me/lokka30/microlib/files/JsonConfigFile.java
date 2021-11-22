@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.Plugin;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This class allows you to easily work with JSON configuration files.
+ * This class allows you to easily work with JSON configuration (mostly data) files.
  *
  * @author _ProfliX_
  * @version 3.2.0
@@ -29,17 +30,20 @@ public class JsonConfigFile {
     private final Plugin plugin;
     private final File file;
     private final Map<String, Object> values = new HashMap<>();
+    private final BufferedReader reader;
 
     /**
      * Instantiates a new JSON config file.
      *
      * @param plugin The plugin which will be used to create new JSON file.
      * @param file   The config file to be created and used.
+     * @throws IOException If an I/O error occurs opening the file.
      * @since 3.2.0
      */
-    public JsonConfigFile(final Plugin plugin, final File file) {
+    public JsonConfigFile(final Plugin plugin, final File file) throws IOException {
         this.plugin = plugin;
         this.file = file;
+        this.reader = Files.newBufferedReader(getPath());
     }
 
     /**
@@ -47,11 +51,22 @@ public class JsonConfigFile {
      *
      * @param plugin The plugin which will be used to create new JSON file.
      * @param name   The configuration name. Example: 'data.json'
+     * @throws IOException If an I/O error occurs opening the file.
      * @apiNote JSON file will be created in your plugin folder. If you want to set custom path use/instantiate {@link #JsonConfigFile(Plugin, File)}
      * @since 3.2.0
      */
-    public JsonConfigFile(final Plugin plugin, final String name) {
+    public JsonConfigFile(final Plugin plugin, final String name) throws IOException {
         this(plugin, new File(plugin.getDataFolder(), name));
+    }
+
+    /**
+     * Gets buffered reader.
+     *
+     * @return The buffered reader.
+     * @since 3.2.0
+     */
+    public BufferedReader getReader() {
+        return reader;
     }
 
     /**
@@ -69,9 +84,11 @@ public class JsonConfigFile {
      *
      * @param key The key whose associated value is to be returned.
      * @return The value to which the specified key is mapped, or null if this map contains no mapping for the key.
+     * @throws ClassCastException   If the key is of an inappropriate type for this map (optional)
+     * @throws NullPointerException If the specified key is null and this map does not permit null keys (optional)
      * @since 3.2.0
      */
-    public Object get(final String key) {
+    public Object get(final String key) throws ClassCastException, NullPointerException {
         return getValues().get(key);
     }
 
@@ -81,9 +98,13 @@ public class JsonConfigFile {
      * @param key   Key with which the specified value is to be associated.
      * @param value Value to be associated with the specified key.
      * @return The previous value associated with key, or null if there was no mapping for key.
+     * @throws UnsupportedOperationException If the operation is not supported by this map.
+     * @throws ClassCastException            If the class of the specified key or value prevents it from being stored in this map.
+     * @throws NullPointerException          If the specified key or value is null and this map does not permit null keys or values.
+     * @throws IllegalArgumentException      If some property of the specified key or value prevents it from being stored in this map.
      * @since 3.2.0
      */
-    public Object set(final String key, final Object value) {
+    public Object set(final String key, final Object value) throws UnsupportedOperationException, ClassCastException, NullPointerException, IllegalArgumentException {
         return getValues().put(key, value);
     }
 
@@ -104,7 +125,7 @@ public class JsonConfigFile {
      * @since 3.2.0
      */
     public String getName() {
-        return file.getName();
+        return getFile().getName();
     }
 
     /**
@@ -114,7 +135,7 @@ public class JsonConfigFile {
      * @since 3.2.0
      */
     public Path getPath() {
-        return file.toPath();
+        return getFile().toPath();
     }
 
     /**
@@ -140,9 +161,10 @@ public class JsonConfigFile {
      * @throws IOException Thrown if file is null or inaccessible.
      * @since 3.2.0
      */
+    @SuppressWarnings("unchecked")
     public void load() throws IOException {
         createIfNotExists();
-        getValues().putAll(GSON.fromJson(Files.newBufferedReader(getPath()), getValues().getClass()));
+        getValues().putAll(GSON.fromJson(getReader(), getValues().getClass()));
     }
 
     /**

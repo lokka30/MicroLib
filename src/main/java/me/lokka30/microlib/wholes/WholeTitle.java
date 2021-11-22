@@ -26,11 +26,11 @@ import java.util.Objects;
 @SuppressWarnings({"unused", "deprecation"})
 public class WholeTitle {
 
-    final String title;
-    final String subtitle;
-    final int fadeIn;
-    final int stay;
-    final int fadeOut;
+    private final String title;
+    private final String subtitle;
+    private final int fadeIn;
+    private final int stay;
+    private final int fadeOut;
 
     /**
      * Instantiates a new whole title.
@@ -65,14 +65,14 @@ public class WholeTitle {
 
             Constructor<?> titleConstructor = Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutTitle"))
                     .getConstructor(Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutTitle"))
-                    .getDeclaredClasses()[0],
-                    Reflection.getNMSClass("IChatBaseComponent"),
-                    int.class, int.class, int.class);
+                                    .getDeclaredClasses()[0],
+                            Reflection.getNMSClass("IChatBaseComponent"),
+                            int.class, int.class, int.class);
 
             Object packet = titleConstructor.newInstance(Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutTitle"))
-                     .getDeclaredClasses()[0]
-                     .getField("TITLE")
-                     .get(null), chatTitle,
+                            .getDeclaredClasses()[0]
+                            .getField("TITLE")
+                            .get(null), chatTitle,
                     fadeIn, stay, fadeOut);
 
             Object chatsTitle = Objects.requireNonNull(Reflection.getNMSClass("IChatBaseComponent"))
@@ -82,20 +82,20 @@ public class WholeTitle {
 
             Constructor<?> stitleConstructor = Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutTitle"))
                     .getConstructor(Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutTitle"))
-                    .getDeclaredClasses()[0],
-                    Reflection.getNMSClass("IChatBaseComponent"),
-                    int.class, int.class, int.class);
+                                    .getDeclaredClasses()[0],
+                            Reflection.getNMSClass("IChatBaseComponent"),
+                            int.class, int.class, int.class);
 
             Object spacket = stitleConstructor
                     .newInstance(Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutTitle"))
-                    .getDeclaredClasses()[0]
-                    .getField("SUBTITLE")
-                    .get(null), chatsTitle,
-                    fadeIn, stay, fadeOut);
+                                    .getDeclaredClasses()[0]
+                                    .getField("SUBTITLE")
+                                    .get(null), chatsTitle,
+                            fadeIn, stay, fadeOut);
 
             Reflection.sendPacket(player, packet);
             Reflection.sendPacket(player, spacket);
-        } catch (Exception ignored) {}
+        } catch (final Exception ignored) {}
     }
 
     /**
