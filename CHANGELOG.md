@@ -8,8 +8,15 @@
 
 # MicroLib v3.1.2
 
-* (@lokka30) MicroLib now uses the `Consumer` class from `java.util.function`, not Bukkit. This only affects the **Update Checker** class. If you are using the update checker please simply change the import you are using to the Java one when you update to MicroLib 3.1.2.
-* (@lokka30) MicroLib now contains a method to check if the server is running PaperMC or any derivative of it such as Airplane and Purpur: simply assert `VersionUtils.isRunningPaper()` before running any Paper-dependent code.
+* @lokka30 changed the `Consumer` import on the update checker.
+  * It now uses the `Consumer` class from `java.util.function`, not Bukkit's one.
+  * If you are using the update checker, **you must change your previous import** to the Java one when you update to MicroLib 3.1.2.
+  * This also means that the update checker no longer requires Minecraft 1.11 to run, you can run it on any version! :)
+  * The last outcome of this is that the method no longer throws OutdatedServerVersionException, no need for the try/catch anymore.
+* @lokka30 added a method to check if the server is running PaperMC or any derivative of it such as Airplane and Purpur. 
+  * Simply assert `VersionUtils.isRunningPaper()` before running any Paper-dependent code.
+* [ProfliX](https://github.com/ProfliX) kindly contributed various minor code improvements, such as the addition of nullability annotations.
+* @lokka30 made the `OutdatedServerVersionException` now extend `RuntimeException` instead.
 
 ***
 
