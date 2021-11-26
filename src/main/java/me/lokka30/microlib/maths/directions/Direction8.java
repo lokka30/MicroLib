@@ -5,8 +5,6 @@
 
 package me.lokka30.microlib.maths.directions;
 
-import org.bukkit.Location;
-
 /**
  * This enum contains 8 (eight) Direction constants
  * that are obtained using the 'getDirection' method.
@@ -20,7 +18,6 @@ import org.bukkit.Location;
  * their plugin contains directions.
  *
  * @author lokka30
- * @see Location#getPitch()
  * @since 2.4.0
  */
 @SuppressWarnings("unused")
@@ -44,14 +41,26 @@ public enum Direction8 {
     WEST(90),
     NORTH_WEST(135);
 
-    /* Storing the minPitch of each Direction */
+    /**
+     * Storing the minPitch of each Direction.
+     *
+     * @param minPitch the min pitch.
+     * @since 2.4.0
+     */
     Direction8(double minPitch) {
         this.minPitch = minPitch;
     }
 
     public final double minPitch;
 
-    /* Translate a Pitch into a Direction */
+    /**
+     * Gets direction.
+     * Translates a Pitch into a Direction.
+     *
+     * @param pitch the pitch to translate into a direction.
+     * @return the direction translated from pitch.
+     * @since 2.4.0
+     */
     public static Direction8 getDirection(float pitch) {
         if (pitch > NORTH_WEST.minPitch) {
             return NORTH_WEST;

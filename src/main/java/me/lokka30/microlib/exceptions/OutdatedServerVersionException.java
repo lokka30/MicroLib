@@ -13,13 +13,23 @@ import me.lokka30.microlib.other.VersionUtils;
  * the plugin isn't running a recent enough Minecraft version to do so.
  *
  * @author lokka30
+ * @version 2.4.0
  * @see VersionUtils
+ * @see java.io.Serializable
+ * @see java.lang.Exception
+ * @see java.lang.Throwable
  * @since 2.4.0
  */
 @SuppressWarnings("unused")
 public class OutdatedServerVersionException extends RuntimeException {
 
-    public OutdatedServerVersionException(String errorMsg) {
+    /**
+     * Instantiates a new Outdated server version exception.
+     *
+     * @param errorMsg The error message.
+     * @since 2.4.0
+     */
+    public OutdatedServerVersionException(final String errorMsg) {
         super(errorMsg);
     }
 }

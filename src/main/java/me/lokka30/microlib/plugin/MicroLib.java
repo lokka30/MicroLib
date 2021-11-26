@@ -15,8 +15,9 @@ import org.bukkit.plugin.java.JavaPlugin;
  * a PLUGIN, in the plugins folder of the server, and
  * it must be enabled.
  *
+ * @version 2.4.0
  * @author lokka30
- * @since unknown
+ * @since 2.4.0
  */
 @SuppressWarnings("unused")
 public class MicroLib extends JavaPlugin {
@@ -24,21 +25,21 @@ public class MicroLib extends JavaPlugin {
     private final MicroLogger logger = new MicroLogger("&b&lMicroLib: &7");
 
     /**
-     * @return if MicroLib is installed in the plugins folder, AND is loaded by Bukkit.
+     * Whether is MicroLib installed in the plugins folder and loaded by Bukkit.
+     *
+     * @return True if yes, otherwise false.
      * @author lokka30
-     * @since unknown
+     * @since 2.4.0
      */
     public static boolean isInstalledAsPlugin() {
         return Bukkit.getPluginManager().isPluginEnabled("MicroLib");
     }
 
     /**
+     * Called when MicroLib is enabled.
+     *
      * @author lokka30
-     * @see JavaPlugin#onEnable()
-     *
-     * Called by Bukkit when the plugin is being enabled.
-     *
-     * @since unknown
+     * @since 2.4.0
      */
     @Override
     public void onEnable() {
@@ -48,12 +49,10 @@ public class MicroLib extends JavaPlugin {
     }
 
     /**
+     * Called when MicroLib is disabled.
+     *
      * @author lokka30
-     * @see JavaPlugin#onDisable()
-     *
-     * Called by Bukkit when the plugin is being disabled.
-     *
-     * @since unknown
+     * @since 2.4.0
      */
     @Override
     public void onDisable() {
@@ -61,10 +60,10 @@ public class MicroLib extends JavaPlugin {
     }
 
     /**
+     *  Registers any listeners that MicroLib has.
+     *
      * @author lokka30
      * @since v3.0.0
-     * <p>
-     * Registers any listeners that MicroLib has.
      */
     private void registerListeners() {
         logger.info("Registering listeners...");

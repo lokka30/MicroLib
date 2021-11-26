@@ -19,11 +19,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Randoms {
 
     /**
+     * Generates random int.
+     *
      * @param min 'from' (minimum value)
      * @param max 'to' (maximum value)
-     * @return random number from min to max
+     * @return random number from min to max.
      * @author lokka30
-     * @see ThreadLocalRandom#nextInt(int, int)
      * @since 2.4.0
      */
     public static int generateRandomInt(int min, int max) {
@@ -31,11 +32,12 @@ public class Randoms {
     }
 
     /**
+     * Generates random double.
+     *
      * @param min 'from' (minimum value)
      * @param max 'to' (maximum value)
-     * @return random number from min to max
+     * @return random number from min to max.
      * @author lokka30
-     * @see ThreadLocalRandom#nextDouble(double, double)
      * @since 2.4.0
      */
     public static double generateRandomDouble(double min, double max) {
@@ -43,11 +45,12 @@ public class Randoms {
     }
 
     /**
+     * Generates random long.
+     *
      * @param min 'from' (minimum value)
      * @param max 'to' (maximum value)
-     * @return random number from min to max
+     * @return random number from min to max.
      * @author lokka30
-     * @see ThreadLocalRandom#nextLong(long, long)
      * @since 2.4.0
      */
     public static long generateRandomLong(long min, long max) {
@@ -55,9 +58,23 @@ public class Randoms {
     }
 
     /**
-     * @return a randomn boolean
+     * Generates random float.
+     *
+     * @param min 'from' (minimum value)
+     * @param max 'to' (maximum value)
+     * @return random number from min to max.
+     * @author _ProfliX_
+     * @since 3.1.3
+     */
+    public static float generateRandomFloat(float min, float max) {
+        return ThreadLocalRandom.current().nextFloat(min, max + 1);
+    }
+
+    /**
+     * Generates random boolean.
+     *
+     * @return a random boolean.
      * @author lokka30
-     * @see ThreadLocalRandom#nextBoolean()
      * @since 2.4.0
      */
     public static boolean generateRandomBoolean() {
@@ -65,10 +82,11 @@ public class Randoms {
     }
 
     /**
+     * Checks whether the chance was successful.
+     *
      * @param chance From 0 to 100, probability of returning 'true'.
-     * @return whether the chance was successful.
+     * @return True if yes, otherwise false.
      * @author lokka30
-     * @see Randoms#generateRandomDouble(double, double)
      * @since 2.4.0
      */
     public static boolean chance(double chance) {
