@@ -17,7 +17,7 @@ import java.util.List;
  * Reduces 2-3 lines of code and removes a lot of repeating code as if it was not used.
  *
  * @author lokka30
- * @since v3.0.0
+ * @since 3.0.0
  */
 @SuppressWarnings("unused")
 public class MultiMessage {
@@ -30,8 +30,7 @@ public class MultiMessage {
      *
      * @param content      what messages should be sent.
      * @param placeholders what placeholders can be replaced in the content.
-     * @author lokka30
-     * @since v3.0.0
+     * @since 3.0.0
      */
     public MultiMessage(final List<String> content, final List<Placeholder> placeholders) {
         this.content = content;
@@ -42,8 +41,7 @@ public class MultiMessage {
      * Gets translated content.
      *
      * @return The final message, all placeholders translated.
-     * @author lokka30
-     * @since v3.0.0
+     * @since 3.0.0
      */
     public List<String> getTranslatedContent() {
         ArrayList<String> translated = new ArrayList<>();
@@ -65,8 +63,7 @@ public class MultiMessage {
      * Gets untranslated content.
      *
      * @return unmodified starting content.
-     * @author lokka30
-     * @since v3.0.0
+     * @since 3.0.0
      */
     public List<String> getUntranslatedContent() {
         return content;
@@ -76,8 +73,7 @@ public class MultiMessage {
      * Sets content.
      *
      * @param content What to change the starting content to.
-     * @author lokka30
-     * @since v3.0.0
+     * @since 3.0.0
      */
     public void setContent(final List<String> content) {
         this.content = content;
@@ -87,8 +83,7 @@ public class MultiMessage {
      * Gets placeholders.
      *
      * @return all the placeholders the MultiMessage currently has
-     * @author lokka30
-     * @since v3.0.0
+     * @since 3.0.0
      */
     public List<Placeholder> getPlaceholders() {
         return placeholders;
@@ -98,8 +93,7 @@ public class MultiMessage {
      * Sets placeholders.
      *
      * @param placeholders what placeholders should be in the message
-     * @author lokka30
-     * @since v3.0.0
+     * @since 3.0.0
      */
     public void setPlaceholders(final List<Placeholder> placeholders) {
         this.placeholders = placeholders;
@@ -109,8 +103,7 @@ public class MultiMessage {
      * Sends translated content.
      *
      * @param sender who to send the translated content to.
-     * @author lokka30
-     * @since v3.0.0
+     * @since 3.0.0
      */
     public void send(final @NotNull CommandSender sender) {
         getTranslatedContent().forEach(sender::sendMessage);
@@ -120,8 +113,7 @@ public class MultiMessage {
      * Sends translated content to player.
      *
      * @param player Player to which you will send the translated content.
-     * @author lokka30
-     * @since v3.0.0
+     * @since 3.0.0
      */
     public void send(final @NotNull Player player) {
         getTranslatedContent().forEach(player::sendMessage);
@@ -132,8 +124,7 @@ public class MultiMessage {
      * Placeholder values can be colorized or non-colorized at an individual level,
      * e.g. maybe you do not want an invalid user input placeholder to format colors.
      *
-     * @author lokka30
-     * @since v3.0.0
+     * @since 3.0.0
      */
     public static class Placeholder {
         public final String id;
@@ -146,8 +137,7 @@ public class MultiMessage {
          * @param id            what placeholder is: e.g. `%player_name%`, but without the % symbols, so `player_name`.
          * @param value         what the placeholder should be replaced with.
          * @param colorizeValue if the value should be colorized or not.
-         * @author lokka30
-         * @since v3.0.0
+         * @since 3.0.0
          */
         public Placeholder(final String id, final String value, boolean colorizeValue) {
             this.id = id;
@@ -160,8 +150,7 @@ public class MultiMessage {
          *
          * @param msg The original message.
          * @return Original message but with all occurrences of the placeholder translated to its value.
-         * @author lokka30
-         * @since v3.0.0
+         * @since 3.0.0
          */
         public String translateInMessage(final String msg) {
             if (colorizeValue) {

@@ -32,7 +32,6 @@ public class MessageUtils {
      *
      * @param msg the message to translate color codes from.
      * @return the color-translated message.
-     * @author lokka30
      * @since 2.2.0
      */
     public static @NotNull String colorizeAll(final String msg) {
@@ -44,7 +43,6 @@ public class MessageUtils {
      *
      * @param msg message to translate
      * @return the translated string
-     * @author lokka30
      * @since 2.2.0
      */
     public static String colorizeHexCodes(final String msg) {
@@ -60,7 +58,7 @@ public class MessageUtils {
      * @param endTag   what the tag should end with - '' (nothing) is recommended
      * @param message  the message that should be translated
      * @return the translated string
-     * @author Elementeral @SpigotMC.org and imDaniX @ SpigotMC.org ~ https://www.spigotmc.org/threads/hex-color-code-translate.449748/#post-3867804
+     * @author Elementeral and imDaniX on SpigotMC.org via <a href="https://www.spigotmc.org/threads/hex-color-code-translate.449748/#post-3867804">this</a> thread.
      * @since 2.2.0
      */
     public static String colorizeHexCodes(final String startTag, final String endTag, final String message) {
@@ -86,7 +84,6 @@ public class MessageUtils {
      *
      * @param msg the message to translate standard color codes from.
      * @return the color-translated message.
-     * @author lokka30
      * @since 2.2.0
      */
     public static @NotNull String colorizeStandardCodes(final String msg) {

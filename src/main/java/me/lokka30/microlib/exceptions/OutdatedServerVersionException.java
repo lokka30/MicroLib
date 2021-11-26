@@ -13,7 +13,6 @@ import me.lokka30.microlib.other.VersionUtils;
  * the plugin isn't running a recent enough Minecraft version to do so.
  *
  * @author lokka30
- * @version 2.4.0
  * @see VersionUtils
  * @see java.io.Serializable
  * @see java.lang.Exception

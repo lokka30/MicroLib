@@ -19,7 +19,6 @@ import org.jetbrains.annotations.NotNull;
  * so running lots of code on PlayerMoveEvent may have a poor impact on performance.
  *
  * @author lokka30
- * @version 3.0.0
  * @apiNote This event only fires if MicroLib is installed as a plugin on the server. The event does not fire if MicroLib is shaded into the resource!
  * @see org.bukkit.event.player.PlayerMoveEvent
  * @see PlayerMoveFullXYZEvent

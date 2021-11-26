@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * @author lokka30
  * @see PlayerMoveEvent
- * @since v3.0.0
+ * @since 3.0.0
  */
 public class PlayerMoveListener implements Listener {
 

@@ -7,103 +7,69 @@ package me.lokka30.microlib.maths;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.concurrent.TimeUnit;
+
 /**
- * This is a small class useful for timing simple things such as the time required to start up a plugin or run a command.
- * <p>
- * Mark the starting point of the timer with `QuickTimer timer = new QuickTimer()`, then get the time (in milliseconds)
- * since it started using `QuickTimer#getTimer()`.
+ * This is a small class useful for timing simple things such as
+ * the time required to start up a plugin or complete the execution
+ * of a command.
  *
  * @author lokka30
- * @version 3.1.3
  * @since 2.1.0
  */
 @SuppressWarnings("unused")
 public class QuickTimer {
 
-    private long startTime;
+    private long startingTime;
+    private final TimeUnit timeUnit;
 
     /**
-     * Instantiates a new quick timer.
+     * Instantiates a new QuickTimer.
      *
-     * @param timerUnits The timer units which you want to use.
-     * @param startTime  The starting time.
-     * @since 3.1.3
+     * @param timeUnit The time unit which you want to use.
+     * @since 3.2.0
      */
-    public QuickTimer(final @NotNull TimerUnits timerUnits, long startTime) {
-        this.startTime = startTime;
-        switch (timerUnits) {
-            case MILLISECONDS:
-                startMilliTimer();
-                break;
-            case NANOSECONDS:
-                startNanoTimer();
-                break;
-        }
+    public QuickTimer(final @NotNull TimeUnit timeUnit) {
+        this.timeUnit = timeUnit;
+        reset();
     }
 
     /**
-     * Instantiates a new quick timer.
+     * Instantiates a new QuickTimer.
      *
-     * @param startTime the starting time.
-     * @since 2.4.0
+     * @param timeUnit The time unit which you want to use.
+     * @param startingTime the specific time (as a {@code System.nanoTime()}) to start with instead.
+     * @since 3.2.0
      */
-    public QuickTimer(long startTime) {
-        this.startTime = startTime;
+    public QuickTimer(final @NotNull TimeUnit timeUnit, final long startingTime) {
+        this.timeUnit = timeUnit;
+        this.startingTime = startingTime;
     }
 
     /**
-     * Re/starts the timer (milliseconds).
+     * Restarts the timer by setting the {@code startingTime} to when this method is ran.
      *
-     * @since 2.4.0
+     * @since 3.2.0
      */
-    public void startMilliTimer() {
-        startTime = System.currentTimeMillis();
+    public void reset() {
+        startingTime = System.nanoTime();
     }
 
     /**
-     * Re/starts the timer (nanoseconds).
+     * Gets how much time has surpassed since the {@code startingTime}.
      *
-     * @since 3.1.3
+     * @return the duration.
+     * @since 3.2.0
      */
-    public void startNanoTimer() {
-        startTime = System.nanoTime();
+    public long getDuration() {
+        return TimeUnit.NANOSECONDS.convert(System.nanoTime() - startingTime, timeUnit);
     }
 
     /**
-     * Gets millis timer.
+     * Get which time unit is being used.
      *
-     * @return Time (millis) since start time.
-     * @since 2.2.0
+     * @return which time unit is being used.
+     * @since 3.2.0
      */
-    public long getTimer() {
-        return System.currentTimeMillis() - startTime;
-    }
-
-    /**
-     * Gets nano timer.
-     *
-     * @return Time (nano) since start time.
-     * @since 3.1.3
-     */
-    public long getNanoTimer() {
-        return System.nanoTime() - startTime;
-    }
-
-    /**
-     * Defines quick timer type.
-     *
-     * @since 3.1.3
-     */
-    public enum TimerUnits {
-        /**
-         * Represents time in milliseconds.
-         * @since 3.1.3
-         */
-        MILLISECONDS,
-        /**
-         * Represents time in nanoseconds.
-         * @since 3.1.3
-         */
-        NANOSECONDS
-    }
+    public TimeUnit getTimeUnit() { return timeUnit; }
 }

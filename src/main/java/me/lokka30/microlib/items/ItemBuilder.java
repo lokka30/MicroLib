@@ -24,9 +24,8 @@ import java.util.List;
  * ItemBuilder class allows you to easily create ItemStacks.
  *
  * @author lokka30
- * @version 3.1.0
  * @see ItemStack
- * @since 1.0.3 -ALPHA
+ * @since 1.0.3
  */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class ItemBuilder {
@@ -35,7 +34,7 @@ public class ItemBuilder {
      * The current ItemStack in the ItemBuilder, as
      * set in the constructor and modified thereon.
      *
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull private final ItemStack itemStack;
 
@@ -43,7 +42,6 @@ public class ItemBuilder {
      * Starts off the ItemBuilder using an existing ItemStack.
      *
      * @param itemStack to begin the ItemBuilder with.
-     * @author lokka30
      * @since 3.1.0
      */
     public ItemBuilder(@NotNull final ItemStack itemStack) {
@@ -54,7 +52,6 @@ public class ItemBuilder {
      * Starts off the ItemBuilder with a new ItemStack of specified material.
      *
      * @param type (Material type) of the new ItemStack.
-     * @author lokka30
      * @since 3.1.0
      */
     public ItemBuilder(@NotNull final Material type) {
@@ -65,7 +62,6 @@ public class ItemBuilder {
      * Gets the current ItemStack (the built item).
      *
      * @return the current ItemStack.
-     * @author lokka30
      * @since 3.1.0
      */
     @NotNull
@@ -78,8 +74,7 @@ public class ItemBuilder {
      *
      * @param amount to set on the item.
      * @return the amount
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder setAmount(final int amount) {
@@ -92,8 +87,7 @@ public class ItemBuilder {
      *
      * @param type (Material) to set on the item.
      * @return the type
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder setType(@NotNull final Material type) {
@@ -107,8 +101,7 @@ public class ItemBuilder {
      *
      * @param material to set on the item.
      * @return Material to set.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder setMaterial(@NotNull final Material material) {
@@ -116,12 +109,11 @@ public class ItemBuilder {
     }
 
     /**
-     * Sets the ItemMeta of this ItemStack
+     * Replaces the existing ItemMeta of the ItemStack.
      *
      * @param itemMeta to set on the item.
      * @return The ItemMeta of this ItemStack.
-     * @author lokka30
-     * @since v3.1.0 Replaces the existing ItemMeta of the ItemStack.
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder setItemMeta(@NotNull final ItemMeta itemMeta) {
@@ -134,8 +126,7 @@ public class ItemBuilder {
      *
      * @param displayName to set on the item.
      * @return Display name of ItemStack.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder setDisplayName(@NotNull final String displayName) {
@@ -151,8 +142,7 @@ public class ItemBuilder {
      *
      * @param lines of the lore to set on the item.
      * @return Lore of ItemStack.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder setLore(@NotNull final List<String> lines) {
@@ -169,8 +159,7 @@ public class ItemBuilder {
      *
      * @param line of the lore to set on the item.
      * @return Lore of ItemStack to be set.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder setLore(@NotNull final String line) {
@@ -182,8 +171,7 @@ public class ItemBuilder {
      *
      * @param lines of the lore to add on the item.
      * @return Lore of ItemStack to be added.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder addLore(@NotNull final List<String> lines) {
@@ -205,8 +193,7 @@ public class ItemBuilder {
      *
      * @param line of the lore to add on the item.
      * @return Lore of item.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder addLore(@NotNull final String line) {
@@ -218,8 +205,7 @@ public class ItemBuilder {
      *
      * @param damage to set on the item.
      * @return Damage of item in ItemStack.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder setDamage(final int damage) {
@@ -238,8 +224,7 @@ public class ItemBuilder {
      * @param enchantmentLevelsMap   to add on the item, a map of Enchantments with each of their corresponding levels.
      * @param ignoreLevelRestriction if set to 'true', levels may be higher than their maximum obtainable limits (e.g. Sharpness V).
      * @return The enchantments on item in ItemStack.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder addEnchantments(@NotNull final HashMap<Enchantment, Integer> enchantmentLevelsMap, final boolean ignoreLevelRestriction) {
@@ -259,8 +244,7 @@ public class ItemBuilder {
      * @param level                  of the specified enchantment.
      * @param ignoreLevelRestriction if set to 'true', the level may be higher than the enchantment's maximum obtainable limit (e.g. Sharpness V).
      * @return The enchantment on item in ItemStack.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder addEnchantment(@NotNull final Enchantment enchantment, final int level, final boolean ignoreLevelRestriction) {
@@ -278,8 +262,7 @@ public class ItemBuilder {
      *
      * @param itemFlags to add on the item.
      * @return Item flags on item.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder addItemFlags(@NotNull final ItemFlag[] itemFlags) {
@@ -297,8 +280,7 @@ public class ItemBuilder {
      *
      * @param itemFlags to add on the item.
      * @return Item flags on item.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder addItemFlags(@NotNull final List<ItemFlag> itemFlags) {
@@ -310,8 +292,7 @@ public class ItemBuilder {
      *
      * @param itemFlag to add on the item.
      * @return Item flag on item.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder addItemFlag(@NotNull final ItemFlag itemFlag) {
@@ -323,8 +304,7 @@ public class ItemBuilder {
      *
      * @param state whether the item should be unbreakable or not.
      * @return the unbreakable state of item.
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder setUnbreakable(final boolean state) {
@@ -342,7 +322,6 @@ public class ItemBuilder {
      * This will hide ALL enchantments on the item, even enchantments that are not applied by this method.
      *
      * @return the glowing
-     * @author lokka30
      * @since 3.1.0
      */
     @NotNull
@@ -366,8 +345,7 @@ public class ItemBuilder {
      *
      * @param offlinePlayer Offline player to set the skull texture of.
      * @return the skull owner
-     * @author lokka30
-     * @since v3.1.0
+     * @since 3.1.0
      */
     @NotNull
     public ItemBuilder setSkullOwner(@NotNull final OfflinePlayer offlinePlayer) {
@@ -385,7 +363,6 @@ public class ItemBuilder {
      *
      * @param username to set the skull texture of.
      * @return the skull owner
-     * @author lokka30
      * @since 3.1.0
      * @deprecated {@link #setSkullOwner(OfflinePlayer)} should be used wherever possible, this only exists for legacy compatibility.
      */

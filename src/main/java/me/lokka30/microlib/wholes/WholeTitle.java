@@ -6,24 +6,20 @@
 package me.lokka30.microlib.wholes;
 
 import me.lokka30.microlib.messaging.MessageUtils;
-import me.lokka30.microlib.other.Reflection;
 import me.lokka30.microlib.other.VersionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Constructor;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * An object that makes it easier to store and send titles.
  *
  * @author lokka30
- * @version 3.2.0
- * @since 1.0.3 -ALPHA
+ * @since 1.0.3
  */
-@SuppressWarnings({"unused", "deprecation"})
+@SuppressWarnings({"unused"})
 public class WholeTitle {
 
     private final String title;
@@ -40,7 +36,7 @@ public class WholeTitle {
      * @param fadeIn   The fade in of title.
      * @param stay     The stay of title.
      * @param fadeOut  The fade out of title.
-     * @since 1.0.3 -ALPHA
+     * @since 1.0.3
      */
     public WholeTitle(final String title, final String subtitle, int fadeIn, int stay, int fadeOut) {
         this.title = MessageUtils.colorizeAll(title);
@@ -51,65 +47,27 @@ public class WholeTitle {
     }
 
     /**
-     * Sends a title to player with NMS reflection.
-     *
-     * @param player The player which will receive a title.
-     * @since 3.1.3
-     */
-    public void sendWithNMS(final Player player) {
-        try {
-            Object chatTitle = Objects.requireNonNull(Reflection.getNMSClass("IChatBaseComponent"))
-                    .getDeclaredClasses()[0]
-                    .getMethod("a", String.class)
-                    .invoke(null, "{\"text\": \"" + title + "\"}");
-
-            Constructor<?> titleConstructor = Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutTitle"))
-                    .getConstructor(Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutTitle"))
-                                    .getDeclaredClasses()[0],
-                            Reflection.getNMSClass("IChatBaseComponent"),
-                            int.class, int.class, int.class);
-
-            Object packet = titleConstructor.newInstance(Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutTitle"))
-                            .getDeclaredClasses()[0]
-                            .getField("TITLE")
-                            .get(null), chatTitle,
-                    fadeIn, stay, fadeOut);
-
-            Object chatsTitle = Objects.requireNonNull(Reflection.getNMSClass("IChatBaseComponent"))
-                    .getDeclaredClasses()[0]
-                    .getMethod("a", String.class)
-                    .invoke(null, "{\"text\": \"" + subtitle + "\"}");
-
-            Constructor<?> stitleConstructor = Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutTitle"))
-                    .getConstructor(Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutTitle"))
-                                    .getDeclaredClasses()[0],
-                            Reflection.getNMSClass("IChatBaseComponent"),
-                            int.class, int.class, int.class);
-
-            Object spacket = stitleConstructor
-                    .newInstance(Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutTitle"))
-                                    .getDeclaredClasses()[0]
-                                    .getField("SUBTITLE")
-                                    .get(null), chatsTitle,
-                            fadeIn, stay, fadeOut);
-
-            Reflection.sendPacket(player, packet);
-            Reflection.sendPacket(player, spacket);
-        } catch (final Exception ignored) {}
-    }
-
-    /**
      * Sends a title to player.
      *
      * @param player The player which will receive a title.
-     * @since 1.0.3 -ALPHA
+     * @since 1.0.3
      */
+    @SuppressWarnings("deprecation")
     public void send(final @NotNull Player player) {
-        // 1.8 and possibly 1.7
-        if (!VersionUtils.isOneNine()) {
-            sendWithNMS(player);
+
+        // 1.7 servers don't have titles.
+        if(!VersionUtils.isOneEight()) {
             return;
         }
+
+        // 1.8, 1.9 and 1.10 servers must use an older method,
+        // which has been deprecated from the beginning.
+        // Use with caution.
+        if (!VersionUtils.isOneEleven()) {
+            player.sendTitle(title, subtitle);
+            return;
+        }
+
         // 1.9 & 1.10
         if (VersionUtils.isSpecific("1.9") || VersionUtils.isSpecific("1.10")) {
             player.sendTitle(title, subtitle);
@@ -123,7 +81,7 @@ public class WholeTitle {
      * Sends a title to players.
      *
      * @param players The players which will receive a title.
-     * @since 1.0.3 -ALPHA
+     * @since 1.0.3
      */
     public void send(final Player @NotNull [] players) {
         for (Player player : players) {
@@ -135,7 +93,7 @@ public class WholeTitle {
      * Sends a title to player.
      *
      * @param players The players which will receive a title.
-     * @since 1.0.3 -ALPHA
+     * @since 1.0.3
      */
     public void send(final @NotNull List<Player> players) {
         for (Player player : players) {
@@ -146,7 +104,7 @@ public class WholeTitle {
     /**
      * Sends a title to all online players.
      *
-     * @since 1.0.3 -ALPHA
+     * @since 1.0.3
      */
     public void sendToAll() {
         for (Player player : Bukkit.getOnlinePlayers()) {

@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * that make it simpler to use random numbers,
  * booleans, and chances.
  *
- * @author lokka30
+ * @author lokka30, _ProfliX_
  * @since 2.4.0
  */
 @SuppressWarnings("unused")
@@ -24,7 +24,6 @@ public class Randoms {
      * @param min 'from' (minimum value)
      * @param max 'to' (maximum value)
      * @return random number from min to max.
-     * @author lokka30
      * @since 2.4.0
      */
     public static int generateRandomInt(int min, int max) {
@@ -37,7 +36,6 @@ public class Randoms {
      * @param min 'from' (minimum value)
      * @param max 'to' (maximum value)
      * @return random number from min to max.
-     * @author lokka30
      * @since 2.4.0
      */
     public static double generateRandomDouble(double min, double max) {
@@ -50,7 +48,6 @@ public class Randoms {
      * @param min 'from' (minimum value)
      * @param max 'to' (maximum value)
      * @return random number from min to max.
-     * @author lokka30
      * @since 2.4.0
      */
     public static long generateRandomLong(long min, long max) {
@@ -63,18 +60,16 @@ public class Randoms {
      * @param min 'from' (minimum value)
      * @param max 'to' (maximum value)
      * @return random number from min to max.
-     * @author _ProfliX_
      * @since 3.1.3
      */
     public static float generateRandomFloat(float min, float max) {
-        return ThreadLocalRandom.current().nextFloat(min, max + 1);
+        return (float) generateRandomDouble(min, max);
     }
 
     /**
      * Generates random boolean.
      *
      * @return a random boolean.
-     * @author lokka30
      * @since 2.4.0
      */
     public static boolean generateRandomBoolean() {
@@ -86,7 +81,6 @@ public class Randoms {
      *
      * @param chance From 0 to 100, probability of returning 'true'.
      * @return True if yes, otherwise false.
-     * @author lokka30
      * @since 2.4.0
      */
     public static boolean chance(double chance) {

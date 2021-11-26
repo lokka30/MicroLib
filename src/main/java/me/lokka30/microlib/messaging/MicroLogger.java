@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author lokka30, stumper66
  * @see Logger
- * @since 1.0.3 -ALPHA
+ * @since 1.0.3
  */
 @SuppressWarnings("unused")
 public class MicroLogger {
@@ -29,8 +29,7 @@ public class MicroLogger {
      * Creates a new instance of MicroLogger with a custom prefix.
      *
      * @param prefix the prefix to use
-     * @author lokka30
-     * @since 1.0.3 -ALPHA
+     * @since 1.0.3
      */
     public MicroLogger(final String prefix) {
         this.prefix = prefix;
@@ -42,8 +41,7 @@ public class MicroLogger {
      * Gets the logger prefix.
      *
      * @return the current prefix.
-     * @author lokka30
-     * @since 1.0.3 -ALPHA
+     * @since 1.0.3
      */
     public String getPrefix() {
         return prefix;
@@ -53,8 +51,7 @@ public class MicroLogger {
      * Sets the logger prefix.
      *
      * @param prefix the prefix that should be set.
-     * @author lokka30
-     * @since 1.0.3 -ALPHA
+     * @since 1.0.3
      */
     public void setPrefix(final String prefix) {
         this.prefix = prefix;
@@ -64,7 +61,6 @@ public class MicroLogger {
      * Logs an INFO message.
      *
      * @param message Message to send with INFO log-level.
-     * @author lokka30, stumper66
      * @since 2.0.0
      */
     public void info(final String message) {
@@ -78,7 +74,6 @@ public class MicroLogger {
      * Logs an WARNING message.
      *
      * @param message Message to send with WARNING log-level.
-     * @author lokka30, stumper66
      * @since 2.0.0
      */
     public void warning(final String message) {
@@ -92,7 +87,6 @@ public class MicroLogger {
      * Logs an ERROR message.
      *
      * @param message message to send with ERROR log-level
-     * @author lokka30, stumper66
      * @since 2.0.0
      */
     public void error(final String message) {

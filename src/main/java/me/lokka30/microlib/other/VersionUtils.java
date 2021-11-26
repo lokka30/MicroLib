@@ -16,7 +16,6 @@ import org.bukkit.entity.EntityType;
  * entities that were added in these updates.
  *
  * @author lokka30, stumper66
- * @version 3.1.3
  * @since 2.2.0
  */
 @SuppressWarnings("unused")
@@ -233,10 +232,13 @@ public class VersionUtils {
     }
 
     /**
-     * Check whether the server is running on specific version.
+     * Check whether the server is running on specific version, e.g. {@code 1.16}.
+     * <p>
+     * Does so by simply checking if the server's version contains the specified {@code version}.
      *
      * @param version The server version to check.
      * @return True if yes, otherwise false.
+     * @since 3.2.0
      */
     public static boolean isSpecific(final String version) {
         return Bukkit.getServer().getVersion().contains(version);
@@ -282,7 +284,7 @@ public class VersionUtils {
      * @param biome Type to check if exists.
      * @return If the type is valid with the current server version.
      * @see Biome
-     * @since 3.1.3
+     * @since 3.2.0
      */
     public static boolean hasBiome(final String biome) {
         try {

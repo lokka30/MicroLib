@@ -16,7 +16,6 @@ import java.io.IOException;
  * This class allows you to easily work with YAML configuration files.
  *
  * @author lokka30
- * @version 3.1.3
  * @see YamlConfiguration
  * @since 2.1.0
  */
@@ -57,7 +56,6 @@ public class YamlConfigFile {
      * It saves it from the plugin's .jar file - if that isn't accessible then it saves an empty file.
      *
      * @throws IOException Thrown if file is null or inaccessible.
-     * @author lokka30
      * @since 2.1.0
      */
     private void createIfNotExists() throws IOException {
@@ -74,7 +72,6 @@ public class YamlConfigFile {
      * Load/reload values from the file into the config.
      *
      * @throws IOException Thrown if file is null or inaccessible.
-     * @author lokka30
      * @since 2.1.0
      */
     public void load() throws IOException {
@@ -87,7 +84,6 @@ public class YamlConfigFile {
      * Saves modified config values to the file.
      *
      * @throws IOException Thrown if the file is inaccessible.
-     * @author lokka30
      * @since 2.1.0
      */
     public void save() throws IOException {
@@ -100,7 +96,6 @@ public class YamlConfigFile {
      *
      * @apiNote By default, it does not copy defaults.
      * @param copyDefaults Whether the config should copy defaults.
-     * @author lokka30
      * @since 2.1.0
      */
     public void setCopyDefaults(boolean copyDefaults) {
@@ -111,7 +106,6 @@ public class YamlConfigFile {
      * Gets configuration file.
      *
      * @return The configuration file.
-     * @author lokka30
      * @since 2.1.0
      */
     public File getConfigFile() {
@@ -122,7 +116,6 @@ public class YamlConfigFile {
      * Gets Yaml configuration.
      *
      * @return The YAML configuration.
-     * @author lokka30
      * @since 2.1.0
      */
     public YamlConfiguration getConfig() {
@@ -133,7 +126,6 @@ public class YamlConfigFile {
      * Gets configuration file name.
      *
      * @return the file name (e.g. 'settings.yml')
-     * @author lokka30
      * @since 2.1.0
      */
     public String getName() {

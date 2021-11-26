@@ -18,7 +18,6 @@ package me.lokka30.microlib.maths.directions;
  * their plugin contains directions.
  *
  * @author lokka30
- * @version 2.4.0
  * @since 2.4.0
  */
 @SuppressWarnings("unused")
