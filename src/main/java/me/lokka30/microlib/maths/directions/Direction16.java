@@ -20,7 +20,6 @@ import org.bukkit.Location;
  * their plugin contains directions.
  *
  * @author lokka30
- * @see Location#getPitch()
  * @since 2.4.0
  */
 @SuppressWarnings("unused")
@@ -52,14 +51,26 @@ public enum Direction16 {
     NORTH_WEST(135),
     NORTH_NORTH_WEST(157.5);
 
-    /* Storing the minPitch of each Direction */
+    /**
+     * Storing the minPitch of each Direction.
+     *
+     * @param minPitch the min pitch.
+     * @since 2.4.0
+     */
     Direction16(double minPitch) {
         this.minPitch = minPitch;
     }
 
     public final double minPitch;
 
-    /* Translate a Pitch into a Direction */
+    /**
+     * Gets direction.
+     * Translates a Pitch into a Direction.
+     *
+     * @param pitch the pitch to translate into a direction.
+     * @return the direction translated from pitch.
+     * @since 2.4.0
+     */
     public static Direction16 getDirection(float pitch) {
         if (pitch > NORTH_NORTH_WEST.minPitch) {
             return NORTH_NORTH_WEST;

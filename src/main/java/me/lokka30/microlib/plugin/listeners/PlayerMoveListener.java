@@ -12,22 +12,27 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.jetbrains.annotations.NotNull;
 
 /**
+ * This listener functions when MicroLib is installed as a plugin, in the plugins folder of server.
+ *
+ * This listener does not care if the event is cancelled or not,
+ * it simply forwards this status to the two events it calls in the process.
+ *
  * @author lokka30
  * @see PlayerMoveEvent
- * @since v3.0.0
- * <p>
- * This listener functions when MicroLib is installed as a plugin,
- * in the plugins folder of the server of course.
- * <p>
- * This listener does not care if the event is cancelled or not, it
- * simply forwards this status to the two events it calls in the process.
+ * @since 3.0.0
  */
 public class PlayerMoveListener implements Listener {
 
+    /**
+     * On player move.
+     *
+     * @param event player move event.
+     */
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onMove(final PlayerMoveEvent event) {
+    public void onMove(final @NotNull PlayerMoveEvent event) {
         if (event.getTo() == null) return;
 
         /* PlayerMoveFullXYZEvent */

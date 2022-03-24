@@ -6,7 +6,34 @@
 
 ***
 
-# MicroLib v3.1.2
+# v3.2.0
+
+A new MicroLib update, presented to you by [ProfliX](https://github.com/ProfliX) and I! :)
+
+* [ProfliX](https://github.com/ProfliX) and I improved the `WholeTitle` class:
+  * no longer throws errors on 1.7 servers
+    * 1.7 servers don't have titles, so MicroLib just skips the request instead of throwing an error. 
+  * now supports 1.8, 1.9 and 1.10 servers
+    * these versions didn't have the newer `Player#sendTitle` method in the Spigot API, so we are using a deprecated method to fix this without using NMS.
+* [ProfliX](https://github.com/ProfliX) added the `JsonConfigFile` class.
+  * Just like the YamlConfigFile class, but in the `json` format ;) 
+* [ProfliX](https://github.com/ProfliX) added random float number generation to the `Randoms` class.
+* [ProfliX](https://github.com/ProfliX) and I changed almost all of the `QuickTimer` class.
+  * You can now record time in different units - from *nanoseconds*, all the way up to *days*! 
+  * New instantiation of QuickTimer utilising the desired time unit and an optional start-time parameter.
+* The `VersionUtils` class was improved:
+  * [ProfliX](https://github.com/ProfliX) added a method to check if the server is running a specific version, using a `String#contains` check.
+  * [ProfliX](https://github.com/ProfliX) added the ability for the version checker to also check if the server has certain biomes available. This is utilised with the new 1.18 checker.
+  * [ProfliX](https://github.com/ProfliX) fixed the 1.18 version checker and also added a 1.19 version checker. As both versions are not released, we are predicting certain names of biomes and mobs being added, so please be careful if you use these and notify us if they don't work properly.
+* [ProfliX](https://github.com/ProfliX) and I improved the javadocs.
+
+I would be grateful if you could leave a review on MicroLib so both me and the Spigot community can see what the advantages and disadvantages of MicroLib are. I'm much interested to hear what your thoughts are.
+
+Thank you for using MicroLib. ;)
+
+***
+
+# v3.1.2
 
 * @lokka30 changed the `Consumer` import on the update checker.
   * It now uses the `Consumer` class from `java.util.function`, not Bukkit's one.
@@ -20,7 +47,7 @@
 
 ***
 
-# MicroLib v3.1.0
+# v3.1.0
 
 * I (@lokka30) re-programmed the [ItemBuilder](https://github.com/lokka30/MicroLib/blob/master/src/main/java/me/lokka30/microlib/items/ItemBuilder.java) class! It should work great now.
   * **Note:** The new ItemBuilder class has not been tested, please let me know if you use it and run into any issues.
@@ -28,13 +55,13 @@
 
 ***
 
-# MicroLib v3.0.1
+# v3.0.1
 
 * @lokka30 made the `MultiMessage.Placeholder` class static, fixed inability to use the `MultiMessage` class.
 
 ***
 
-# MicroLib v3.0.0
+# v3.0.0
 
 ## Important
 
@@ -79,7 +106,7 @@ have been moved to separate packages in an organisation effort for future-proofi
 
 ***
 
-# MicroLib v2.4.0
+# v2.4.0
 
 ## Important
 

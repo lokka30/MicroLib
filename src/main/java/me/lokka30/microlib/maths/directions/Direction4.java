@@ -5,8 +5,6 @@
 
 package me.lokka30.microlib.maths.directions;
 
-import org.bukkit.Location;
-
 /**
  * This enum contains 4 (four) Direction constants
  * that are obtained using the 'getDirection' method.
@@ -20,7 +18,6 @@ import org.bukkit.Location;
  * their plugin contains directions.
  *
  * @author lokka30
- * @see Location#getPitch()
  * @since 2.4.0
  */
 @SuppressWarnings("unused")
@@ -34,20 +31,33 @@ public enum Direction4 {
      * The Pitch value of a location in Minecraft
      * ranges from -180 to 180, which is why each
      * Direction has such minPitch values set.
+     *
      */
     NORTH(-135),
     EAST(-45),
     SOUTH(45),
     WEST(135);
 
-    /* Storing the minPitch of each Direction */
+    /**
+     * Storing the minPitch of each Direction.
+     *
+     * @param minPitch the min pitch.
+     * @since 2.4.0
+     */
     Direction4(double minPitch) {
         this.minPitch = minPitch;
     }
 
     public final double minPitch;
 
-    /* Translate a Pitch into a Direction */
+    /**
+     * Gets direction.
+     * Translates a Pitch into a Direction.
+     *
+     * @param pitch the pitch to translate into a direction.
+     * @return the direction translated from pitch.
+     * @since 2.4.0
+     */
     public static Direction4 getDirection(float pitch) {
         if (pitch > WEST.minPitch) {
             return WEST;

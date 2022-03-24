@@ -5,40 +5,71 @@
 
 package me.lokka30.microlib.maths;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.concurrent.TimeUnit;
+
 /**
- * This is a small class useful for timing simple things such as the time required to start-up a plugin or run a command.
- * <p>
- * Mark the starting point of the timer with `QuickTimer timer = new QuickTimer()`, then get the time (in milliseconds)
- * since it started using `QuickTimer#getTimer()`.
+ * This is a small class useful for timing simple things such as
+ * the time required to start up a plugin or complete the execution
+ * of a command.
  *
  * @author lokka30
- * @see System#currentTimeMillis()
- * @since unknown
+ * @since 2.1.0
  */
 @SuppressWarnings("unused")
 public class QuickTimer {
 
-    private long startTime;
+    private long startingTime;
+    private final TimeUnit timeUnit;
 
-    public QuickTimer() {
-        start();
-    }
-
-    public QuickTimer(long startTime) {
-        this.startTime = startTime;
+    /**
+     * Instantiates a new QuickTimer.
+     *
+     * @param timeUnit The time unit which you want to use.
+     * @since 3.2.0
+     */
+    public QuickTimer(final @NotNull TimeUnit timeUnit) {
+        this.timeUnit = timeUnit;
+        reset();
     }
 
     /**
-     * Re/start the timer.
+     * Instantiates a new QuickTimer.
+     *
+     * @param timeUnit The time unit which you want to use.
+     * @param startingTime the specific time (as a {@code System.nanoTime()}) to start with instead.
+     * @since 3.2.0
      */
-    public void start() {
-        startTime = System.currentTimeMillis();
+    public QuickTimer(final @NotNull TimeUnit timeUnit, final long startingTime) {
+        this.timeUnit = timeUnit;
+        this.startingTime = startingTime;
     }
 
     /**
-     * @return time (millis) since start time
+     * Restarts the timer by setting the {@code startingTime} to when this method is ran.
+     *
+     * @since 3.2.0
      */
-    public long getTimer() {
-        return System.currentTimeMillis() - startTime;
+    public void reset() {
+        startingTime = System.nanoTime();
     }
+
+    /**
+     * Gets how much time has surpassed since the {@code startingTime}.
+     *
+     * @return the duration.
+     * @since 3.2.0
+     */
+    public long getDuration() {
+        return TimeUnit.NANOSECONDS.convert(System.nanoTime() - startingTime, timeUnit);
+    }
+
+    /**
+     * Get which time unit is being used.
+     *
+     * @return which time unit is being used.
+     * @since 3.2.0
+     */
+    public TimeUnit getTimeUnit() { return timeUnit; }
 }
