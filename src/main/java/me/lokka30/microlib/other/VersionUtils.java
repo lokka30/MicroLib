@@ -5,6 +5,7 @@
 
 package me.lokka30.microlib.other;
 
+import com.google.common.annotations.Beta;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
@@ -49,10 +50,12 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.19 or newer version.
      *
+     * This works by checking if server has entity type "WARDEN"
+     *
      * @return If the server is MC 1.19 or newer.
-     * @apiNote This works by checking if server has entity type "WARDEN"
      * @since 3.1.3
      */
+    @Beta
     public static boolean isOneNineteen() {
         return hasEntityType("WARDEN");
     }
@@ -60,8 +63,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.18 or newer version.
      *
+     * This works by checking if server has biome called "GROVE"
+     *
      * @return if the server is MC 1.18 or newer.
-     * @apiNote This works by checking if server has biome called "GROVE"
      * @since 2.2.4
      */
     public static boolean isOneEighteen() {
@@ -71,8 +75,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.17 or newer version.
      *
+     * This works by checking if server has entity type "AXOLOTL"
+     *
      * @return if the server is MC 1.17 or newer.
-     * @apiNote This works by checking if server has entity type "AXOLOTL"
      * @since 2.2.4
      */
     public static boolean isOneSeventeen() {
@@ -82,8 +87,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.16 or newer version.
      *
+     * This works by checking if server has entity type "PIGLIN"
+     *
      * @return if the server is MC 1.16 or newer.
-     * @apiNote This works by checking if server has entity type "PIGLIN"
      * @since 2.2.0
      */
     public static boolean isOneSixteen() {
@@ -93,8 +99,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.15 or newer version.
      *
+     * This works by checking if server has entity type "BEE"
+     *
      * @return if the server is MC 1.15 or newer.
-     * @apiNote This works by checking if server has entity type "BEE"
      * @since 2.2.0
      */
     public static boolean isOneFifteen() {
@@ -104,8 +111,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.14 or newer version.
      *
+     * This works by checking if server has entity type "PILLAGER"
+     *
      * @return if the server is MC 1.14 or newer.
-     * @apiNote This works by checking if server has entity type "PILLAGER"
      * @since 2.2.0
      */
     public static boolean isOneFourteen() {
@@ -115,8 +123,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.13 or newer version.
      *
+     * This works by checking if server has entity type "TURTLE"
+     *
      * @return if the server is MC 1.13 or newer.
-     * @apiNote This works by checking if server has entity type "TURTLE"
      * @since 2.2.0
      */
     public static boolean isOneThirteen() {
@@ -126,8 +135,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.12 or newer version.
      *
+     * This works by checking if server has material "WHITE_CONCRETE"
+     *
      * @return if the server is MC 1.12 or newer.
-     * @apiNote This works by checking if server has material "WHITE_CONCRETE"
      * @since 2.2.0
      */
     public static boolean isOneTwelve() {
@@ -137,8 +147,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.11 or newer version.
      *
+     * This works by checking if server has material "OBSERVER"
+     *
      * @return if the server is MC 1.11 or newer.
-     * @apiNote This works by checking if server has material "OBSERVER"
      * @since 2.2.0
      */
     public static boolean isOneEleven() {
@@ -148,8 +159,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.10 or newer version.
      *
+     * This works by checking if server has material "MAGMA_BLOCK"
+     *
      * @return if the server is MC 1.10 or newer.
-     * @apiNote This works by checking if server has material "MAGMA_BLOCK"
      * @since 2.2.0
      */
     public static boolean isOneTen() {
@@ -159,8 +171,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.9 or newer version.
      *
+     * This works by checking if server has material "END_ROD"
+     *
      * @return if the server is MC 1.9 or newer.
-     * @apiNote This works by checking if server has material "END_ROD"
      * @since 2.2.0
      */
     public static boolean isOneNine() {
@@ -170,8 +183,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.8 or newer version.
      *
+     * This works by checking if server has material "PRISMARINE"
+     *
      * @return if the server is MC 1.8 or newer.
-     * @apiNote This works by checking if server has material "PRISMARINE"
      * @since 2.2.0
      */
     public static boolean isOneEight() {
@@ -181,8 +195,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.7 or newer version.
      *
+     * This works by checking if server has material "WHITE_STAINED_GLASS"
+     *
      * @return if the server is MC 1.7 or newer.
-     * @apiNote This works by checking if server has material "WHITE_STAINED_GLASS"
      * @since 2.2.0
      */
     public static boolean isOneSeven() {
@@ -192,8 +207,9 @@ public class VersionUtils {
     /**
      * Checks whether the server is running on MC 1.6 or newer version.
      *
+     * This works by checking if server has entity type "HORSE"
+     *
      * @return if the server is MC 1.6 or newer.
-     * @apiNote This works by checking if server has entity type "HORSE"
      * @since 2.2.0
      */
     public static boolean isOneSix() {
@@ -302,20 +318,81 @@ public class VersionUtils {
      * @since 2.4.0
      */
     public enum MajorMinecraftVersion {
+
+        /**
+         * Minecraft 1.19
+         */
+        @Beta
         ONE_NINETEEN,
+
+        /**
+         * Minecraft 1.18
+         */
         ONE_EIGHTEEN,
+
+        /**
+         * Minecraft 1.17
+         */
         ONE_SEVENTEEN,
+
+        /**
+         * Minecraft 1.16
+         */
         ONE_SIXTEEN,
+
+        /**
+         * Minecraft 1.15
+         */
         ONE_FIFTEEN,
+
+        /**
+         * Minecraft 1.14
+         */
         ONE_FOURTEEN,
+
+        /**
+         * Minecraft 1.13
+         */
         ONE_THIRTEEN,
+
+        /**
+         * Minecraft 1.12
+         */
         ONE_TWELVE,
+
+        /**
+         * Minecraft 1.11
+         */
         ONE_ELEVEN,
+
+        /**
+         * Minecraft 1.10
+         */
         ONE_TEN,
+
+        /**
+         * Minecraft 1.8
+         */
         ONE_NINE,
+
+        /**
+         * Minecraft 1.8
+         */
         ONE_EIGHT,
+
+        /**
+         * Minecraft 1.7
+         */
         ONE_SEVEN,
+
+        /**
+         * Minecraft 1.6
+         */
         ONE_SIX,
+
+        /**
+         * Unknown Minecraft Verison - pre-1.6?
+         */
         UNKNOWN
     }
 }

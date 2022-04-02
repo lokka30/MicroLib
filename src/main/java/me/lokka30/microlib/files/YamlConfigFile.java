@@ -41,9 +41,10 @@ public class YamlConfigFile {
     /**
      * Instantiates a new Yaml configuration file.
      *
+     * Config will be created in your plugin folder. If you want to set custom path use/instantiate {@link #YamlConfigFile(Plugin, File)}.
+     *
      * @param plugin     The plugin which will be used to create new file.
      * @param configName The configuration name. Example: 'config.yml'
-     * @apiNote Config will be created in your plugin folder. If you want to set custom path use/instantiate {@link #YamlConfigFile(Plugin, File)}.
      * @since 3.1.3
      */
     public YamlConfigFile(final Plugin plugin, final String configName) {
@@ -93,7 +94,8 @@ public class YamlConfigFile {
     /**
      * If config values are missing in the current config, should the defaults be copied over?
      *
-     * @apiNote By default, it does not copy defaults.
+     * By default, it does not copy defaults.
+     *
      * @param copyDefaults Whether the config should copy defaults.
      * @since 2.1.0
      */

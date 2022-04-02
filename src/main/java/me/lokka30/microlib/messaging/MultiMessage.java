@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This class makes it easier and cleaner to get & send colorized multi-placeholder multi-line messages.
+ * This class makes it easier and cleaner to get and send colorized multi-placeholder multi-line messages.
  * Reduces 2-3 lines of code and removes a lot of repeating code as if it was not used.
  *
  * @author lokka30

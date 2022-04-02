@@ -54,10 +54,12 @@ public class JsonConfigFile {
     /**
      * Instantiates a new JSON config file.
      *
+     * JSON file will be created in your plugin folder. If you want to set custom path use/instantiate {@link #JsonConfigFile(Plugin, File)}
+     *
+     *
      * @param plugin The plugin which will be used to create new JSON file.
      * @param name   The configuration name. Example: 'data.json'
      * @throws IOException If an I/O error occurs opening the file.
-     * @apiNote JSON file will be created in your plugin folder. If you want to set custom path use/instantiate {@link #JsonConfigFile(Plugin, File)}
      * @since 3.2.0
      */
     public JsonConfigFile(final Plugin plugin, final String name) throws IOException {

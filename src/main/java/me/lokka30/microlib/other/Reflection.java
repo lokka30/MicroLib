@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Utility class to help with reflection & NMS.
+ * Utility class to help with reflection and NMS.
  *
  * @author _ProfliX_
  * @since 3.2.0

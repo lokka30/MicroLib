@@ -11,7 +11,7 @@
 
     <groupId>me.lokka30</groupId>
     <artifactId>MicroLib</artifactId>
-    <version>3.2.1</version>
+    <version>3.2.2</version>
 
     <name>MicroLib</name>
     <description>A small, shaded code library for SpigotMC plugins.</description>

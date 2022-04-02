@@ -16,10 +16,10 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * This class contains a bunch of methods which
- * make it very easy to translate '&'-based color
+ * make it very easy to translate color
  * codes in messages. You can colorize standard codes
- * (&a, &b, &1, &2, etc), and even hex codes (&#abccdef),
- * and also both in one method :)
+ * ({@code &a, &b, &1, &2, etc}), and even hex codes ({@code &#abccdef}),
+ * and also both in one method. :)
  *
  * @author lokka30, Sullivan_Bognar, imDaniX, stumper66
  * @since 2.2.0
@@ -27,8 +27,8 @@ import org.jetbrains.annotations.Nullable;
 public class MessageUtils {
 
     /**
-     * Colorize a message, using '&' color codes - e.g. '&a' for ChatColor.GREEN.
-     * If the server is 1.16 or newer, then it will also translate hex codes - e.g. '&#abcdef'.
+     * Colorize a message, using {@code &} color codes - e.g. {@code &a} for ChatColor.GREEN.
+     * If the server is 1.16 or newer, then it will also translate hex codes - e.g. {@code &#abcdef}.
      *
      * If the msg parameter is null, it will return an empty string.
      *
@@ -45,7 +45,7 @@ public class MessageUtils {
     }
 
     /**
-     * This defaults the 'startTag' to '&#' and endTag to '' (nothing) to colorizeHexCodes.
+     * This defaults the {@code startTag} to {@code &#} and {@code endTag} to an empty string (nothing) to {@link MessageUtils#colorizeHexCodes(String, String, String)}.
      *
      * If the msg parameter is null, it will return an empty string.
      *
@@ -62,14 +62,15 @@ public class MessageUtils {
     }
 
     /**
-     * This translates all hex codes in a message. Hex codes are prefixed by '&#', e.g. '&#abcdef'.
+     * This translates all hex codes in a message. Hex codes are prefixed by {@code &#}, e.g. {@code &#abcdef}.
      * This method ensures the version is 1.16 or newer before translating - else, it will not translate the message.
+     *
+     * This does NOT colorize standard codes, ONLY hex codes.
      *
      * If the msg parameter is null, it will return an empty string.
      *
-     * @apiNote This does NOT colorize standard codes, ONLY hex codes.
-     * @param startTag what the tag should begin with - '&#' is recommended
-     * @param endTag   what the tag should end with - '' (nothing) is recommended
+     * @param startTag what the tag should begin with - {@code &#} is recommended
+     * @param endTag   what the tag should end with - an empty string is recommended
      * @param msg  the message that should be translated
      * @return the translated string
      * @author Elementeral and imDaniX on SpigotMC.org via <a href="https://www.spigotmc.org/threads/hex-color-code-translate.449748/#post-3867804">this</a> thread.
@@ -98,7 +99,8 @@ public class MessageUtils {
 
     /**
      * This does NOT colorize hex codes, ONLY standard codes.
-     * This translated all standard codes in a message. Standard codes are prefixed by '&', e.g. '&a'.
+     * This translated all standard codes in a message.
+     * Standard codes are prefixed by {@code &}, e.g. {@code &a}.
      *
      * If the msg parameter is null, it will return an empty string.
      *

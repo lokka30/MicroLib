@@ -18,18 +18,22 @@ import org.jetbrains.annotations.NotNull;
  * For example, moving from x=1 to x=2 will fire the event, however,
  * moving from x=1.1 to x=1.7 will not fire the event, as the player has not moved a full block.
  * <p>
- * Using this class in your plugin can increase its performance by not running code every time a player moves their head ever so slightly,
- * since minor movements like these fire PlayerMoveEvent, so running lots of code on PlayerMoveEvent may have a poor impact on performance.
+ * Using this class in your plugin can increase its performance by not running code every time
+ * a player moves their head ever so slightly,
+ *
+ * since minor movements like these fire PlayerMoveEvent, so running lots of code on
+ * PlayerMoveEvent may have a poor impact on performance.
+ *
+ * This event only fires if MicroLib is installed as a plugin on the server.
+ * The event does not fire if MicroLib is shaded into the resource!
  *
  * @author lokka30
- * @apiNote This event only fires if MicroLib is installed as a plugin on the server. The event does not fire if MicroLib is shaded into the resource!
  * @see org.bukkit.event.player.PlayerMoveEvent
  * @see PlayerMoveXYZEvent
  * @see org.bukkit.event.Cancellable
  * @see org.bukkit.event.Event
  * @since 3.0.0
  */
-@SuppressWarnings("unused")
 public class PlayerMoveFullXYZEvent extends Event implements Cancellable {
 
     /* Handler List */
