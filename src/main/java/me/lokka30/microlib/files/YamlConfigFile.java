@@ -1,16 +1,15 @@
 /*
- * Copyright (c) 2020-2021 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
+ * Copyright (c) 2020-2022 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
  * This class is bundled inside the MicroLib resource, a library purposed for Bukkit/SpigotMC plugin developers. Read more about the resource here: https://www.spigotmc.org/resources/microlib.84017/
  */
 
 package me.lokka30.microlib.files;
 
+import java.io.File;
+import java.io.IOException;
 import org.apache.commons.lang.Validate;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
-
-import java.io.File;
-import java.io.IOException;
 
 /**
  * This class allows you to easily work with YAML configuration files.

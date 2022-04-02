@@ -1,15 +1,15 @@
 /*
- * Copyright (c) 2020-2021 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
+ * Copyright (c) 2020-2022 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
  * This class is bundled inside the MicroLib resource, a library purposed for Bukkit/SpigotMC plugin developers. Read more about the resource here: https://www.spigotmc.org/resources/microlib.84017/
  */
 
 package me.lokka30.microlib.messaging;
 
+import java.util.logging.Logger;
 import me.lokka30.microlib.other.VersionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-
-import java.util.logging.Logger;
+import org.bukkit.plugin.Plugin;
 
 /**
  * Logging utility class.
@@ -17,8 +17,9 @@ import java.util.logging.Logger;
  * @author lokka30, stumper66
  * @see Logger
  * @since 1.0.3
+ * @deprecated Use {@link Plugin#getLogger()} Bukkit's logger} instead. Messages logged using this class may appear incorrectly on Paper 1.18.2+ servers.
  */
-@SuppressWarnings("unused")
+@Deprecated
 public class MicroLogger {
 
     final boolean serverIsSpigot;
