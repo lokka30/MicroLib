@@ -1,18 +1,18 @@
 /*
- * Copyright (c) 2020-2021 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
+ * Copyright (c) 2020-2022 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
  * This class is bundled inside the MicroLib resource, a library purposed for Bukkit/SpigotMC plugin developers. Read more about the resource here: https://www.spigotmc.org/resources/microlib.84017/
  */
 
 package me.lokka30.microlib.messaging;
 
-import me.lokka30.microlib.other.VersionUtils;
-import org.bukkit.Bukkit;
-import org.jetbrains.annotations.NotNull;
+import static net.md_5.bungee.api.ChatColor.COLOR_CHAR;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static net.md_5.bungee.api.ChatColor.COLOR_CHAR;
+import me.lokka30.microlib.other.VersionUtils;
+import org.bukkit.Bukkit;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * This class contains a bunch of methods which
@@ -21,7 +21,7 @@ import static net.md_5.bungee.api.ChatColor.COLOR_CHAR;
  * (&a, &b, &1, &2, etc), and even hex codes (&#abccdef),
  * and also both in one method :)
  *
- * @author lokka30, Sullivan_Bognar, imDaniX
+ * @author lokka30, Sullivan_Bognar, imDaniX, stumper66
  * @since 2.2.0
  */
 public class MessageUtils {
@@ -30,22 +30,34 @@ public class MessageUtils {
      * Colorize a message, using '&' color codes - e.g. '&a' for ChatColor.GREEN.
      * If the server is 1.16 or newer, then it will also translate hex codes - e.g. '&#abcdef'.
      *
+     * If the msg parameter is null, it will return an empty string.
+     *
      * @param msg the message to translate color codes from.
      * @return the color-translated message.
      * @since 2.2.0
      */
-    public static @NotNull String colorizeAll(final String msg) {
+    public static @NotNull String colorizeAll(@Nullable final String msg) {
+        if(msg == null || msg.isEmpty()) {
+            return "";
+        }
+
         return colorizeStandardCodes(colorizeHexCodes(msg));
     }
 
     /**
      * This defaults the 'startTag' to '&#' and endTag to '' (nothing) to colorizeHexCodes.
      *
+     * If the msg parameter is null, it will return an empty string.
+     *
      * @param msg message to translate
      * @return the translated string
      * @since 2.2.0
      */
-    public static String colorizeHexCodes(final String msg) {
+    public static String colorizeHexCodes(@Nullable final String msg) {
+        if(msg == null || msg.isEmpty()) {
+            return "";
+        }
+
         return colorizeHexCodes("&#", "", msg);
     }
 
@@ -53,20 +65,26 @@ public class MessageUtils {
      * This translates all hex codes in a message. Hex codes are prefixed by '&#', e.g. '&#abcdef'.
      * This method ensures the version is 1.16 or newer before translating - else, it will not translate the message.
      *
+     * If the msg parameter is null, it will return an empty string.
+     *
      * @apiNote This does NOT colorize standard codes, ONLY hex codes.
      * @param startTag what the tag should begin with - '&#' is recommended
      * @param endTag   what the tag should end with - '' (nothing) is recommended
-     * @param message  the message that should be translated
+     * @param msg  the message that should be translated
      * @return the translated string
      * @author Elementeral and imDaniX on SpigotMC.org via <a href="https://www.spigotmc.org/threads/hex-color-code-translate.449748/#post-3867804">this</a> thread.
      * @since 2.2.0
      */
-    public static String colorizeHexCodes(final String startTag, final String endTag, final String message) {
-        if (!VersionUtils.isOneSixteen() || !VersionUtils.isRunningSpigot()) return message;
+    public static String colorizeHexCodes(@NotNull final String startTag, @NotNull final String endTag, @Nullable final String msg) {
+        if(msg == null || msg.isEmpty()) {
+            return "";
+        }
+
+        if (!VersionUtils.isOneSixteen() || !VersionUtils.isRunningSpigot()) return msg;
 
         final Pattern hexPattern = Pattern.compile(startTag + "([A-Fa-f0-9]{6})" + endTag);
-        Matcher matcher = hexPattern.matcher(message);
-        StringBuffer buffer = new StringBuffer(message.length() + 4 * 8);
+        Matcher matcher = hexPattern.matcher(msg);
+        StringBuffer buffer = new StringBuffer(msg.length() + 4 * 8);
         while (matcher.find()) {
             String group = matcher.group(1);
             matcher.appendReplacement(buffer, COLOR_CHAR + "x"
@@ -82,14 +100,21 @@ public class MessageUtils {
      * This does NOT colorize hex codes, ONLY standard codes.
      * This translated all standard codes in a message. Standard codes are prefixed by '&', e.g. '&a'.
      *
+     * If the msg parameter is null, it will return an empty string.
+     *
      * @param msg the message to translate standard color codes from.
      * @return the color-translated message.
      * @since 2.2.0
      */
-    public static @NotNull String colorizeStandardCodes(final String msg) {
-        if (Bukkit.getName().equalsIgnoreCase("CraftBukkit"))
+    public static @NotNull String colorizeStandardCodes(@Nullable final String msg) {
+        if(msg == null || msg.isEmpty()) {
+            return "";
+        }
+
+        if (Bukkit.getName().equalsIgnoreCase("CraftBukkit")) {
             return org.bukkit.ChatColor.translateAlternateColorCodes('&', msg);
-        else
+        } else {
             return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', msg);
+        }
     }
 }

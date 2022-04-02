@@ -1,15 +1,13 @@
 /*
- * Copyright (c) 2020-2021 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
+ * Copyright (c) 2020-2022 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
  * This class is bundled inside the MicroLib resource, a library purposed for Bukkit/SpigotMC plugin developers. Read more about the resource here: https://www.spigotmc.org/resources/microlib.84017/
  */
 
 package me.lokka30.microlib.files;
 
+import com.google.common.annotations.Beta;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.apache.commons.lang.Validate;
-import org.bukkit.plugin.Plugin;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +17,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang.Validate;
+import org.bukkit.plugin.Plugin;
 
 /**
  * This class allows you to easily work with JSON configuration (mostly data) files.
@@ -26,6 +26,7 @@ import java.util.Map;
  * @author _ProfliX_
  * @since 3.2.0
  */
+@Beta
 @SuppressWarnings("unused")
 public class JsonConfigFile {
 

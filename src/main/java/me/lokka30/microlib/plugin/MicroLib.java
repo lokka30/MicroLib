@@ -1,11 +1,10 @@
 /*
- * Copyright (c) 2020-2021 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
+ * Copyright (c) 2020-2022 lokka30. Use of this source code is governed by the MIT license that can be found in the LICENSE.md file.
  * This class is bundled inside the MicroLib resource, a library purposed for Bukkit/SpigotMC plugin developers. Read more about the resource here: https://www.spigotmc.org/resources/microlib.84017/
  */
 
 package me.lokka30.microlib.plugin;
 
-import me.lokka30.microlib.messaging.MicroLogger;
 import me.lokka30.microlib.plugin.listeners.PlayerMoveListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,8 +19,6 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 @SuppressWarnings("unused")
 public class MicroLib extends JavaPlugin {
-
-    private final MicroLogger logger = new MicroLogger("&b&lMicroLib: &7");
 
     /**
      * Whether is MicroLib installed in the plugins folder and loaded by Bukkit.
@@ -43,18 +40,6 @@ public class MicroLib extends JavaPlugin {
     @Override
     public void onEnable() {
         registerListeners();
-
-        logger.info("&fEnabled successfully.");
-    }
-
-    /**
-     * Called when MicroLib is disabled.
-     *
-     * @since 2.4.0
-     */
-    @Override
-    public void onDisable() {
-        logger.info("&fDisabled successfully.");
     }
 
     /**
@@ -63,8 +48,7 @@ public class MicroLib extends JavaPlugin {
      * @since 3.0.0
      */
     private void registerListeners() {
-        logger.info("Registering listeners...");
-
-        Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(), this);
+        getLogger().info("Registering listeners...");
+        getServer().getPluginManager().registerEvents(new PlayerMoveListener(), this);
     }
 }
